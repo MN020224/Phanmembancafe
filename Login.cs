@@ -14,7 +14,8 @@ namespace CafeOrder
 {
     public partial class Login : Form
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["cafe_quanly"].ConnectionString;
+        readonly string connectionString = ConfigurationManager.ConnectionStrings["cafe_quanly"]?.ConnectionString
+            ?? "Data Source=.\\SQLEXPRESS;Initial Catalog=cafe_quanly;Integrated Security=True;TrustServerCertificate=True";
         public Login()
         {
             InitializeComponent();
@@ -91,11 +92,14 @@ namespace CafeOrder
 
                         if (reader.Read())
                         {
+                            AppSession.TaiKhoanId = Convert.ToInt32(reader["id"]);
+                            AppSession.TenDangNhap = reader["ten_dang_nhap"].ToString();
+                            AppSession.VaiTro = reader["vai_tro"].ToString();
+                            DbHelper.EnsureSeedData();
+                            AppSession.CaId = CaService.GetOpenCaId(AppSession.TaiKhoanId);
+
                             MPI main = new MPI();
                             main.Show();
-
-
-                            // Đóng form đăng nhập
                             this.Hide();
                         }
                         else

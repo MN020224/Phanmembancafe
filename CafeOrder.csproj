@@ -63,6 +63,13 @@
       <DependentUpon>MPI.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="UiTheme.cs" />
+    <Compile Include="AppSession.cs" />
+    <Compile Include="DbHelper.cs" />
+    <Compile Include="CaService.cs" />
+    <Compile Include="BanHangService.cs" />
+    <Compile Include="BaoCaoService.cs" />
+    <Compile Include="QuanTriService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UCBanHang.cs">
       <SubType>UserControl</SubType>
@@ -97,6 +104,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCDongca.resx">
+      <DependentUpon>UCDongca.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCQuanTri.resx">
       <DependentUpon>UCQuanTri.cs</DependentUpon>
