@@ -70,6 +70,7 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
@@ -85,7 +86,6 @@
             // pnlFilter
             // 
             this.pnlFilter.BackColor = System.Drawing.Color.White;
-
             this.pnlFilter.Controls.Add(this.btnXemBaoCao);
             this.pnlFilter.Controls.Add(this.dtpDenNgay);
             this.pnlFilter.Controls.Add(this.lblDenNgay);
@@ -98,7 +98,6 @@
             this.pnlFilter.Padding = new System.Windows.Forms.Padding(9, 6, 9, 6);
             this.pnlFilter.Size = new System.Drawing.Size(868, 36);
             this.pnlFilter.TabIndex = 1;
-
             // 
             // btnXemBaoCao
             // 
@@ -258,7 +257,7 @@
             this.txtTongDoanhThu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTongDoanhThu.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.txtTongDoanhThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.txtTongDoanhThu.ForeColor = System.Drawing.Color.Black;
             this.txtTongDoanhThu.Location = new System.Drawing.Point(9, 226);
             this.txtTongDoanhThu.Margin = new System.Windows.Forms.Padding(2);
             this.txtTongDoanhThu.Name = "txtTongDoanhThu";

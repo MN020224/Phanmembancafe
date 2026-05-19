@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\ucdongca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:ucdongca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\ucquantri.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\phanmembanhang\\cafeorder\\ucquantri.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:ucquantri.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\ucbanhang.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,11 +23,7 @@
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:ucbaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\ucdongca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:ucdongca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\phanmembanhang\\cafeorder\\ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -86,24 +86,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "UCQuanTri.cs [Design]",
               "DocumentMoniker": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCQuanTri.cs",
               "RelativeDocumentMoniker": "UCQuanTri.cs",
-              "ToolTip": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCQuanTri.cs [Design]*",
-              "RelativeToolTip": "UCQuanTri.cs [Design]*",
+              "ToolTip": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCQuanTri.cs [Design]",
+              "RelativeToolTip": "UCQuanTri.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-18T16:34:40.174Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "UCDongca.cs [Design]",
               "DocumentMoniker": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCDongca.cs",
               "RelativeDocumentMoniker": "UCDongca.cs",
@@ -116,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "UCBaoCao.cs [Design]",
               "DocumentMoniker": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCBaoCao.cs",
               "RelativeDocumentMoniker": "UCBaoCao.cs",
@@ -124,8 +123,7 @@
               "RelativeToolTip": "UCBaoCao.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-19T16:54:55.897Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -165,7 +163,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UCBanHang.Designer.cs",
               "DocumentMoniker": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCBanHang.Designer.cs",
               "RelativeDocumentMoniker": "UCBanHang.Designer.cs",
@@ -173,8 +171,7 @@
               "RelativeToolTip": "UCBanHang.Designer.cs",
               "ViewState": "AgIAAJgAAAAAAAAAAAAkwFIBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T17:23:53.416Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T17:23:53.416Z"
             },
             {
               "$type": "Document",
@@ -182,9 +179,9 @@
               "Title": "UCQuanTri.Designer.cs",
               "DocumentMoniker": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCQuanTri.Designer.cs",
               "RelativeDocumentMoniker": "UCQuanTri.Designer.cs",
-              "ToolTip": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCQuanTri.Designer.cs*",
-              "RelativeToolTip": "UCQuanTri.Designer.cs*",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAAAJsAAAApAAAAAAAAAA==",
+              "ToolTip": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCQuanTri.Designer.cs",
+              "RelativeToolTip": "UCQuanTri.Designer.cs",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAAAJsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-18T16:28:23.296Z",
               "EditorCaption": ""
@@ -195,12 +192,11 @@
               "Title": "UCQuanTri.cs",
               "DocumentMoniker": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCQuanTri.cs",
               "RelativeDocumentMoniker": "UCQuanTri.cs",
-              "ToolTip": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCQuanTri.cs*",
-              "RelativeToolTip": "UCQuanTri.cs*",
+              "ToolTip": "F:\\Ph\u1EA7n m\u1EC1m b\u00E1n h\u00E0ng\\Phanmembanhang\\CafeOrder\\UCQuanTri.cs",
+              "RelativeToolTip": "UCQuanTri.cs",
               "ViewState": "AgIAABIBAAAAAAAAAAAYwDsBAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T16:58:30.279Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T16:58:30.279Z"
             },
             {
               "$type": "Document",
@@ -308,8 +304,7 @@
               "RelativeToolTip": "UCBaoCao.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T18:07:35.237Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T18:07:35.237Z"
             },
             {
               "$type": "Document",
@@ -321,8 +316,7 @@
               "RelativeToolTip": "UCBaoCao.Designer.cs",
               "ViewState": "AgIAAEgAAAAAAAAAAAAswGQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-19T18:06:01.48Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T18:06:01.48Z"
             },
             {
               "$type": "Document",

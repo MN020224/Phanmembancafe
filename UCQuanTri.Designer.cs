@@ -122,6 +122,7 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
@@ -154,6 +155,18 @@
             this.pnlContent.Padding = new System.Windows.Forms.Padding(8);
             this.pnlContent.Size = new System.Drawing.Size(884, 512);
             this.pnlContent.TabIndex = 0;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabMonAn);
+            this.tabControl1.Controls.Add(this.tabDanhMuc);
+            this.tabControl1.Controls.Add(this.tabPageBaoCao);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(8, 8);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(868, 496);
+            this.tabControl1.TabIndex = 0;
             // 
             // tabMonAn
             // 
@@ -356,7 +369,7 @@
             this.dtpDenNgay.Name = "dtpDenNgay";
             this.dtpDenNgay.Size = new System.Drawing.Size(120, 20);
             this.dtpDenNgay.TabIndex = 2;
-            this.dtpDenNgay.Value = new System.DateTime(2026, 5, 20, 2, 27, 54, 423);
+            this.dtpDenNgay.Value = new System.DateTime(2026, 5, 20, 3, 35, 42, 418);
             // 
             // btnLocBaoCao
             // 
@@ -419,7 +432,7 @@
             // 
             // pnlNav
             // 
-            this.pnlNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.pnlNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.pnlNav.Controls.Add(this.btnNavBaocao);
             this.pnlNav.Controls.Add(this.btnNavCaiDat);
             this.pnlNav.Controls.Add(this.btnNavDanhmuc);
@@ -446,6 +459,22 @@
             this.btnNavBaocao.Text = "📊 Báo cáo";
             this.btnNavBaocao.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavBaocao.UseVisualStyleBackColor = true;
+            // 
+            // btnNavCaiDat
+            // 
+            this.btnNavCaiDat.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNavCaiDat.FlatAppearance.BorderSize = 0;
+            this.btnNavCaiDat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavCaiDat.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.btnNavCaiDat.ForeColor = System.Drawing.Color.White;
+            this.btnNavCaiDat.Location = new System.Drawing.Point(0, 98);
+            this.btnNavCaiDat.Name = "btnNavCaiDat";
+            this.btnNavCaiDat.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
+            this.btnNavCaiDat.Size = new System.Drawing.Size(200, 45);
+            this.btnNavCaiDat.TabIndex = 3;
+            this.btnNavCaiDat.Text = "⚙️ Cài đặt";
+            this.btnNavCaiDat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNavCaiDat.UseVisualStyleBackColor = true;
             // 
             // btnNavDanhmuc
             // 
@@ -478,6 +507,7 @@
             this.btnNavSanPham.Text = "🍕 Sản phẩm";
             this.btnNavSanPham.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNavSanPham.UseVisualStyleBackColor = true;
+            this.btnNavSanPham.Click += new System.EventHandler(this.btnNavSanPham_Click);
             // 
             // pnlLog
             // 

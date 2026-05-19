@@ -108,6 +108,7 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
@@ -149,7 +150,7 @@
             this.dgvGioHang.AllowUserToAddRows = false;
             this.dgvGioHang.AllowUserToDeleteRows = false;
             this.dgvGioHang.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvGioHang.BackgroundColor = System.Drawing.Color.White;
+            this.dgvGioHang.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
             this.dgvGioHang.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvGioHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGioHang.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -163,7 +164,7 @@
             // 
             // pnlFooter
             // 
-            this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
             this.pnlFooter.Controls.Add(this.pnlThanhToan);
             this.pnlFooter.Controls.Add(this.lblSoLuong);
             this.pnlFooter.Controls.Add(this.btnXoaMon);
@@ -223,7 +224,7 @@
             // 
             // btnXoaMon
             // 
-            this.btnXoaMon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
+            this.btnXoaMon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.btnXoaMon.FlatAppearance.BorderSize = 0;
             this.btnXoaMon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXoaMon.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
@@ -237,7 +238,7 @@
             // 
             // btnThemMon
             // 
-            this.btnThemMon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnThemMon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.btnThemMon.FlatAppearance.BorderSize = 0;
             this.btnThemMon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThemMon.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
@@ -251,7 +252,7 @@
             // 
             // btnThanhToan
             // 
-            this.btnThanhToan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.btnThanhToan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.btnThanhToan.FlatAppearance.BorderSize = 0;
             this.btnThanhToan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThanhToan.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
@@ -266,7 +267,7 @@
             // 
             // btnHuyHoaDon
             // 
-            this.btnHuyHoaDon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.btnHuyHoaDon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.btnHuyHoaDon.FlatAppearance.BorderSize = 0;
             this.btnHuyHoaDon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHuyHoaDon.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
@@ -283,7 +284,6 @@
             this.txtTongTien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
             this.txtTongTien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTongTien.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.txtTongTien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.txtTongTien.Location = new System.Drawing.Point(131, 9);
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.ReadOnly = true;
@@ -295,7 +295,7 @@
             // lblTongTien
             // 
             this.lblTongTien.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblTongTien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+            this.lblTongTien.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblTongTien.Location = new System.Drawing.Point(3, 9);
             this.lblTongTien.Name = "lblTongTien";
             this.lblTongTien.Size = new System.Drawing.Size(112, 26);
@@ -329,7 +329,7 @@
             // flowSanPham
             // 
             this.flowSanPham.AutoScroll = true;
-            this.flowSanPham.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.flowSanPham.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
             this.flowSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowSanPham.Location = new System.Drawing.Point(9, 9);
             this.flowSanPham.Name = "flowSanPham";
@@ -339,7 +339,7 @@
             // 
             // pnlSidebar
             // 
-            this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.pnlSidebar.Controls.Add(this.lblDanhMuc);
             this.pnlSidebar.Controls.Add(this.btnCaPhe);
             this.pnlSidebar.Controls.Add(this.btnTra);
@@ -355,8 +355,8 @@
             // lblDanhMuc
             // 
             this.lblDanhMuc.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblDanhMuc.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblDanhMuc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(195)))), ((int)(((byte)(199)))));
+            this.lblDanhMuc.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDanhMuc.ForeColor = System.Drawing.Color.White;
             this.lblDanhMuc.Location = new System.Drawing.Point(0, 9);
             this.lblDanhMuc.Name = "lblDanhMuc";
             this.lblDanhMuc.Padding = new System.Windows.Forms.Padding(13, 9, 0, 9);
@@ -366,10 +366,10 @@
             // 
             // btnCaPhe
             // 
-            this.btnCaPhe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(85)))), ((int)(((byte)(106)))));
+            this.btnCaPhe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.btnCaPhe.FlatAppearance.BorderSize = 0;
             this.btnCaPhe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCaPhe.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnCaPhe.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCaPhe.ForeColor = System.Drawing.Color.White;
             this.btnCaPhe.Location = new System.Drawing.Point(0, 48);
             this.btnCaPhe.Name = "btnCaPhe";
@@ -381,10 +381,10 @@
             // 
             // btnTra
             // 
-            this.btnTra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(85)))), ((int)(((byte)(106)))));
+            this.btnTra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.btnTra.FlatAppearance.BorderSize = 0;
             this.btnTra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTra.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnTra.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTra.ForeColor = System.Drawing.Color.White;
             this.btnTra.Location = new System.Drawing.Point(0, 95);
             this.btnTra.Name = "btnTra";
@@ -396,10 +396,10 @@
             // 
             // btnSinhTo
             // 
-            this.btnSinhTo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(85)))), ((int)(((byte)(106)))));
+            this.btnSinhTo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.btnSinhTo.FlatAppearance.BorderSize = 0;
             this.btnSinhTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSinhTo.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnSinhTo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSinhTo.ForeColor = System.Drawing.Color.White;
             this.btnSinhTo.Location = new System.Drawing.Point(0, 143);
             this.btnSinhTo.Name = "btnSinhTo";
@@ -411,10 +411,10 @@
             // 
             // btnBanh
             // 
-            this.btnBanh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(85)))), ((int)(((byte)(106)))));
+            this.btnBanh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.btnBanh.FlatAppearance.BorderSize = 0;
             this.btnBanh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBanh.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnBanh.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBanh.ForeColor = System.Drawing.Color.White;
             this.btnBanh.Location = new System.Drawing.Point(0, 191);
             this.btnBanh.Name = "btnBanh";

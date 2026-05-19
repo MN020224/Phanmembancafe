@@ -54,7 +54,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -126,6 +126,7 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
@@ -137,10 +138,11 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "📊 QUẢN LÝ CA LÀM VIỆC";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // pnlShiftInfo
             // 
-            this.pnlShiftInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.pnlShiftInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
             this.pnlShiftInfo.Controls.Add(this.lblGioMoCa);
             this.pnlShiftInfo.Controls.Add(this.txtGioMoCa);
             this.pnlShiftInfo.Controls.Add(this.lblGioDongCa);
@@ -221,7 +223,7 @@
             this.txtSoHoaDon.BackColor = System.Drawing.Color.White;
             this.txtSoHoaDon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSoHoaDon.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.txtSoHoaDon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.txtSoHoaDon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.txtSoHoaDon.Location = new System.Drawing.Point(189, 47);
             this.txtSoHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.txtSoHoaDon.Name = "txtSoHoaDon";
@@ -247,7 +249,7 @@
             this.txtTrangThaiCa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(225)))));
             this.txtTrangThaiCa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTrangThaiCa.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.txtTrangThaiCa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
+            this.txtTrangThaiCa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.txtTrangThaiCa.Location = new System.Drawing.Point(544, 45);
             this.txtTrangThaiCa.Margin = new System.Windows.Forms.Padding(2);
             this.txtTrangThaiCa.Name = "txtTrangThaiCa";
@@ -296,10 +298,10 @@
             // 
             // txtTongDoanhThu
             // 
-            this.txtTongDoanhThu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(255)))), ((int)(((byte)(240)))));
+            this.txtTongDoanhThu.BackColor = System.Drawing.Color.White;
             this.txtTongDoanhThu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.txtTongDoanhThu.ForeColor = System.Drawing.Color.Green;
+            this.txtTongDoanhThu.ForeColor = System.Drawing.Color.Black;
             this.txtTongDoanhThu.Location = new System.Drawing.Point(156, 12);
             this.txtTongDoanhThu.Margin = new System.Windows.Forms.Padding(2);
             this.txtTongDoanhThu.Name = "txtTongDoanhThu";
@@ -311,7 +313,7 @@
             // 
             // lblTienMat
             // 
-            this.lblTienMat.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblTienMat.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTienMat.Location = new System.Drawing.Point(11, 64);
             this.lblTienMat.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTienMat.Name = "lblTienMat";
@@ -336,7 +338,7 @@
             // 
             // lblChuyenKhoan
             // 
-            this.lblChuyenKhoan.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblChuyenKhoan.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChuyenKhoan.Location = new System.Drawing.Point(11, 124);
             this.lblChuyenKhoan.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChuyenKhoan.Name = "lblChuyenKhoan";
@@ -361,7 +363,7 @@
             // 
             // lblTienDauCa
             // 
-            this.lblTienDauCa.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblTienDauCa.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTienDauCa.Location = new System.Drawing.Point(312, 15);
             this.lblTienDauCa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTienDauCa.Name = "lblTienDauCa";
@@ -385,8 +387,7 @@
             // 
             // lblThucThu
             // 
-            this.lblThucThu.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblThucThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.lblThucThu.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblThucThu.Location = new System.Drawing.Point(312, 67);
             this.lblThucThu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblThucThu.Name = "lblThucThu";
@@ -397,22 +398,21 @@
             // 
             // txtThucThu
             // 
-            this.txtThucThu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.txtThucThu.BackColor = System.Drawing.Color.White;
             this.txtThucThu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtThucThu.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.txtThucThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.txtThucThu.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txtThucThu.Location = new System.Drawing.Point(453, 65);
             this.txtThucThu.Margin = new System.Windows.Forms.Padding(2);
             this.txtThucThu.Name = "txtThucThu";
             this.txtThucThu.ReadOnly = true;
-            this.txtThucThu.Size = new System.Drawing.Size(136, 36);
+            this.txtThucThu.Size = new System.Drawing.Size(136, 27);
             this.txtThucThu.TabIndex = 9;
             this.txtThucThu.Text = "0 VNĐ";
             this.txtThucThu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblChenhLech
             // 
-            this.lblChenhLech.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.lblChenhLech.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChenhLech.Location = new System.Drawing.Point(312, 128);
             this.lblChenhLech.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChenhLech.Name = "lblChenhLech";
@@ -423,7 +423,7 @@
             // 
             // txtChenhLech
             // 
-            this.txtChenhLech.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(250)))), ((int)(((byte)(240)))));
+            this.txtChenhLech.BackColor = System.Drawing.Color.White;
             this.txtChenhLech.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtChenhLech.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txtChenhLech.Location = new System.Drawing.Point(453, 126);
@@ -437,7 +437,7 @@
             // 
             // btnMoCa
             // 
-            this.btnMoCa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.btnMoCa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.btnMoCa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMoCa.FlatAppearance.BorderSize = 0;
             this.btnMoCa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -471,7 +471,7 @@
             // 
             // btnInBaoCao
             // 
-            this.btnInBaoCao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.btnInBaoCao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.btnInBaoCao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnInBaoCao.Enabled = false;
             this.btnInBaoCao.FlatAppearance.BorderSize = 0;
@@ -490,10 +490,10 @@
             // 
             this.dgvHoaDonTrongCa.AllowUserToAddRows = false;
             this.dgvHoaDonTrongCa.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.dgvHoaDonTrongCa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.dgvHoaDonTrongCa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHoaDonTrongCa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvHoaDonTrongCa.BackgroundColor = System.Drawing.Color.White;
+            this.dgvHoaDonTrongCa.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
             this.dgvHoaDonTrongCa.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvHoaDonTrongCa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHoaDonTrongCa.Dock = System.Windows.Forms.DockStyle.Fill;
