@@ -20,10 +20,6 @@ namespace CafeOrder
         {
             UiTheme.StyleDataGridView(dgvBaoCao);
             UiTheme.StyleFlatButton(btnXemBaoCao, UiTheme.Primary, 32);
-            StyleTab(btnTabDoanhThu, true);
-            StyleTab(btnTabLoiNhuan, false);
-            StyleTab(btnTabDonHang, false);
-            _tabSelected = btnTabDoanhThu;
 
             dtpTuNgay.Value = DateTime.Today.AddDays(-7);
             dtpDenNgay.Value = DateTime.Today;
@@ -34,9 +30,6 @@ namespace CafeOrder
             dgvBaoCao.Columns.Add("Ban", "Ghi chú");
             dgvBaoCao.Columns.Add("TongTien", "Tổng tiền");
 
-            btnTabDoanhThu.Click += (s, ev) => { SelectTab(btnTabDoanhThu); NapBaoCao(); };
-            btnTabLoiNhuan.Click += (s, ev) => SelectTab(btnTabLoiNhuan);
-            btnTabDonHang.Click += (s, ev) => SelectTab(btnTabDonHang);
             btnXemBaoCao.Click += (s, ev) => NapBaoCao();
 
             _daKhoiTao = true;

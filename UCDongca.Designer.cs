@@ -11,10 +11,6 @@
         private System.Windows.Forms.Panel pnlShiftInfo;
         private System.Windows.Forms.Panel pnlFinancial;
         private System.Windows.Forms.DataGridView dgvHoaDonTrongCa;
-
-        // Thông tin ca làm việc
-        private System.Windows.Forms.Label lblNhanVien;
-        private System.Windows.Forms.TextBox txtNhanVien;
         private System.Windows.Forms.Label lblGioMoCa;
         private System.Windows.Forms.TextBox txtGioMoCa;
         private System.Windows.Forms.Label lblGioDongCa;
@@ -41,7 +37,6 @@
         // Buttons
         private System.Windows.Forms.Button btnMoCa;
         private System.Windows.Forms.Button btnDongCa;
-        private System.Windows.Forms.Button btnXemBaoCao;
         private System.Windows.Forms.Button btnInBaoCao;
 
         // Timer để cập nhật thời gian thực
@@ -59,13 +54,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlShiftInfo = new System.Windows.Forms.Panel();
-            this.lblNhanVien = new System.Windows.Forms.Label();
-            this.txtNhanVien = new System.Windows.Forms.TextBox();
             this.lblGioMoCa = new System.Windows.Forms.Label();
             this.txtGioMoCa = new System.Windows.Forms.TextBox();
             this.lblGioDongCa = new System.Windows.Forms.Label();
@@ -89,7 +82,6 @@
             this.txtChenhLech = new System.Windows.Forms.TextBox();
             this.btnMoCa = new System.Windows.Forms.Button();
             this.btnDongCa = new System.Windows.Forms.Button();
-            this.btnXemBaoCao = new System.Windows.Forms.Button();
             this.btnInBaoCao = new System.Windows.Forms.Button();
             this.dgvHoaDonTrongCa = new System.Windows.Forms.DataGridView();
             this.timerRealTime = new System.Windows.Forms.Timer(this.components);
@@ -116,7 +108,7 @@
             this.tlpMain.RowCount = 4;
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 98F));
-            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 104F));
+            this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 166F));
             this.tlpMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpMain.Size = new System.Drawing.Size(825, 455);
             this.tlpMain.TabIndex = 0;
@@ -149,8 +141,6 @@
             // pnlShiftInfo
             // 
             this.pnlShiftInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.pnlShiftInfo.Controls.Add(this.lblNhanVien);
-            this.pnlShiftInfo.Controls.Add(this.txtNhanVien);
             this.pnlShiftInfo.Controls.Add(this.lblGioMoCa);
             this.pnlShiftInfo.Controls.Add(this.txtGioMoCa);
             this.pnlShiftInfo.Controls.Add(this.lblGioDongCa);
@@ -167,36 +157,13 @@
             this.pnlShiftInfo.Size = new System.Drawing.Size(805, 94);
             this.pnlShiftInfo.TabIndex = 1;
             // 
-            // lblNhanVien
-            // 
-            this.lblNhanVien.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblNhanVien.Location = new System.Drawing.Point(15, 13);
-            this.lblNhanVien.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblNhanVien.Name = "lblNhanVien";
-            this.lblNhanVien.Size = new System.Drawing.Size(75, 20);
-            this.lblNhanVien.TabIndex = 0;
-            this.lblNhanVien.Text = "👤 Nhân viên:";
-            this.lblNhanVien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtNhanVien
-            // 
-            this.txtNhanVien.BackColor = System.Drawing.Color.White;
-            this.txtNhanVien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNhanVien.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtNhanVien.Location = new System.Drawing.Point(98, 12);
-            this.txtNhanVien.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNhanVien.Name = "txtNhanVien";
-            this.txtNhanVien.ReadOnly = true;
-            this.txtNhanVien.Size = new System.Drawing.Size(150, 27);
-            this.txtNhanVien.TabIndex = 1;
-            // 
             // lblGioMoCa
             // 
             this.lblGioMoCa.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblGioMoCa.Location = new System.Drawing.Point(262, 13);
+            this.lblGioMoCa.Location = new System.Drawing.Point(48, 17);
             this.lblGioMoCa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGioMoCa.Name = "lblGioMoCa";
-            this.lblGioMoCa.Size = new System.Drawing.Size(82, 20);
+            this.lblGioMoCa.Size = new System.Drawing.Size(129, 20);
             this.lblGioMoCa.TabIndex = 2;
             this.lblGioMoCa.Text = "🕐 Giờ mở ca:";
             this.lblGioMoCa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -206,7 +173,7 @@
             this.txtGioMoCa.BackColor = System.Drawing.Color.White;
             this.txtGioMoCa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGioMoCa.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtGioMoCa.Location = new System.Drawing.Point(352, 12);
+            this.txtGioMoCa.Location = new System.Drawing.Point(189, 16);
             this.txtGioMoCa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGioMoCa.Name = "txtGioMoCa";
             this.txtGioMoCa.ReadOnly = true;
@@ -217,10 +184,10 @@
             // lblGioDongCa
             // 
             this.lblGioDongCa.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblGioDongCa.Location = new System.Drawing.Point(15, 42);
+            this.lblGioDongCa.Location = new System.Drawing.Point(391, 16);
             this.lblGioDongCa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGioDongCa.Name = "lblGioDongCa";
-            this.lblGioDongCa.Size = new System.Drawing.Size(82, 20);
+            this.lblGioDongCa.Size = new System.Drawing.Size(120, 20);
             this.lblGioDongCa.TabIndex = 4;
             this.lblGioDongCa.Text = "🔒 Giờ đóng ca:";
             this.lblGioDongCa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -230,21 +197,21 @@
             this.txtGioDongCa.BackColor = System.Drawing.Color.White;
             this.txtGioDongCa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGioDongCa.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtGioDongCa.Location = new System.Drawing.Point(98, 41);
+            this.txtGioDongCa.Location = new System.Drawing.Point(544, 17);
             this.txtGioDongCa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGioDongCa.Name = "txtGioDongCa";
             this.txtGioDongCa.ReadOnly = true;
-            this.txtGioDongCa.Size = new System.Drawing.Size(150, 27);
+            this.txtGioDongCa.Size = new System.Drawing.Size(163, 27);
             this.txtGioDongCa.TabIndex = 5;
             this.txtGioDongCa.Text = "--:--:--";
             // 
             // lblSoHoaDon
             // 
             this.lblSoHoaDon.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblSoHoaDon.Location = new System.Drawing.Point(262, 42);
+            this.lblSoHoaDon.Location = new System.Drawing.Point(48, 46);
             this.lblSoHoaDon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSoHoaDon.Name = "lblSoHoaDon";
-            this.lblSoHoaDon.Size = new System.Drawing.Size(82, 20);
+            this.lblSoHoaDon.Size = new System.Drawing.Size(129, 20);
             this.lblSoHoaDon.TabIndex = 6;
             this.lblSoHoaDon.Text = "📄 Số hóa đơn:";
             this.lblSoHoaDon.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -255,7 +222,7 @@
             this.txtSoHoaDon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSoHoaDon.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.txtSoHoaDon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.txtSoHoaDon.Location = new System.Drawing.Point(352, 39);
+            this.txtSoHoaDon.Location = new System.Drawing.Point(189, 47);
             this.txtSoHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.txtSoHoaDon.Name = "txtSoHoaDon";
             this.txtSoHoaDon.ReadOnly = true;
@@ -267,10 +234,10 @@
             // lblTrangThaiCa
             // 
             this.lblTrangThaiCa.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblTrangThaiCa.Location = new System.Drawing.Point(15, 70);
+            this.lblTrangThaiCa.Location = new System.Drawing.Point(391, 44);
             this.lblTrangThaiCa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTrangThaiCa.Name = "lblTrangThaiCa";
-            this.lblTrangThaiCa.Size = new System.Drawing.Size(82, 20);
+            this.lblTrangThaiCa.Size = new System.Drawing.Size(120, 20);
             this.lblTrangThaiCa.TabIndex = 8;
             this.lblTrangThaiCa.Text = "📌 Trạng thái:";
             this.lblTrangThaiCa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -281,11 +248,11 @@
             this.txtTrangThaiCa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTrangThaiCa.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.txtTrangThaiCa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
-            this.txtTrangThaiCa.Location = new System.Drawing.Point(98, 69);
+            this.txtTrangThaiCa.Location = new System.Drawing.Point(544, 45);
             this.txtTrangThaiCa.Margin = new System.Windows.Forms.Padding(2);
             this.txtTrangThaiCa.Name = "txtTrangThaiCa";
             this.txtTrangThaiCa.ReadOnly = true;
-            this.txtTrangThaiCa.Size = new System.Drawing.Size(150, 27);
+            this.txtTrangThaiCa.Size = new System.Drawing.Size(163, 27);
             this.txtTrangThaiCa.TabIndex = 9;
             this.txtTrangThaiCa.Text = "CHƯA MỞ CA";
             this.txtTrangThaiCa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -307,25 +274,24 @@
             this.pnlFinancial.Controls.Add(this.txtChenhLech);
             this.pnlFinancial.Controls.Add(this.btnMoCa);
             this.pnlFinancial.Controls.Add(this.btnDongCa);
-            this.pnlFinancial.Controls.Add(this.btnXemBaoCao);
             this.pnlFinancial.Controls.Add(this.btnInBaoCao);
             this.pnlFinancial.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlFinancial.Location = new System.Drawing.Point(10, 145);
             this.pnlFinancial.Margin = new System.Windows.Forms.Padding(2);
             this.pnlFinancial.Name = "pnlFinancial";
             this.pnlFinancial.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
-            this.pnlFinancial.Size = new System.Drawing.Size(805, 100);
+            this.pnlFinancial.Size = new System.Drawing.Size(805, 162);
             this.pnlFinancial.TabIndex = 2;
             // 
             // lblTongDoanhThu
             // 
             this.lblTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblTongDoanhThu.Location = new System.Drawing.Point(11, 13);
+            this.lblTongDoanhThu.Location = new System.Drawing.Point(2, 17);
             this.lblTongDoanhThu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTongDoanhThu.Name = "lblTongDoanhThu";
-            this.lblTongDoanhThu.Size = new System.Drawing.Size(98, 20);
+            this.lblTongDoanhThu.Size = new System.Drawing.Size(150, 20);
             this.lblTongDoanhThu.TabIndex = 0;
-            this.lblTongDoanhThu.Text = "💰 Tổng doanh thu:";
+            this.lblTongDoanhThu.Text = " Tổng doanh thu:";
             this.lblTongDoanhThu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtTongDoanhThu
@@ -334,7 +300,7 @@
             this.txtTongDoanhThu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.txtTongDoanhThu.ForeColor = System.Drawing.Color.Green;
-            this.txtTongDoanhThu.Location = new System.Drawing.Point(116, 12);
+            this.txtTongDoanhThu.Location = new System.Drawing.Point(156, 12);
             this.txtTongDoanhThu.Margin = new System.Windows.Forms.Padding(2);
             this.txtTongDoanhThu.Name = "txtTongDoanhThu";
             this.txtTongDoanhThu.ReadOnly = true;
@@ -346,12 +312,12 @@
             // lblTienMat
             // 
             this.lblTienMat.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblTienMat.Location = new System.Drawing.Point(11, 42);
+            this.lblTienMat.Location = new System.Drawing.Point(11, 64);
             this.lblTienMat.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTienMat.Name = "lblTienMat";
             this.lblTienMat.Size = new System.Drawing.Size(98, 20);
             this.lblTienMat.TabIndex = 2;
-            this.lblTienMat.Text = "💵 Tiền mặt:";
+            this.lblTienMat.Text = "Tiền mặt:";
             this.lblTienMat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtTienMat
@@ -359,7 +325,7 @@
             this.txtTienMat.BackColor = System.Drawing.Color.White;
             this.txtTienMat.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTienMat.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtTienMat.Location = new System.Drawing.Point(116, 41);
+            this.txtTienMat.Location = new System.Drawing.Point(156, 64);
             this.txtTienMat.Margin = new System.Windows.Forms.Padding(2);
             this.txtTienMat.Name = "txtTienMat";
             this.txtTienMat.ReadOnly = true;
@@ -371,12 +337,12 @@
             // lblChuyenKhoan
             // 
             this.lblChuyenKhoan.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblChuyenKhoan.Location = new System.Drawing.Point(11, 70);
+            this.lblChuyenKhoan.Location = new System.Drawing.Point(11, 124);
             this.lblChuyenKhoan.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChuyenKhoan.Name = "lblChuyenKhoan";
             this.lblChuyenKhoan.Size = new System.Drawing.Size(98, 20);
             this.lblChuyenKhoan.TabIndex = 4;
-            this.lblChuyenKhoan.Text = "💳 Chuyển khoản:";
+            this.lblChuyenKhoan.Text = "Chuyển khoản:";
             this.lblChuyenKhoan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtChuyenKhoan
@@ -384,7 +350,7 @@
             this.txtChuyenKhoan.BackColor = System.Drawing.Color.White;
             this.txtChuyenKhoan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtChuyenKhoan.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtChuyenKhoan.Location = new System.Drawing.Point(116, 69);
+            this.txtChuyenKhoan.Location = new System.Drawing.Point(156, 123);
             this.txtChuyenKhoan.Margin = new System.Windows.Forms.Padding(2);
             this.txtChuyenKhoan.Name = "txtChuyenKhoan";
             this.txtChuyenKhoan.ReadOnly = true;
@@ -396,12 +362,12 @@
             // lblTienDauCa
             // 
             this.lblTienDauCa.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblTienDauCa.Location = new System.Drawing.Point(270, 13);
+            this.lblTienDauCa.Location = new System.Drawing.Point(312, 15);
             this.lblTienDauCa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTienDauCa.Name = "lblTienDauCa";
-            this.lblTienDauCa.Size = new System.Drawing.Size(90, 20);
+            this.lblTienDauCa.Size = new System.Drawing.Size(137, 20);
             this.lblTienDauCa.TabIndex = 6;
-            this.lblTienDauCa.Text = "🎯 Tiền đầu ca:";
+            this.lblTienDauCa.Text = " Tiền đầu ca:";
             this.lblTienDauCa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtTienDauCa
@@ -409,7 +375,7 @@
             this.txtTienDauCa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTienDauCa.Enabled = false;
             this.txtTienDauCa.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtTienDauCa.Location = new System.Drawing.Point(368, 12);
+            this.txtTienDauCa.Location = new System.Drawing.Point(453, 15);
             this.txtTienDauCa.Margin = new System.Windows.Forms.Padding(2);
             this.txtTienDauCa.Name = "txtTienDauCa";
             this.txtTienDauCa.Size = new System.Drawing.Size(136, 27);
@@ -421,12 +387,12 @@
             // 
             this.lblThucThu.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblThucThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
-            this.lblThucThu.Location = new System.Drawing.Point(270, 42);
+            this.lblThucThu.Location = new System.Drawing.Point(312, 67);
             this.lblThucThu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblThucThu.Name = "lblThucThu";
-            this.lblThucThu.Size = new System.Drawing.Size(90, 23);
+            this.lblThucThu.Size = new System.Drawing.Size(137, 23);
             this.lblThucThu.TabIndex = 8;
-            this.lblThucThu.Text = "✅ Thực thu:";
+            this.lblThucThu.Text = "Thực thu:";
             this.lblThucThu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtThucThu
@@ -435,11 +401,11 @@
             this.txtThucThu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtThucThu.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.txtThucThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
-            this.txtThucThu.Location = new System.Drawing.Point(368, 39);
+            this.txtThucThu.Location = new System.Drawing.Point(453, 65);
             this.txtThucThu.Margin = new System.Windows.Forms.Padding(2);
             this.txtThucThu.Name = "txtThucThu";
             this.txtThucThu.ReadOnly = true;
-            this.txtThucThu.Size = new System.Drawing.Size(150, 36);
+            this.txtThucThu.Size = new System.Drawing.Size(136, 36);
             this.txtThucThu.TabIndex = 9;
             this.txtThucThu.Text = "0 VNĐ";
             this.txtThucThu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -447,12 +413,12 @@
             // lblChenhLech
             // 
             this.lblChenhLech.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.lblChenhLech.Location = new System.Drawing.Point(270, 70);
+            this.lblChenhLech.Location = new System.Drawing.Point(312, 128);
             this.lblChenhLech.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChenhLech.Name = "lblChenhLech";
-            this.lblChenhLech.Size = new System.Drawing.Size(90, 20);
+            this.lblChenhLech.Size = new System.Drawing.Size(137, 20);
             this.lblChenhLech.TabIndex = 10;
-            this.lblChenhLech.Text = "⚖️ Chênh lệch:";
+            this.lblChenhLech.Text = " Chênh lệch:";
             this.lblChenhLech.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtChenhLech
@@ -460,7 +426,7 @@
             this.txtChenhLech.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(250)))), ((int)(((byte)(240)))));
             this.txtChenhLech.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtChenhLech.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtChenhLech.Location = new System.Drawing.Point(368, 69);
+            this.txtChenhLech.Location = new System.Drawing.Point(453, 126);
             this.txtChenhLech.Margin = new System.Windows.Forms.Padding(2);
             this.txtChenhLech.Name = "txtChenhLech";
             this.txtChenhLech.ReadOnly = true;
@@ -477,14 +443,13 @@
             this.btnMoCa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoCa.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnMoCa.ForeColor = System.Drawing.Color.White;
-            this.btnMoCa.Location = new System.Drawing.Point(555, 10);
+            this.btnMoCa.Location = new System.Drawing.Point(629, 15);
             this.btnMoCa.Margin = new System.Windows.Forms.Padding(2);
             this.btnMoCa.Name = "btnMoCa";
             this.btnMoCa.Size = new System.Drawing.Size(150, 29);
             this.btnMoCa.TabIndex = 12;
             this.btnMoCa.Text = "🔓 MỞ CA";
             this.btnMoCa.UseVisualStyleBackColor = false;
-            this.btnMoCa.Click += new System.EventHandler(this.btnMoCa_Click_1);
             // 
             // btnDongCa
             // 
@@ -495,7 +460,7 @@
             this.btnDongCa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDongCa.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnDongCa.ForeColor = System.Drawing.Color.White;
-            this.btnDongCa.Location = new System.Drawing.Point(555, 10);
+            this.btnDongCa.Location = new System.Drawing.Point(629, 15);
             this.btnDongCa.Margin = new System.Windows.Forms.Padding(2);
             this.btnDongCa.Name = "btnDongCa";
             this.btnDongCa.Size = new System.Drawing.Size(150, 29);
@@ -503,23 +468,6 @@
             this.btnDongCa.Text = "🔒 ĐÓNG CA";
             this.btnDongCa.UseVisualStyleBackColor = false;
             this.btnDongCa.Visible = false;
-            // 
-            // btnXemBaoCao
-            // 
-            this.btnXemBaoCao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btnXemBaoCao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnXemBaoCao.Enabled = false;
-            this.btnXemBaoCao.FlatAppearance.BorderSize = 0;
-            this.btnXemBaoCao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXemBaoCao.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnXemBaoCao.ForeColor = System.Drawing.Color.White;
-            this.btnXemBaoCao.Location = new System.Drawing.Point(555, 39);
-            this.btnXemBaoCao.Margin = new System.Windows.Forms.Padding(2);
-            this.btnXemBaoCao.Name = "btnXemBaoCao";
-            this.btnXemBaoCao.Size = new System.Drawing.Size(150, 23);
-            this.btnXemBaoCao.TabIndex = 14;
-            this.btnXemBaoCao.Text = "📊 XEM BÁO CÁO";
-            this.btnXemBaoCao.UseVisualStyleBackColor = false;
             // 
             // btnInBaoCao
             // 
@@ -530,10 +478,10 @@
             this.btnInBaoCao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInBaoCao.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnInBaoCao.ForeColor = System.Drawing.Color.White;
-            this.btnInBaoCao.Location = new System.Drawing.Point(555, 69);
+            this.btnInBaoCao.Location = new System.Drawing.Point(629, 74);
             this.btnInBaoCao.Margin = new System.Windows.Forms.Padding(2);
             this.btnInBaoCao.Name = "btnInBaoCao";
-            this.btnInBaoCao.Size = new System.Drawing.Size(150, 23);
+            this.btnInBaoCao.Size = new System.Drawing.Size(150, 27);
             this.btnInBaoCao.TabIndex = 15;
             this.btnInBaoCao.Text = "🖨️ IN BÁO CÁO";
             this.btnInBaoCao.UseVisualStyleBackColor = false;
@@ -542,22 +490,22 @@
             // 
             this.dgvHoaDonTrongCa.AllowUserToAddRows = false;
             this.dgvHoaDonTrongCa.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.dgvHoaDonTrongCa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.dgvHoaDonTrongCa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvHoaDonTrongCa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvHoaDonTrongCa.BackgroundColor = System.Drawing.Color.White;
             this.dgvHoaDonTrongCa.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvHoaDonTrongCa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHoaDonTrongCa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvHoaDonTrongCa.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.dgvHoaDonTrongCa.Location = new System.Drawing.Point(10, 249);
+            this.dgvHoaDonTrongCa.Location = new System.Drawing.Point(10, 311);
             this.dgvHoaDonTrongCa.Margin = new System.Windows.Forms.Padding(2);
             this.dgvHoaDonTrongCa.Name = "dgvHoaDonTrongCa";
             this.dgvHoaDonTrongCa.ReadOnly = true;
             this.dgvHoaDonTrongCa.RowHeadersVisible = false;
             this.dgvHoaDonTrongCa.RowHeadersWidth = 51;
             this.dgvHoaDonTrongCa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHoaDonTrongCa.Size = new System.Drawing.Size(805, 198);
+            this.dgvHoaDonTrongCa.Size = new System.Drawing.Size(805, 136);
             this.dgvHoaDonTrongCa.TabIndex = 3;
             // 
             // timerRealTime

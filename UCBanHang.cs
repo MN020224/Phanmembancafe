@@ -14,6 +14,30 @@ namespace CafeOrder
         public UCBanHang()
         {
             InitializeComponent();
+            InitializeNumericUpDown();
+        }
+
+        // Khởi tạo control NumericUpDown
+        private void InitializeNumericUpDown()
+        {
+            if (nudSoLuong == null)
+            {
+                nudSoLuong = new NumericUpDown
+                {
+                    Location = new Point(120, 97),
+                    Size = new Size(80, 20),
+                    Minimum = 1,
+                    Maximum = 100,
+                    Value = 1
+                };
+            }
+
+            // Thêm vào panel footer nếu chưa có
+            if (pnlFooter != null && !pnlFooter.Controls.Contains(nudSoLuong))
+            {
+                pnlFooter.Controls.Add(nudSoLuong);
+                nudSoLuong.BringToFront();
+            }
         }
 
         public void TaiLai()
@@ -35,7 +59,9 @@ namespace CafeOrder
             UiTheme.StyleFlatButton(btnThanhToan, UiTheme.Success, 44);
             UiTheme.StyleFlatButton(btnHuyHoaDon, UiTheme.Danger, 36);
             UiTheme.StyleFlatButton(btnThemMon, UiTheme.Primary, 30);
+            UiTheme.StyleFlatButton(btnXoaMon, UiTheme.Warning, 30);
 
+            // Thiết lập DataGridView
             dgvGioHang.Columns.Clear();
             dgvGioHang.Columns.Add("ChiTietId", "ID");
             dgvGioHang.Columns["ChiTietId"].Visible = false;
@@ -45,8 +71,22 @@ namespace CafeOrder
             dgvGioHang.Columns.Add("DonGia", "Đơn giá");
             dgvGioHang.Columns.Add("ThanhTien", "Thành tiền");
 
+            // Gán sự kiện
             btnThanhToan.Click += BtnThanhToan_Click;
             btnHuyHoaDon.Click += BtnHuyHoaDon_Click;
+            btnThemMon.Click += BtnThemMon_Click;
+            btnXoaMon.Click += BtnXoaMon_Click;
+
+            // Thiết lập ComboBox mặc định
+            if (cboPhuongThucThanhToan.Items.Count == 0)
+            {
+                cboPhuongThucThanhToan.Items.AddRange(new object[] {
+                    "💵 Tiền mặt",
+                    "🏦 Chuyển khoản",
+                    "📱 Ví điện tử"
+                });
+            }
+            cboPhuongThucThanhToan.SelectedIndex = 0;
 
             _daKhoiTao = true;
             TaiLai();
@@ -195,18 +235,116 @@ namespace CafeOrder
             NapGioHang();
         }
 
+        private void BtnThemMon_Click(object sender, EventArgs e)
+        {
+            if (dgvGioHang.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn món cần thêm số lượng trong giỏ hàng.", "Hướng dẫn",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var selectedRow = dgvGioHang.SelectedRows[0];
+            int chiTietId = Convert.ToInt32(selectedRow.Cells["ChiTietId"].Value);
+            string tenMon = selectedRow.Cells["TenMon"].Value.ToString();
+            decimal donGia = decimal.Parse(selectedRow.Cells["DonGia"].Value.ToString().Replace(",", ""));
+
+            // Tìm MonAnId từ chi tiết
+            var dt = BanHangService.GetChiTietHoaDon(_hoaDonId.Value);
+            int monAnId = 0;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Convert.ToInt32(row["id"]) == chiTietId)
+                {
+                    monAnId = Convert.ToInt32(row["mon_an_id"]);
+                    break;
+                }
+            }
+
+            if (monAnId == 0) return;
+
+            // Hiển thị form nhập số lượng
+            var form = new Form
+            {
+                Text = $"Thêm số lượng - {tenMon}",
+                Size = new Size(300, 150),
+                StartPosition = FormStartPosition.CenterParent
+            };
+
+            var nud = new NumericUpDown
+            {
+                Minimum = 1,
+                Maximum = 100,
+                Value = 1,
+                Location = new Point(50, 30),
+                Size = new Size(80, 20)
+            };
+
+            var btnOK = new Button
+            {
+                Text = "Thêm",
+                Location = new Point(150, 70),
+                Size = new Size(80, 30),
+                DialogResult = DialogResult.OK
+            };
+
+            form.Controls.Add(nud);
+            form.Controls.Add(btnOK);
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                int soLuong = (int)nud.Value;
+                BanHangService.ThemChiTiet(_hoaDonId.Value, monAnId, soLuong, donGia);
+                NapGioHang();
+            }
+        }
+
+        private void BtnXoaMon_Click(object sender, EventArgs e)
+        {
+            if (dgvGioHang.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn món cần xóa trong giỏ hàng.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int chiTietId = Convert.ToInt32(dgvGioHang.SelectedRows[0].Cells["ChiTietId"].Value);
+
+            if (MessageBox.Show("Xóa món đã chọn?", "Xác nhận",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+                return;
+
+            try
+            {
+                BanHangService.XoaChiTiet(_hoaDonId.Value, chiTietId);
+                NapGioHang();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi xóa món: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void ThemVaoGio(int monAnId, decimal price)
         {
             if (!AppSession.CaId.HasValue)
+            {
+                MessageBox.Show("Chưa mở ca làm việc!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
+            }
+
             if (!_hoaDonId.HasValue)
                 KhoiTaoHoaDon();
 
             int qty = (int)nudSoLuong.Value;
+
             try
             {
                 BanHangService.ThemChiTiet(_hoaDonId.Value, monAnId, qty, price);
                 NapGioHang();
+                nudSoLuong.Value = 1;
             }
             catch (Exception ex)
             {
@@ -239,6 +377,7 @@ namespace CafeOrder
 
         private void BtnThanhToan_Click(object sender, EventArgs e)
         {
+            // Kiểm tra hóa đơn tồn tại
             if (!_hoaDonId.HasValue || dgvGioHang.Rows.Count == 0)
             {
                 MessageBox.Show("Chưa có món trong hóa đơn.", "Thông báo",
@@ -248,16 +387,69 @@ namespace CafeOrder
 
             try
             {
-                BanHangService.ThanhToan(_hoaDonId.Value);
-                MessageBox.Show("Thanh toán thành công!", "Thành công",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Lấy tổng tiền từ service thay vì từ textbox
+                decimal tongTien = BanHangService.LayTongTien(_hoaDonId.Value);
+
+                if (tongTien <= 0)
+                {
+                    MessageBox.Show("Không thể thanh toán với tổng tiền bằng 0.", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Lấy phương thức thanh toán được chọn
+                string phuongThucHienThi = cboPhuongThucThanhToan.SelectedItem?.ToString();
+                string phuongThuc = "";
+
+                if (string.IsNullOrEmpty(phuongThucHienThi))
+                {
+                    MessageBox.Show("Vui lòng chọn phương thức thanh toán.", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Chuyển đổi phương thức thanh toán
+                if (phuongThucHienThi.Contains("Tiền mặt"))
+                    phuongThuc = "tien_mat";
+                else if (phuongThucHienThi.Contains("Chuyển khoản"))
+                    phuongThuc = "chuyen_khoan";
+                else if (phuongThucHienThi.Contains("Ví điện tử"))
+                    phuongThuc = "vi_dien_tu";
+                else
+                    phuongThuc = "tien_mat";
+
+                // Xác nhận thanh toán
+                DialogResult confirm = MessageBox.Show(
+                    $"Xác nhận thanh toán {tongTien:N0} VNĐ bằng {phuongThucHienThi}?",
+                    "Xác nhận thanh toán",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (confirm != DialogResult.Yes)
+                    return;
+
+                // Gọi service thanh toán
+                BanHangService.ThanhToan(_hoaDonId.Value, phuongThuc);
+
+                // Hiển thị thông báo thành công
+                MessageBox.Show($"Thanh toán thành công bằng {phuongThucHienThi}!",
+                    "Thành công",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                // Reset hóa đơn
                 _hoaDonId = null;
                 KhoiTaoHoaDon();
+
+                // Reset comboBox về mặc định
+                cboPhuongThucThanhToan.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi thanh toán: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi thanh toán: {ex.Message}",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 

@@ -63,6 +63,7 @@
       <DependentUpon>MPI.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="QuanTriServiceHelpers.cs" />
     <Compile Include="UiTheme.cs" />
     <Compile Include="AppSession.cs" />
     <Compile Include="DbHelper.cs" />
@@ -104,6 +105,12 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCBanHang.resx">
+      <DependentUpon>UCBanHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCBaoCao.resx">
+      <DependentUpon>UCBaoCao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCDongca.resx">
       <DependentUpon>UCDongca.cs</DependentUpon>
