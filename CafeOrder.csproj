@@ -50,12 +50,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="FormLoginManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormLoginManager.Designer.cs">
       <DependentUpon>FormLoginManager.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,9 +105,12 @@
     <Compile Include="UCQuanTri.Designer.cs">
       <DependentUpon>UCQuanTri.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <EmbeddedResource Include="FormLoginManager.resx">
       <DependentUpon>FormLoginManager.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

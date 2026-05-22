@@ -10,6 +10,7 @@ namespace CafeOrder
         public static bool IsAdmin => VaiTro == "admin";
         public static bool IsLoggedIn => TaiKhoanId > 0;
 
+<<<<<<< HEAD
 
 
         // Nhân viên sau khi nh?p ðúng admin s? ðý?c c?p quy?n t?m
@@ -18,6 +19,8 @@ namespace CafeOrder
         // Ki?m tra chung: có ph?i admin th?t ho?c ð? ðý?c c?p quy?n
         public static bool HasAdminAccess => IsAdmin || IsImpersonatedAdmin;
 
+=======
+>>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
         public static void Clear()
         {
             TaiKhoanId = 0;

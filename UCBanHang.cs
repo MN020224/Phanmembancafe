@@ -57,6 +57,7 @@ namespace CafeOrder
         {
             UiTheme.StyleDataGridView(dgvGioHang);
             UiTheme.StyleFlatButton(btnThanhToan, UiTheme.Success, 44);
+<<<<<<< HEAD
             btnThanhToan.Click -= BtnThanhToan_Click;
             btnThanhToan.Click += BtnThanhToan_Click;
 
@@ -72,6 +73,11 @@ namespace CafeOrder
             btnXoaMon.Click -= BtnXoaMon_Click;
             btnXoaMon.Click += BtnXoaMon_Click;
 
+=======
+            UiTheme.StyleFlatButton(btnHuyHoaDon, UiTheme.Danger, 36);
+            UiTheme.StyleFlatButton(btnThemMon, UiTheme.Primary, 30);
+            UiTheme.StyleFlatButton(btnXoaMon, UiTheme.Warning, 30);
+>>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
 
             // Thiết lập DataGridView
             dgvGioHang.Columns.Clear();
@@ -83,7 +89,15 @@ namespace CafeOrder
             dgvGioHang.Columns.Add("DonGia", "Đơn giá");
             dgvGioHang.Columns.Add("ThanhTien", "Thành tiền");
 
+<<<<<<< HEAD
            
+=======
+            // Gán sự kiện
+            btnThanhToan.Click += BtnThanhToan_Click;
+            btnHuyHoaDon.Click += BtnHuyHoaDon_Click;
+            btnThemMon.Click += BtnThemMon_Click;
+            btnXoaMon.Click += BtnXoaMon_Click;
+>>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
 
             // Thiết lập ComboBox mặc định
             if (cboPhuongThucThanhToan.Items.Count == 0)
@@ -264,7 +278,11 @@ namespace CafeOrder
             {
                 if (Convert.ToInt32(row["id"]) == chiTietId)
                 {
+<<<<<<< HEAD
                     monAnId = Convert.ToInt32(row["monAnId"]);
+=======
+                    monAnId = Convert.ToInt32(row["mon_an_id"]);
+>>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
                     break;
                 }
             }
@@ -386,7 +404,11 @@ namespace CafeOrder
         private void BtnThanhToan_Click(object sender, EventArgs e)
         {
             // Kiểm tra hóa đơn tồn tại
+<<<<<<< HEAD
             if (!_hoaDonId.HasValue)
+=======
+            if (!_hoaDonId.HasValue || dgvGioHang.Rows.Count == 0)
+>>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
             {
                 MessageBox.Show("Chưa có món trong hóa đơn.", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
