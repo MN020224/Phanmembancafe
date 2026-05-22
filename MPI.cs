@@ -50,6 +50,18 @@ namespace CafeOrder
             ucBanHang.TaiLai();
 
             Text = "☕ CAFE POS - Đang bán hàng — " + AppSession.TenDangNhap;
+           
+        }
+        public void SwitchToBanHang()
+        {
+            LamMoiCaSession();                     // Làm mới session ca (nếu cần)
+            if (ucBanHang == null)
+                ucBanHang = new UCBanHang();
+
+            HienThiUserControl(ucBanHang);
+            ucBanHang.TaiLai();
+
+            Text = "☕ CAFE POS - Đang bán hàng — " + AppSession.TenDangNhap;
         }
 
         private void mnBaoCao_Click(object sender, EventArgs e)
@@ -104,6 +116,43 @@ namespace CafeOrder
         {
             Text = "☕ CAFE POS — " + (AppSession.TenDangNhap ?? "");
             mnBanHang_Click(null, EventArgs.Empty);
+        }
+
+        private void mnQuanTri_Click_1(object sender, EventArgs e)
+        {
+            // Nếu tài khoản hiện tại đã là admin hoặc đã được cấp quyền tạm
+            if (AppSession.HasAdminAccess)
+            {
+                ShowQuanTri();
+                return;
+            }
+
+            // Chưa có quyền -> yêu cầu đăng nhập quản lý
+            using (var frm = new FormLoginManager())
+            {
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    AppSession.IsImpersonatedAdmin = true;
+                    ShowQuanTri();
+                }
+            }
+        
+        }
+        private void ShowQuanTri()
+        {
+            // Xóa control hiện tại trong panel (ví dụ panel1, nếu tên khác thì sửa)
+            panel1.Controls.Clear();
+            UCQuanTri uc = new UCQuanTri();
+            uc.Dock = DockStyle.Fill;
+            panel1.Controls.Add(uc);
+        }
+
+        private void mnDangXuat_Click_1(object sender, EventArgs e)
+        {
+            AppSession.Clear(); // Xóa toàn bộ session (bao gồm IsImpersonatedAdmin)
+            this.Close();
+            Login login = new Login();
+            login.Show();
         }
     }
 }

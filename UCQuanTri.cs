@@ -456,5 +456,29 @@ namespace CafeOrder
         {
 
         }
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAminCancel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExitAdmin_Click(object sender, EventArgs e)
+        {
+            // Thu hồi quyền tạm thời (nếu là nhân viên)
+            if (AppSession.IsImpersonatedAdmin)
+                AppSession.IsImpersonatedAdmin = false;
+
+            // Tìm form cha (MPI) và gọi method chuyển về bán hàng
+            Form parent = this.FindForm();
+            if (parent is MPI mainForm)
+            {
+                mainForm.SwitchToBanHang();
+            }
+        }
     }
 }

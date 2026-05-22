@@ -14,6 +14,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnQuanTri;
         private System.Windows.Forms.ToolStripMenuItem mnDongCa;
         private System.Windows.Forms.ToolStripMenuItem mnDangXuat;
+        private System.Windows.Forms.ToolStripMenuItem mnThoatQuanTri;
 
         protected override void Dispose(bool disposing)
         {
@@ -40,6 +41,7 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnBanHang,
             this.mnBaoCao,
@@ -48,63 +50,70 @@
             this.mnDangXuat});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1029, 27);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1372, 31);
             this.menuStrip1.TabIndex = 0;
             // 
             // mnBanHang
             // 
             this.mnBanHang.ForeColor = System.Drawing.Color.White;
             this.mnBanHang.Name = "mnBanHang";
-            this.mnBanHang.Size = new System.Drawing.Size(83, 23);
+            this.mnBanHang.Size = new System.Drawing.Size(99, 27);
             this.mnBanHang.Text = "Bán hàng";
             // 
             // mnBaoCao
             // 
             this.mnBaoCao.ForeColor = System.Drawing.Color.White;
             this.mnBaoCao.Name = "mnBaoCao";
-            this.mnBaoCao.Size = new System.Drawing.Size(75, 23);
+            this.mnBaoCao.Size = new System.Drawing.Size(86, 27);
             this.mnBaoCao.Text = "Báo cáo";
             // 
             // mnQuanTri
             // 
             this.mnQuanTri.ForeColor = System.Drawing.Color.White;
             this.mnQuanTri.Name = "mnQuanTri";
-            this.mnQuanTri.Size = new System.Drawing.Size(110, 23);
+            this.mnQuanTri.Size = new System.Drawing.Size(132, 27);
             this.mnQuanTri.Text = "Quản Tri Viên";
+            this.mnQuanTri.Click += new System.EventHandler(this.mnQuanTri_Click_1);
             // 
             // mnDongCa
             // 
             this.mnDongCa.ForeColor = System.Drawing.Color.White;
             this.mnDongCa.Name = "mnDongCa";
-            this.mnDongCa.Size = new System.Drawing.Size(96, 23);
+            this.mnDongCa.Size = new System.Drawing.Size(114, 27);
             this.mnDongCa.Text = "Quản Lý Ca";
             // 
             // mnDangXuat
             // 
             this.mnDangXuat.ForeColor = System.Drawing.Color.White;
             this.mnDangXuat.Name = "mnDangXuat";
-            this.mnDangXuat.Size = new System.Drawing.Size(89, 23);
+            this.mnDangXuat.Size = new System.Drawing.Size(107, 27);
             this.mnDangXuat.Text = "Đăng xuất";
+            this.mnDangXuat.Click += new System.EventHandler(this.mnDangXuat_Click_1);
+            // 
+            // mnThoatquyenQuantrivien
+            // 
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 27);
+            this.panel1.Location = new System.Drawing.Point(0, 31);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1029, 580);
+            this.panel1.Size = new System.Drawing.Size(1372, 716);
             this.panel1.TabIndex = 1;
             // 
             // MPI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.ClientSize = new System.Drawing.Size(1029, 607);
+            this.ClientSize = new System.Drawing.Size(1372, 747);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MPI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "☕ CAFE POS - Hệ thống quản lý bán hàng";
