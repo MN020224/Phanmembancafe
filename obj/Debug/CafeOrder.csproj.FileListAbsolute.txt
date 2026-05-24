@@ -17,3 +17,4 @@ F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.csproj.U
 F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.exe
 F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.pdb
 F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.exe.config
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.FormLoginManager.resources

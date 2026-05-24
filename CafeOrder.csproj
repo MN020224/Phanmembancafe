@@ -50,15 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="FormLoginManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormLoginManager.Designer.cs">
       <DependentUpon>FormLoginManager.cs</DependentUpon>
     </Compile>
-=======
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,8 +68,10 @@
     <Compile Include="MPI.Designer.cs">
       <DependentUpon>MPI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dangnhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="QuanTriServiceHelpers.cs" />
     <Compile Include="UiTheme.cs" />
     <Compile Include="AppSession.cs" />
     <Compile Include="DbHelper.cs" />
@@ -80,6 +79,7 @@
     <Compile Include="BanHangService.cs" />
     <Compile Include="BaoCaoService.cs" />
     <Compile Include="QuanTriService.cs" />
+    <Compile Include="QuanTriServiceHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UCBanHang.cs">
       <SubType>UserControl</SubType>
@@ -105,12 +105,29 @@
     <Compile Include="UCQuanTri.Designer.cs">
       <DependentUpon>UCQuanTri.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="FormLoginManager.resx">
       <DependentUpon>FormLoginManager.cs</DependentUpon>
     </EmbeddedResource>
-=======
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,42 +150,6 @@
     <EmbeddedResource Include="UCQuanTri.resx">
       <DependentUpon>UCQuanTri.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\f2d8165b20ed454c1f2f5bc12f190a23.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\78ce787e51b5b3a85f5dd60797876a03.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\f2d8165b20ed454c1f2f5bc12f190a231.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\f2d8165b20ed454c1f2f5bc12f190a232.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\78ce787e51b5b3a85f5dd60797876a031.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\f2d8165b20ed454c1f2f5bc12f190a233.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
