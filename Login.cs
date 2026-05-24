@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -161,13 +161,10 @@ namespace CafeOrder
         {
 
         }
-<<<<<<< HEAD
 
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {
 
         }
-=======
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 
 namespace CafeOrder
@@ -50,7 +50,6 @@ namespace CafeOrder
             ucBanHang.TaiLai();
 
             Text = "☕ CAFE POS - Đang bán hàng — " + AppSession.TenDangNhap;
-<<<<<<< HEAD
            
         }
         public void SwitchToBanHang()
@@ -63,8 +62,6 @@ namespace CafeOrder
             ucBanHang.TaiLai();
 
             Text = "☕ CAFE POS - Đang bán hàng — " + AppSession.TenDangNhap;
-=======
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
         }
 
         private void mnBaoCao_Click(object sender, EventArgs e)
@@ -120,7 +117,6 @@ namespace CafeOrder
             Text = "☕ CAFE POS — " + (AppSession.TenDangNhap ?? "");
             mnBanHang_Click(null, EventArgs.Empty);
         }
-<<<<<<< HEAD
 
         private void mnQuanTri_Click_1(object sender, EventArgs e)
         {
@@ -158,7 +154,5 @@ namespace CafeOrder
             Login login = new Login();
             login.Show();
         }
-=======
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
     }
 }

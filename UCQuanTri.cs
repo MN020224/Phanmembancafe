@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
@@ -456,7 +456,6 @@ namespace CafeOrder
         {
 
         }
-<<<<<<< HEAD
 
         private void lblTitle_Click(object sender, EventArgs e)
         {
@@ -481,7 +480,5 @@ namespace CafeOrder
                 mainForm.SwitchToBanHang();
             }
         }
-=======
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
     }
 }

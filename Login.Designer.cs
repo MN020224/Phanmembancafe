@@ -1,4 +1,4 @@
-﻿namespace CafeOrder
+namespace CafeOrder
 {
     partial class Login
     {
@@ -50,11 +50,8 @@
             this.label1.Location = new System.Drawing.Point(736, 286);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-<<<<<<< HEAD
             this.label1.Size = new System.Drawing.Size(332, 62);
-=======
             this.label1.Size = new System.Drawing.Size(266, 49);
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
             this.label1.TabIndex = 1;
             this.label1.Text = "Đăng Nhập";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -93,11 +90,8 @@
             this.label2.Location = new System.Drawing.Point(584, 464);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-<<<<<<< HEAD
             this.label2.Size = new System.Drawing.Size(115, 32);
-=======
             this.label2.Size = new System.Drawing.Size(92, 25);
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
             this.label2.TabIndex = 7;
             this.label2.Text = "Mật Khẩu";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -110,11 +104,8 @@
             this.label3.Location = new System.Drawing.Point(583, 400);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-<<<<<<< HEAD
             this.label3.Size = new System.Drawing.Size(119, 32);
-=======
             this.label3.Size = new System.Drawing.Size(95, 25);
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
             this.label3.TabIndex = 8;
             this.label3.Text = "Tài Khoản";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -130,10 +121,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(376, 30);
             this.txtUsername.TabIndex = 9;
-<<<<<<< HEAD
             this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
-=======
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
             // 
             // txtPassword
             // 
@@ -156,11 +144,8 @@
             this.label4.Location = new System.Drawing.Point(692, 507);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-<<<<<<< HEAD
             this.label4.Size = new System.Drawing.Size(0, 28);
-=======
             this.label4.Size = new System.Drawing.Size(0, 23);
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
             this.label4.TabIndex = 12;
             // 
             // pictureBox2
@@ -170,11 +155,8 @@
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
-<<<<<<< HEAD
             this.pictureBox2.Size = new System.Drawing.Size(524, 737);
-=======
             this.pictureBox2.Size = new System.Drawing.Size(524, 745);
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 11;
             this.pictureBox2.TabStop = false;
@@ -193,17 +175,14 @@
             // 
             // Login
             // 
-<<<<<<< HEAD
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(235)))), ((int)(((byte)(221)))));
             this.ClientSize = new System.Drawing.Size(1128, 737);
-=======
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(235)))), ((int)(((byte)(221)))));
             this.ClientSize = new System.Drawing.Size(1128, 745);
->>>>>>> bdd71a7ec14dc6161cb6a899fe3b9b14c8d24755
             this.Controls.Add(this.label4);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.txtPassword);
