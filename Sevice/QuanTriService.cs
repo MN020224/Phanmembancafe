@@ -10,7 +10,6 @@ namespace CafeOrder
         public static DataTable LoadDanhMuc()
         {
             DataTable dt = DbHelper.Query("SELECT id, ten_danh_muc, thu_tu, hien_thi FROM DanhMuc ORDER BY thu_tu");
-            // Thêm cột ID dạng DMxxx
             dt.Columns.Add("MaDanhMuc", typeof(string));
             foreach (DataRow row in dt.Rows)
             {
@@ -21,8 +20,7 @@ namespace CafeOrder
 
         public static DataTable LoadDanhMucCombo()
         {
-            DataTable dt = DbHelper.Query("SELECT id, ten_danh_muc FROM DanhMuc WHERE hien_thi = 1 ORDER BY thu_tu");
-            return dt;
+            return DbHelper.Query("SELECT id, ten_danh_muc FROM DanhMuc WHERE hien_thi = 1 ORDER BY thu_tu");
         }
 
         public static void ThemDanhMuc(string ten)
@@ -53,7 +51,6 @@ namespace CafeOrder
                 INNER JOIN DanhMuc d ON d.id = m.danh_muc_id
                 ORDER BY d.thu_tu, m.thu_tu");
 
-            // Thêm cột ID dạng Mxxx
             dt.Columns.Add("MaMon", typeof(string));
             foreach (DataRow row in dt.Rows)
             {
@@ -93,11 +90,12 @@ namespace CafeOrder
             string query = @"
                 SELECT 
                     CAST(tao_luc AS DATE) as Ngay,
-                    COUNT(DISTINCT id) as SoHoaDon,
-                    ISNULL(SUM(tong_tien), 0) as DoanhThu
+                    COUNT(*) as SoHoaDon,
+                    ISNULL(SUM(thanh_toan), 0) as DoanhThu
                 FROM HoaDon
-                WHERE tao_luc >= @tuNgay AND tao_luc <= @denNgay
-                    AND trang_thai = N'Đã thanh toán'
+                WHERE trang_thai = N'da_thanh_toan'
+                    AND CAST(tao_luc AS DATE) >= @tuNgay 
+                    AND CAST(tao_luc AS DATE) <= @denNgay
                 GROUP BY CAST(tao_luc AS DATE)
                 ORDER BY Ngay DESC";
 
@@ -111,11 +109,11 @@ namespace CafeOrder
             string query = @"
                 SELECT 
                     MONTH(tao_luc) as Thang,
-                    COUNT(DISTINCT id) as SoHoaDon,
-                    ISNULL(SUM(tong_tien), 0) as DoanhThu
+                    COUNT(*) as SoHoaDon,
+                    ISNULL(SUM(thanh_toan), 0) as DoanhThu
                 FROM HoaDon
                 WHERE YEAR(tao_luc) = @nam
-                    AND trang_thai = N'Đã thanh toán'
+                    AND trang_thai = N'da_thanh_toan'
                 GROUP BY MONTH(tao_luc)
                 ORDER BY Thang";
 
@@ -128,12 +126,13 @@ namespace CafeOrder
                 SELECT TOP (@top)
                     m.ten_mon,
                     ISNULL(SUM(ct.so_luong), 0) as SoLuongBan,
-                    ISNULL(SUM(ct.so_luong * ct.don_gia), 0) as DoanhThu
+                    ISNULL(SUM(ct.thanh_tien), 0) as DoanhThu
                 FROM ChiTietHoaDon ct
                 INNER JOIN HoaDon h ON ct.hoa_don_id = h.id
                 INNER JOIN MonAn m ON ct.mon_an_id = m.id
-                WHERE h.tao_luc >= @tuNgay AND h.tao_luc <= @denNgay
-                    AND h.trang_thai = N'Đã thanh toán'
+                WHERE h.trang_thai = N'da_thanh_toan'
+                    AND CAST(h.tao_luc AS DATE) >= @tuNgay 
+                    AND CAST(h.tao_luc AS DATE) <= @denNgay
                 GROUP BY m.id, m.ten_mon
                 ORDER BY SoLuongBan DESC";
 
@@ -142,7 +141,6 @@ namespace CafeOrder
                 new SqlParameter("@denNgay", denNgay),
                 new SqlParameter("@top", top));
 
-            // Thêm cột xếp hạng
             dt.Columns.Add("XepHang", typeof(int));
             int rank = 1;
             foreach (DataRow row in dt.Rows)
@@ -159,11 +157,11 @@ namespace CafeOrder
                     h.ma_hoa_don as MaHoaDon,
                     h.tao_luc as NgayLap,
                     ISNULL(h.ca_id, 0) as Ban,
-                    h.tong_tien as TongTien,
-                    N'N/A' as NhanVien
+                    h.thanh_toan as TongTien
                 FROM HoaDon h
-                WHERE h.tao_luc >= @tuNgay AND h.tao_luc <= @denNgay
-                    AND h.trang_thai = N'Đã thanh toán'
+                WHERE h.trang_thai = N'da_thanh_toan'
+                    AND CAST(h.tao_luc AS DATE) >= @tuNgay 
+                    AND CAST(h.tao_luc AS DATE) <= @denNgay
                 ORDER BY h.tao_luc DESC";
 
             return DbHelper.Query(query,
@@ -174,62 +172,17 @@ namespace CafeOrder
         public static decimal TongDoanhThu(DateTime tuNgay, DateTime denNgay)
         {
             string query = @"
-                SELECT ISNULL(SUM(tong_tien), 0)
+                SELECT ISNULL(SUM(thanh_toan), 0)
                 FROM HoaDon
-                WHERE tao_luc >= @tuNgay AND tao_luc <= @denNgay
-                    AND trang_thai = N'Đã thanh toán'";
+                WHERE trang_thai = N'da_thanh_toan'
+                    AND CAST(tao_luc AS DATE) >= @tuNgay 
+                    AND CAST(tao_luc AS DATE) <= @denNgay";
 
-            DataTable dt = DbHelper.Query(query,
+            object result = DbHelper.Scalar(query,
                 new SqlParameter("@tuNgay", tuNgay),
                 new SqlParameter("@denNgay", denNgay));
 
-            if (dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
-                return Convert.ToDecimal(dt.Rows[0][0]);
-            return 0;
-        }
-
-        // Báo cáo doanh thu theo danh mục
-        public static DataTable BaoCaoDoanhThuTheoDanhMuc(DateTime tuNgay, DateTime denNgay)
-        {
-            string query = @"
-                SELECT 
-                    d.ten_danh_muc as DanhMuc,
-                    ISNULL(SUM(ct.so_luong), 0) as SoLuongBan,
-                    ISNULL(SUM(ct.so_luong * ct.don_gia), 0) as DoanhThu
-                FROM ChiTietHoaDon ct
-                INNER JOIN HoaDon h ON ct.hoa_don_id = h.id
-                INNER JOIN MonAn m ON ct.mon_an_id = m.id
-                INNER JOIN DanhMuc d ON m.danh_muc_id = d.id
-                WHERE h.tao_luc >= @tuNgay AND h.tao_luc <= @denNgay
-                    AND h.trang_thai = N'Đã thanh toán'
-                GROUP BY d.id, d.ten_danh_muc
-                ORDER BY DoanhThu DESC";
-
-            return DbHelper.Query(query,
-                new SqlParameter("@tuNgay", tuNgay),
-                new SqlParameter("@denNgay", denNgay));
-        }
-
-        // Báo cáo tổng hợp
-        public static DataTable BaoCaoTongHop(DateTime tuNgay, DateTime denNgay)
-        {
-            string query = @"
-                SELECT 
-                    COUNT(DISTINCT h.id) as TongSoHoaDon,
-                    ISNULL(SUM(h.tong_tien), 0) as TongDoanhThu,
-                    ISNULL(AVG(h.tong_tien), 0) as TrungBinhDonHang,
-                    (SELECT COUNT(DISTINCT ct.mon_an_id) 
-                     FROM ChiTietHoaDon ct 
-                     INNER JOIN HoaDon h2 ON ct.hoa_don_id = h2.id
-                     WHERE h2.tao_luc >= @tuNgay AND h2.tao_luc <= @denNgay
-                        AND h2.trang_thai = N'Đã thanh toán') as SoMonDaBan
-                FROM HoaDon h
-                WHERE h.tao_luc >= @tuNgay AND h.tao_luc <= @denNgay
-                    AND h.trang_thai = N'Đã thanh toán'";
-
-            return DbHelper.Query(query,
-                new SqlParameter("@tuNgay", tuNgay),
-                new SqlParameter("@denNgay", denNgay));
+            return Convert.ToDecimal(result);
         }
         #endregion
     }

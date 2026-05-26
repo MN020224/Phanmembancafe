@@ -95,7 +95,6 @@ namespace CafeOrder
                             AppSession.TaiKhoanId = Convert.ToInt32(reader["id"]);
                             AppSession.TenDangNhap = reader["ten_dang_nhap"].ToString();
                             AppSession.VaiTro = reader["vai_tro"].ToString();
-                            DbHelper.EnsureSeedData();
                             AppSession.CaId = CaService.GetOpenCaId(AppSession.TaiKhoanId);
 
                             MPI main = new MPI();

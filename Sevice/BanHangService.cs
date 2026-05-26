@@ -88,7 +88,7 @@ namespace CafeOrder
         {
             return DbHelper.Query(@"
                 SELECT ct.id, m.ten_mon AS TenMon, ct.so_luong AS SoLuong,
-                       ct.don_gia AS DonGia, ct.thanh_tien AS ThanhTien, ct.mon_an_id AS MonAnId
+                       ct.don_gia AS DonGia, ct.thanh_tien AS ThanhTien, ct.mon_an_id AS mon_an_id
                 FROM ChiTietHoaDon ct
                 INNER JOIN MonAn m ON m.id = ct.mon_an_id
                 WHERE ct.hoa_don_id = @id
@@ -103,7 +103,6 @@ namespace CafeOrder
             return o == null || o == DBNull.Value ? 0 : Convert.ToDecimal(o);
         }
 
-        // Thêm method mới: Lấy thông tin chi tiết hóa đơn
         public static DataRow GetHoaDonInfo(int hoaDonId)
         {
             var dt = DbHelper.Query("SELECT * FROM HoaDon WHERE id = @id",
@@ -113,10 +112,8 @@ namespace CafeOrder
             return null;
         }
 
-        // Cập nhật method ThanhToan với kiểm tra và log
         public static void ThanhToan(int hoaDonId, string phuongThuc = "tien_mat")
         {
-            // Kiểm tra hóa đơn tồn tại và trạng thái
             var trangThai = DbHelper.Scalar(
                 "SELECT trang_thai FROM HoaDon WHERE id = @id",
                 new SqlParameter("@id", hoaDonId));
@@ -130,62 +127,30 @@ namespace CafeOrder
             if (trangThai.ToString() == "huy")
                 throw new Exception("Hóa đơn đã bị hủy, không thể thanh toán!");
 
-            // Thực hiện thanh toán - ĐÃ XÓA thanh_toan_luc
             DbHelper.Execute(@"
-        UPDATE HoaDon 
-        SET trang_thai = N'da_thanh_toan', 
-            phuong_thuc_tt = @ptt,
-            thanh_toan = tong_tien - giam_gia
-        WHERE id = @id",
+                UPDATE HoaDon 
+                SET trang_thai = N'da_thanh_toan', 
+                    phuong_thuc_tt = @ptt,
+                    thanh_toan = tong_tien - giam_gia
+                WHERE id = @id",
                 new SqlParameter("@ptt", phuongThuc),
                 new SqlParameter("@id", hoaDonId));
-
-            // Ghi log thanh toán
-            GhiLogThanhToan(hoaDonId, phuongThuc);
-        }
-
-        // Method ghi log thanh toán
-        private static void GhiLogThanhToan(int hoaDonId, string phuongThuc)
-        {
-            try
-            {
-                // Kiểm tra bảng LogThanhToan tồn tại không
-                var checkTable = DbHelper.Scalar(
-                    "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = N'LogThanhToan'");
-
-                if (checkTable != null && Convert.ToInt32(checkTable) > 0)
-                {
-                    DbHelper.Execute(@"
-                        INSERT INTO LogThanhToan(hoa_don_id, phuong_thuc, thoi_gian)
-                        VALUES(@hd, @ptt, GETDATE())",
-                        new SqlParameter("@hd", hoaDonId),
-                        new SqlParameter("@ptt", phuongThuc));
-                }
-            }
-            catch
-            {
-                // Log lỗi nhưng không ảnh hưởng đến thanh toán chính
-                // Có thể ghi ra file log nếu cần
-            }
         }
 
         public static void HuyHoaDon(int hoaDonId)
         {
-            // Kiểm tra hóa đơn có tồn tại không
             var exists = DbHelper.Scalar("SELECT id FROM HoaDon WHERE id = @id",
                 new SqlParameter("@id", hoaDonId));
 
             if (exists == null || exists == DBNull.Value)
                 throw new Exception("Hóa đơn không tồn tại!");
 
-            // Kiểm tra trạng thái
             var trangThai = DbHelper.Scalar("SELECT trang_thai FROM HoaDon WHERE id = @id",
                 new SqlParameter("@id", hoaDonId));
 
             if (trangThai != null && trangThai.ToString() == "da_thanh_toan")
                 throw new Exception("Không thể hủy hóa đơn đã thanh toán!");
 
-            // Thực hiện hủy hóa đơn
             DbHelper.Execute("DELETE FROM ChiTietHoaDon WHERE hoa_don_id = @id",
                 new SqlParameter("@id", hoaDonId));
             DbHelper.Execute(
@@ -195,7 +160,6 @@ namespace CafeOrder
 
         public static void XoaChiTiet(int hoaDonId, int chiTietId)
         {
-            // Kiểm tra chi tiết có tồn tại không
             var exists = DbHelper.Scalar(
                 "SELECT id FROM ChiTietHoaDon WHERE id = @ctId AND hoa_don_id = @hdId",
                 new SqlParameter("@ctId", chiTietId),
@@ -204,13 +168,11 @@ namespace CafeOrder
             if (exists == null || exists == DBNull.Value)
                 throw new Exception("Không tìm thấy món cần xóa!");
 
-            // Xóa chi tiết
             DbHelper.Execute("DELETE FROM ChiTietHoaDon WHERE id = @id",
                 new SqlParameter("@id", chiTietId));
             CapNhatTongHoaDon(hoaDonId);
         }
 
-        // Thêm method để lấy tổng số lượng món trong hóa đơn
         public static int GetTongSoLuongMon(int hoaDonId)
         {
             var o = DbHelper.Scalar(
@@ -219,33 +181,14 @@ namespace CafeOrder
             return o == null || o == DBNull.Value ? 0 : Convert.ToInt32(o);
         }
 
-        // Thêm method để kiểm tra hóa đơn có trống không
         public static bool IsHoaDonEmpty(int hoaDonId)
         {
             int count = GetTongSoLuongMon(hoaDonId);
             return count == 0;
         }
 
-        // Thêm method để áp dụng giảm giá (nếu cần)
-        public static void ApGiamGia(int hoaDonId, decimal giamGia)
-        {
-            if (giamGia < 0)
-                throw new Exception("Giảm giá không thể âm!");
+        // 🔥 ĐÃ XÓA METHOD ApGiamGia
 
-            var tongTien = LayTongTien(hoaDonId);
-            if (giamGia > tongTien)
-                throw new Exception("Giảm giá không thể lớn hơn tổng tiền!");
-
-            DbHelper.Execute(@"
-                UPDATE HoaDon 
-                SET giam_gia = @giamGia,
-                    thanh_toan = tong_tien - @giamGia
-                WHERE id = @id",
-                new SqlParameter("@giamGia", giamGia),
-                new SqlParameter("@id", hoaDonId));
-        }
-
-        // Thêm method để thống kê doanh thu theo phương thức thanh toán
         public static DataTable ThongKeDoanhThuTheoPhuongThuc(DateTime tuNgay, DateTime denNgay)
         {
             return DbHelper.Query(@"
@@ -260,8 +203,8 @@ namespace CafeOrder
                     SUM(thanh_toan) AS TongDoanhThu
                 FROM HoaDon
                 WHERE trang_thai = N'da_thanh_toan'
-                    AND thanh_toan_luc >= @tuNgay
-                    AND thanh_toan_luc <= @denNgay
+                    AND tao_luc >= @tuNgay
+                    AND tao_luc <= @denNgay
                 GROUP BY phuong_thuc_tt",
                 new SqlParameter("@tuNgay", tuNgay),
                 new SqlParameter("@denNgay", denNgay));

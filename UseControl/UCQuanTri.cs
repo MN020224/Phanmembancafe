@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 using System.Drawing;
+using System.IO;
 
 namespace CafeOrder
 {
@@ -83,172 +84,196 @@ namespace CafeOrder
             AppendLog("Module Quản trị — kết nối SQL OK.");
         }
 
-                #region Báo cáo
-                private void CboLoaiBaoCao_SelectedIndexChanged(object sender, EventArgs e)
+        #region Báo cáo
+        private void CboLoaiBaoCao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TaiBaoCao();
+        }
+
+        private void BtnLocBaoCao_Click(object sender, EventArgs e)
+        {
+            TaiBaoCao();
+        }
+
+        private void TaiBaoCao()
+        {
+            try
+            {
+                DateTime tuNgay = dtpTuNgay.Value.Date;
+                DateTime denNgay = dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1);
+
+                if (tuNgay > denNgay)
                 {
-                    TaiBaoCao();
+                    MessageBox.Show("Ngày bắt đầu phải nhỏ hơn ngày kết thúc!", "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
-                private void BtnLocBaoCao_Click(object sender, EventArgs e)
+                if (cboLoaiBaoCao.SelectedIndex < 0)
                 {
-                    TaiBaoCao();
+                    cboLoaiBaoCao.SelectedIndex = 0;
+                    return;
                 }
 
-                private void TaiBaoCao()
+                switch (cboLoaiBaoCao.SelectedIndex)
                 {
-                    try
-                    {
-                        DateTime tuNgay = dtpTuNgay.Value.Date;
-                        DateTime denNgay = dtpDenNgay.Value.Date.AddDays(1).AddSeconds(-1);
-
-                        switch (cboLoaiBaoCao.SelectedIndex)
-                        {
-                            case 0: // Doanh thu theo ngày
-                                _currentBaoCaoData = QuanTriService.BaoCaoDoanhThuTheoNgay(tuNgay, denNgay);
-                                FormatBaoCaoDoanhThu();
-                                break;
-                            case 1: // Doanh thu theo tháng
-                                _currentBaoCaoData = QuanTriService.BaoCaoDoanhThuTheoThang(dtpTuNgay.Value.Year);
-                                FormatBaoCaoDoanhThuTheoThang();
-                                break;
-                            case 2: // Món ăn bán chạy
-                                _currentBaoCaoData = QuanTriService.BaoCaoMonAnBanChay(tuNgay, denNgay, 20);
-                                FormatBaoCaoMonAnBanChay();
-                                break;
-                            case 3: // Chi tiết hóa đơn
-                                _currentBaoCaoData = QuanTriService.BaoCaoChiTietHoaDon(tuNgay, denNgay);
-                                FormatBaoCaoChiTiet();
-                                break;
-                        }
-
-                        dgvBaoCao.DataSource = _currentBaoCaoData;
-
-                        // Hiển thị tổng doanh thu
-                        decimal tongDoanhThu = QuanTriService.TongDoanhThu(tuNgay, denNgay);
-                        lblTongDoanhThu.Text = $"Tổng doanh thu: {tongDoanhThu:N0} VNĐ";
-                        lblTongDoanhThu.ForeColor = Color.Red;
-
-                        AppendLog($"Đã tải báo cáo: {cboLoaiBaoCao.Text}");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Lỗi khi tải báo cáo: {ex.Message}", "Lỗi",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        AppendLog($"Lỗi tải báo cáo: {ex.Message}");
-                    }
+                    case 0: // Doanh thu theo ngày
+                        _currentBaoCaoData = QuanTriService.BaoCaoDoanhThuTheoNgay(tuNgay, denNgay);
+                        FormatBaoCaoDoanhThu();
+                        break;
+                    case 1: // Doanh thu theo tháng
+                        _currentBaoCaoData = QuanTriService.BaoCaoDoanhThuTheoThang(dtpTuNgay.Value.Year);
+                        FormatBaoCaoDoanhThuTheoThang();
+                        break;
+                    case 2: // Món ăn bán chạy
+                        _currentBaoCaoData = QuanTriService.BaoCaoMonAnBanChay(tuNgay, denNgay, 20);
+                        FormatBaoCaoMonAnBanChay();
+                        break;
+                    case 3: // Chi tiết hóa đơn
+                        _currentBaoCaoData = QuanTriService.BaoCaoChiTietHoaDon(tuNgay, denNgay);
+                        FormatBaoCaoChiTiet();
+                        break;
+                    default:
+                        _currentBaoCaoData = new DataTable();
+                        break;
                 }
 
-                private void FormatBaoCaoDoanhThu()
+                if (_currentBaoCaoData != null && _currentBaoCaoData.Rows.Count > 0)
                 {
-                    if (_currentBaoCaoData == null) return;
-                    if (_currentBaoCaoData.Columns.Contains("Ngay"))
-                        _currentBaoCaoData.Columns["Ngay"].ColumnName = "Ngày";
-                    if (_currentBaoCaoData.Columns.Contains("SoHoaDon"))
-                        _currentBaoCaoData.Columns["SoHoaDon"].ColumnName = "Số Hóa Đơn";
-                    if (_currentBaoCaoData.Columns.Contains("DoanhThu"))
-                        _currentBaoCaoData.Columns["DoanhThu"].ColumnName = "Doanh Thu (VNĐ)";
+                    dgvBaoCao.DataSource = _currentBaoCaoData;
+                    decimal tongDoanhThu = QuanTriService.TongDoanhThu(tuNgay, denNgay);
+                    lblTongDoanhThu.Text = $"Tổng doanh thu: {tongDoanhThu:N0} VNĐ";
+                    lblTongDoanhThu.ForeColor = Color.Red;
+                    lblTongDoanhThu.Visible = true;
+                    AppendLog($"Đã tải báo cáo: {cboLoaiBaoCao.Text} - {_currentBaoCaoData.Rows.Count} dòng");
                 }
-
-                private void FormatBaoCaoDoanhThuTheoThang()
+                else
                 {
-                    if (_currentBaoCaoData == null) return;
-                    if (_currentBaoCaoData.Columns.Contains("Thang"))
-                        _currentBaoCaoData.Columns["Thang"].ColumnName = "Tháng";
-                    if (_currentBaoCaoData.Columns.Contains("SoHoaDon"))
-                        _currentBaoCaoData.Columns["SoHoaDon"].ColumnName = "Số Hóa Đơn";
-                    if (_currentBaoCaoData.Columns.Contains("DoanhThu"))
-                        _currentBaoCaoData.Columns["DoanhThu"].ColumnName = "Doanh Thu (VNĐ)";
+                    dgvBaoCao.DataSource = null;
+                    lblTongDoanhThu.Text = "Tổng doanh thu: 0 VNĐ";
+                    AppendLog($"Không có dữ liệu cho báo cáo: {cboLoaiBaoCao.Text}");
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải báo cáo: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                AppendLog($"Lỗi tải báo cáo: {ex.Message}");
+                dgvBaoCao.DataSource = null;
+            }
+        }
 
-                private void FormatBaoCaoMonAnBanChay()
+        private void FormatBaoCaoDoanhThu()
+        {
+            if (_currentBaoCaoData == null) return;
+            if (_currentBaoCaoData.Columns.Contains("Ngay"))
+                _currentBaoCaoData.Columns["Ngay"].ColumnName = "Ngày";
+            if (_currentBaoCaoData.Columns.Contains("SoHoaDon"))
+                _currentBaoCaoData.Columns["SoHoaDon"].ColumnName = "Số Hóa Đơn";
+            if (_currentBaoCaoData.Columns.Contains("DoanhThu"))
+                _currentBaoCaoData.Columns["DoanhThu"].ColumnName = "Doanh Thu (VNĐ)";
+        }
+
+        private void FormatBaoCaoDoanhThuTheoThang()
+        {
+            if (_currentBaoCaoData == null) return;
+            if (_currentBaoCaoData.Columns.Contains("Thang"))
+                _currentBaoCaoData.Columns["Thang"].ColumnName = "Tháng";
+            if (_currentBaoCaoData.Columns.Contains("SoHoaDon"))
+                _currentBaoCaoData.Columns["SoHoaDon"].ColumnName = "Số Hóa Đơn";
+            if (_currentBaoCaoData.Columns.Contains("DoanhThu"))
+                _currentBaoCaoData.Columns["DoanhThu"].ColumnName = "Doanh Thu (VNĐ)";
+        }
+
+        private void FormatBaoCaoMonAnBanChay()
+        {
+            if (_currentBaoCaoData == null) return;
+            if (_currentBaoCaoData.Columns.Contains("ten_mon"))
+                _currentBaoCaoData.Columns["ten_mon"].ColumnName = "Tên Món";
+            if (_currentBaoCaoData.Columns.Contains("SoLuongBan"))
+                _currentBaoCaoData.Columns["SoLuongBan"].ColumnName = "Số Lượng Bán";
+            if (_currentBaoCaoData.Columns.Contains("DoanhThu"))
+                _currentBaoCaoData.Columns["DoanhThu"].ColumnName = "Doanh Thu (VNĐ)";
+            if (_currentBaoCaoData.Columns.Contains("XepHang"))
+                _currentBaoCaoData.Columns["XepHang"].ColumnName = "Xếp Hạng";
+        }
+
+        private void FormatBaoCaoChiTiet()
+        {
+            if (_currentBaoCaoData == null) return;
+            if (_currentBaoCaoData.Columns.Contains("MaHoaDon"))
+                _currentBaoCaoData.Columns["MaHoaDon"].ColumnName = "Mã HĐ";
+            if (_currentBaoCaoData.Columns.Contains("NgayLap"))
+                _currentBaoCaoData.Columns["NgayLap"].ColumnName = "Ngày Lập";
+            if (_currentBaoCaoData.Columns.Contains("TongTien"))
+                _currentBaoCaoData.Columns["TongTien"].ColumnName = "Tổng Tiền (VNĐ)";
+                if (_currentBaoCaoData.Columns.Contains("ChiTiet"))
+                _currentBaoCaoData.Columns["ChiTiet"].ColumnName = "Chi Tiết";
+        }
+
+        private void BtnXuatExcel_Click(object sender, EventArgs e)
+        {
+            if (_currentBaoCaoData == null || _currentBaoCaoData.Rows.Count == 0)
+            {
+                MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "CSV Files|*.csv|Excel Files|*.xlsx";
+            sfd.FileName = $"BaoCao_{cboLoaiBaoCao.Text}_{DateTime.Now:yyyyMMdd_HHmmss}";
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
                 {
-                    if (_currentBaoCaoData == null) return;
-                    if (_currentBaoCaoData.Columns.Contains("ten_mon"))
-                        _currentBaoCaoData.Columns["ten_mon"].ColumnName = "Tên Món";
-                    if (_currentBaoCaoData.Columns.Contains("SoLuongBan"))
-                        _currentBaoCaoData.Columns["SoLuongBan"].ColumnName = "Số Lượng Bán";
-                    if (_currentBaoCaoData.Columns.Contains("DoanhThu"))
-                        _currentBaoCaoData.Columns["DoanhThu"].ColumnName = "Doanh Thu (VNĐ)";
+                    ExportToExcel(_currentBaoCaoData, sfd.FileName);
+                    MessageBox.Show($"Xuất file thành công!\nĐã lưu tại: {sfd.FileName}",
+                        "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    AppendLog($"Xuất báo cáo: {sfd.FileName}");
                 }
-
-                private void FormatBaoCaoChiTiet()
+                catch (Exception ex)
                 {
-                    if (_currentBaoCaoData == null) return;
-                    if (_currentBaoCaoData.Columns.Contains("MaHoaDon"))
-                        _currentBaoCaoData.Columns["MaHoaDon"].ColumnName = "Mã HĐ";
-                    if (_currentBaoCaoData.Columns.Contains("NgayLap"))
-                        _currentBaoCaoData.Columns["NgayLap"].ColumnName = "Ngày Lập";
-                    if (_currentBaoCaoData.Columns.Contains("Ban"))
-                        _currentBaoCaoData.Columns["Ban"].ColumnName = "Bàn";
-                    if (_currentBaoCaoData.Columns.Contains("TongTien"))
-                        _currentBaoCaoData.Columns["TongTien"].ColumnName = "Tổng Tiền (VNĐ)";
-                    if (_currentBaoCaoData.Columns.Contains("NhanVien"))
-                        _currentBaoCaoData.Columns["NhanVien"].ColumnName = "Nhân Viên";
+                    MessageBox.Show($"Lỗi khi xuất file: {ex.Message}", "Lỗi",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    AppendLog($"Lỗi xuất file: {ex.Message}");
                 }
+            }
+        }
 
-                private void BtnXuatExcel_Click(object sender, EventArgs e)
+        private void ExportToExcel(DataTable dt, string filePath)
+        {
+            string csvContent = "";
+
+            // Thêm header
+            for (int i = 0; i < dt.Columns.Count; i++)
+            {
+                csvContent += dt.Columns[i].ColumnName;
+                if (i < dt.Columns.Count - 1) csvContent += ",";
+            }
+            csvContent += Environment.NewLine;
+
+            // Thêm dữ liệu
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                for (int j = 0; j < dt.Columns.Count; j++)
                 {
-                    if (_currentBaoCaoData == null || _currentBaoCaoData.Rows.Count == 0)
-                    {
-                        MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                    SaveFileDialog sfd = new SaveFileDialog();
-                    sfd.Filter = "Excel Files|*.xlsx|CSV Files|*.csv";
-                    sfd.FileName = $"BaoCao_{cboLoaiBaoCao.Text}_{DateTime.Now:yyyyMMdd_HHmmss}";
-
-                    if (sfd.ShowDialog() == DialogResult.OK)
-                    {
-                        try
-                        {
-                            ExportToExcel(_currentBaoCaoData, sfd.FileName);
-                            MessageBox.Show($"Xuất file thành công!\nĐã lưu tại: {sfd.FileName}",
-                                "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            AppendLog($"Xuất báo cáo: {sfd.FileName}");
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Lỗi khi xuất file: {ex.Message}", "Lỗi",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            AppendLog($"Lỗi xuất file: {ex.Message}");
-                        }
-                    }
+                    string value = dt.Rows[i][j]?.ToString().Replace(",", ";");
+                    csvContent += value;
+                    if (j < dt.Columns.Count - 1) csvContent += ",";
                 }
+                csvContent += Environment.NewLine;
+            }
 
-                private void ExportToExcel(DataTable dt, string filePath)
-                {
-                    string csvContent = "";
+            // Ghi file - Đã sửa
+            string outputPath = filePath;
+            if (!outputPath.EndsWith(".csv"))
+                outputPath = Path.ChangeExtension(filePath, ".csv");
 
-                    // Thêm header
-                    for (int i = 0; i < dt.Columns.Count; i++)
-                    {
-                        csvContent += dt.Columns[i].ColumnName;
-                        if (i < dt.Columns.Count - 1) csvContent += ",";
-                    }
-                    csvContent += Environment.NewLine;
-
-                    // Thêm dữ liệu
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        for (int j = 0; j < dt.Columns.Count; j++)
-                        {
-                            string value = dt.Rows[i][j]?.ToString().Replace(",", ";");
-                            csvContent += value;
-                            if (j < dt.Columns.Count - 1) csvContent += ",";
-                        }
-                        csvContent += Environment.NewLine;
-                    }
-
-                    // Ghi file
-                    string outputPath = filePath;
-                    if (!outputPath.EndsWith(".csv"))
-                        outputPath = filePath.Replace(".xlsx", ".csv");
-
-                    System.IO.File.WriteAllText(outputPath, csvContent, System.Text.Encoding.UTF8);
-                }
-                #endregion
+            File.WriteAllText(outputPath, csvContent, System.Text.Encoding.UTF8);
+        }
+        #endregion
 
         #region Quản lý danh mục và món ăn
         private void NapComboDanhMuc()
@@ -267,7 +292,6 @@ namespace CafeOrder
                     dgvMonAn.Columns["danh_muc_id"].Visible = false;
                 if (dgvMonAn.Columns.Contains("kha_dung"))
                     dgvMonAn.Columns["kha_dung"].Visible = false;
-                // Ẩn cột id
                 if (dgvMonAn.Columns.Contains("id"))
                     dgvMonAn.Columns["id"].Visible = false;
 
@@ -444,7 +468,8 @@ namespace CafeOrder
 
         private void AppendLog(string message)
         {
-            txtLog.AppendText("[" + DateTime.Now.ToString("HH:mm:ss") + "] " + message + Environment.NewLine);
+            if (txtLog != null)
+                txtLog.AppendText("[" + DateTime.Now.ToString("HH:mm:ss") + "] " + message + Environment.NewLine);
         }
 
         private void pnlContent_Paint(object sender, PaintEventArgs e)
@@ -469,16 +494,19 @@ namespace CafeOrder
 
         private void btnExitAdmin_Click(object sender, EventArgs e)
         {
-            // Thu hồi quyền tạm thời (nếu là nhân viên)
             if (AppSession.IsImpersonatedAdmin)
                 AppSession.IsImpersonatedAdmin = false;
 
-            // Tìm form cha (MPI) và gọi method chuyển về bán hàng
             Form parent = this.FindForm();
             if (parent is MPI mainForm)
             {
                 mainForm.SwitchToBanHang();
             }
+        }
+
+        private void btnNavBaocao_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

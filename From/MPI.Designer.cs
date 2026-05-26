@@ -14,7 +14,6 @@ namespace CafeOrder
         private System.Windows.Forms.ToolStripMenuItem mnQuanTri;
         private System.Windows.Forms.ToolStripMenuItem mnDongCa;
         private System.Windows.Forms.ToolStripMenuItem mnDangXuat;
-        private System.Windows.Forms.ToolStripMenuItem mnThoatQuanTri;
 
         protected override void Dispose(bool disposing)
         {
@@ -78,7 +77,7 @@ namespace CafeOrder
             this.mnQuanTri.Name = "mnQuanTri";
             this.mnQuanTri.Size = new System.Drawing.Size(132, 27);
             this.mnQuanTri.Text = "Quản Tri Viên";
-            this.mnQuanTri.Click += new System.EventHandler(this.mnQuanTri_Click_1);
+            this.mnQuanTri.Click += new System.EventHandler(this.mnQuanTri_Click);
             this.mnQuanTri.Size = new System.Drawing.Size(110, 23);
             this.mnQuanTri.Text = "Quản Tri Viên";
             // 

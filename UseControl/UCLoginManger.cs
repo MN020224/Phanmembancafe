@@ -1,57 +1,61 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CafeOrder
 {
-    public partial class FormLoginManager : Form
+    public partial class UCLoginmanger : UserControl
     {
-       private readonly string connectionString = ConfigurationManager.ConnectionStrings["cafe_quanly"]?.ConnectionString
-    ?? "Data Source=.\\SQLEXPRESS;Initial Catalog=cafe_quanly;Integrated Security=True;TrustServerCertificate=True";
+        private readonly string connectionString = ConfigurationManager.ConnectionStrings["cafe_quanly"]?.ConnectionString
+            ?? "Data Source=.\\SQLEXPRESS;Initial Catalog=cafe_quanly;Integrated Security=True;TrustServerCertificate=True";
+
         public bool IsAuthenticated { get; private set; } = false;
-        public FormLoginManager()
+
+        // 🔥 Sự kiện thông báo đăng nhập thành công
+        public event EventHandler LoginSuccess;
+
+        public UCLoginmanger()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterParent;
         }
 
-        private void FormLoginManager_Load(object sender, EventArgs e)
+        private void UCLoginmanger_Load(object sender, EventArgs e)
         {
-
+            if (DesignMode) return;
+            txtUsername.Focus();
         }
 
-        private void btnLoginAdmin_Click(object sender, EventArgs e)
+        // Nút ĐĂNG NHẬP
+        private void btndangnhap_Click(object sender, EventArgs e)
         {
-            string username = txtAdmin.Text.Trim();
+            string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!", "Thiếu thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                lblError.Text = "Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!";
+                lblError.ForeColor = System.Drawing.Color.Red;
+                lblError.Visible = true;
                 return;
             }
 
             if (CheckAdminAccount(username, password))
             {
                 IsAuthenticated = true;
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                // 🔥 Gọi sự kiện đăng nhập thành công
+                LoginSuccess?.Invoke(this, EventArgs.Empty);
             }
             else
             {
-                MessageBox.Show("Sai tài khoản hoặc mật khẩu quản trị viên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                lblError.Text = "Sai tài khoản hoặc mật khẩu quản trị viên!";
+                lblError.ForeColor = System.Drawing.Color.Red;
+                lblError.Visible = true;
                 txtPassword.Clear();
                 txtPassword.Focus();
             }
         }
+
         private bool CheckAdminAccount(string username, string password)
         {
             try
@@ -71,15 +75,10 @@ namespace CafeOrder
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
         }
     }
 }

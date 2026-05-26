@@ -18,7 +18,7 @@ namespace CafeOrder
             mnBaoCao.Click += mnBaoCao_Click;
             mnQuanTri.Click += mnQuanTri_Click;
             mnDongCa.Click += mnDongCa_Click;
-            mnDangXuat.Click += mnDangXuat_Click;
+            mnDangXuat.Click += mnDangXuat_Click_1;
         }
 
         private static void LamMoiCaSession()
@@ -50,11 +50,11 @@ namespace CafeOrder
             ucBanHang.TaiLai();
 
             Text = "☕ CAFE POS - Đang bán hàng — " + AppSession.TenDangNhap;
-           
         }
+
         public void SwitchToBanHang()
         {
-            LamMoiCaSession();                     // Làm mới session ca (nếu cần)
+            LamMoiCaSession();
             if (ucBanHang == null)
                 ucBanHang = new UCBanHang();
 
@@ -77,6 +77,26 @@ namespace CafeOrder
 
         private void mnQuanTri_Click(object sender, EventArgs e)
         {
+            if (AppSession.HasAdminAccess)
+            {
+                ShowQuanTri();
+                return;
+            }
+
+            var ucLogin = new UCLoginmanger();
+
+            ucLogin.LoginSuccess += (s, args) =>
+            {
+                AppSession.IsImpersonatedAdmin = true;
+                ShowQuanTri();
+            };
+
+            HienThiUserControl(ucLogin);
+            Text = "☕ CAFE POS - Đăng nhập Quản trị";
+        }
+
+        private void ShowQuanTri()
+        {
             if (ucQuanTri == null)
                 ucQuanTri = new UCQuanTri();
 
@@ -98,7 +118,7 @@ namespace CafeOrder
             Text = "☕ CAFE POS - Đóng ca làm việc";
         }
 
-        private void mnDangXuat_Click(object sender, EventArgs e)
+        private void mnDangXuat_Click_1(object sender, EventArgs e)
         {
             var result = MessageBox.Show("Bạn có chắc muốn đăng xuất?", "Xác nhận",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -116,43 +136,6 @@ namespace CafeOrder
         {
             Text = "☕ CAFE POS — " + (AppSession.TenDangNhap ?? "");
             mnBanHang_Click(null, EventArgs.Empty);
-        }
-
-        private void mnQuanTri_Click_1(object sender, EventArgs e)
-        {
-            // Nếu tài khoản hiện tại đã là admin hoặc đã được cấp quyền tạm
-            if (AppSession.HasAdminAccess)
-            {
-                ShowQuanTri();
-                return;
-            }
-
-            // Chưa có quyền -> yêu cầu đăng nhập quản lý
-            using (var frm = new FormLoginManager())
-            {
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    AppSession.IsImpersonatedAdmin = true;
-                    ShowQuanTri();
-                }
-            }
-        
-        }
-        private void ShowQuanTri()
-        {
-            // Xóa control hiện tại trong panel (ví dụ panel1, nếu tên khác thì sửa)
-            panel1.Controls.Clear();
-            UCQuanTri uc = new UCQuanTri();
-            uc.Dock = DockStyle.Fill;
-            panel1.Controls.Add(uc);
-        }
-
-        private void mnDangXuat_Click_1(object sender, EventArgs e)
-        {
-            AppSession.Clear(); // Xóa toàn bộ session (bao gồm IsImpersonatedAdmin)
-            this.Close();
-            Login login = new Login();
-            login.Show();
         }
     }
 }
