@@ -1,0 +1,31 @@
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.csproj.AssemblyReference.cache
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.FormLoginManager.resources
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.Login.resources
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.MPI.resources
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.Properties.Resources.resources
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.UCBanHang.resources
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.UCBaoCao.resources
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.UCDongca.resources
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.UCQuanTri.resources
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.csproj.GenerateResource.cache
+F:\Phần mềm bán hàng\Phanmembanhang\CafeOrder\obj\Debug\CafeOrder.csproj.CoreCompileInputs.cache
+F:\Project\Phanmembancafe\bin\Debug\CafeOrder.exe
+F:\Project\Phanmembancafe\bin\Debug\CafeOrder.exe.config
+F:\Project\Phanmembancafe\bin\Debug\System.Configuration.ConfigurationManager.dll
+F:\Project\Phanmembancafe\bin\Debug\System.Configuration.ConfigurationManager.xml
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.csproj.AssemblyReference.cache
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.Login.resources
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.MPI.resources
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.Properties.Resources.resources
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.UCBanHang.resources
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.UCBaoCao.resources
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.UCDongca.resources
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.UCQuanTri.resources
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.csproj.GenerateResource.cache
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.csproj.CoreCompileInputs.cache
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.csproj.Up2Date
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.exe
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.pdb
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.exe.config
+F:\Project\Phanmembancafe\bin\Debug\CafeOrder.pdb
+F:\Project\Phanmembancafe\obj\Debug\CafeOrder.UCLoginmanger.resources
