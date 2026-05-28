@@ -3,27 +3,39 @@
   "WorkspaceRootPath": "F:\\Project\\Phanmembancafe\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\usecontrol\\ucloginmanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:usecontrol\\ucloginmanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\sevice\\baocaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:sevice\\baocaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\usecontrol\\ucbaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:usecontrol\\ucbaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\usecontrol\\ucbaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:usecontrol\\ucbaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\usecontrol\\ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:usecontrol\\ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\sevice\\quantriservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\sevice\\quantriservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:sevice\\quantriservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\sevice\\baocaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:sevice\\baocaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\usecontrol\\ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\usecontrol\\ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:usecontrol\\ucquantri.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\from\\mpi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\from\\mpi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:from\\mpi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -31,56 +43,52 @@
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:uitheme.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\appsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\appsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:appsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\usecontrol\\ucloginmanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\usecontrol\\ucloginmanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:usecontrol\\ucloginmanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\from\\mpi.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\from\\mpi.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:from\\mpi.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\usecontrol\\ucloginmanger.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\usecontrol\\ucloginmanger.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:usecontrol\\ucloginmanger.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\usecontrol\\ucbaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:usecontrol\\ucbaocao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\from\\mpi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\from\\mpi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:from\\mpi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\usecontrol\\ucdongca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\usecontrol\\ucdongca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:usecontrol\\ucdongca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\from\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\from\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:from\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\from\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\from\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:from\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\dbhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:dbhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|f:\\project\\phanmembancafe\\usecontrol\\ucquantri.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\usecontrol\\ucquantri.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:usecontrol\\ucquantri.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|F:\\Project\\Phanmembancafe\\ucbanhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A794E4A3-D8B1-46B4-860F-DA3F73E97F01}|CafeOrder.csproj|solutionrelative:ucbanhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Project\\Phanmembancafe\\DbHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DbHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|F:\\Project\\Phanmembancafe\\ucbanhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ucbanhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -90,11 +98,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "Login.cs",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\From\\Login.cs",
               "RelativeDocumentMoniker": "From\\Login.cs",
@@ -103,12 +111,11 @@
               "ViewState": "AgIAAAgAAAAAAAAAAAAMwB4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T18:05:32.576Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "MPI.cs",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\From\\MPI.cs",
               "RelativeDocumentMoniker": "From\\MPI.cs",
@@ -117,8 +124,7 @@
               "ViewState": "AgIAAEwAAAAAAAAAAAAMwGcAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T19:06:14.55Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -134,46 +140,58 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "QuanTriService.cs",
-              "DocumentMoniker": "F:\\Project\\Phanmembancafe\\Sevice\\QuanTriService.cs",
-              "RelativeDocumentMoniker": "Sevice\\QuanTriService.cs",
-              "ToolTip": "F:\\Project\\Phanmembancafe\\Sevice\\QuanTriService.cs",
-              "RelativeToolTip": "Sevice\\QuanTriService.cs",
-              "ViewState": "AgIAAIQAAAAAAAAAAAAYwLwAAAABAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "UCLoginManger.cs [Design]",
+              "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UseControl\\UCLoginManger.cs",
+              "RelativeDocumentMoniker": "UseControl\\UCLoginManger.cs",
+              "ToolTip": "F:\\Project\\Phanmembancafe\\UseControl\\UCLoginManger.cs [Design]",
+              "RelativeToolTip": "UseControl\\UCLoginManger.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T19:49:51.194Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-27T13:49:14.264Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "BaoCaoService.cs",
-              "DocumentMoniker": "F:\\Project\\Phanmembancafe\\Sevice\\BaoCaoService.cs",
-              "RelativeDocumentMoniker": "Sevice\\BaoCaoService.cs",
-              "ToolTip": "F:\\Project\\Phanmembancafe\\Sevice\\BaoCaoService.cs",
-              "RelativeToolTip": "Sevice\\BaoCaoService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Title": "UCBaoCao.cs",
+              "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UseControl\\UCBaoCao.cs",
+              "RelativeDocumentMoniker": "UseControl\\UCBaoCao.cs",
+              "ToolTip": "F:\\Project\\Phanmembancafe\\UseControl\\UCBaoCao.cs",
+              "RelativeToolTip": "UseControl\\UCBaoCao.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAmwHQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T19:42:27.962Z",
+              "WhenOpened": "2026-05-27T13:44:40.591Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "UCQuanTri.cs",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UseControl\\UCQuanTri.cs",
               "RelativeDocumentMoniker": "UseControl\\UCQuanTri.cs",
               "ToolTip": "F:\\Project\\Phanmembancafe\\UseControl\\UCQuanTri.cs",
               "RelativeToolTip": "UseControl\\UCQuanTri.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAAwNIAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAAJAAAAAAAAAAAAAuwNIAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-26T19:41:30.696Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
+              "Title": "BaoCaoService.cs",
+              "DocumentMoniker": "F:\\Project\\Phanmembancafe\\Sevice\\BaoCaoService.cs",
+              "RelativeDocumentMoniker": "Sevice\\BaoCaoService.cs",
+              "ToolTip": "F:\\Project\\Phanmembancafe\\Sevice\\BaoCaoService.cs",
+              "RelativeToolTip": "Sevice\\BaoCaoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T19:42:27.962Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -181,12 +199,11 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T19:40:26.385Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T19:40:26.385Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "UiTheme.cs",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UiTheme.cs",
               "RelativeDocumentMoniker": "UiTheme.cs",
@@ -194,24 +211,58 @@
               "RelativeToolTip": "UiTheme.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAowB8AAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T18:11:04.182Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T18:11:04.182Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "UCQuanTri.cs [Design]",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UseControl\\UCQuanTri.cs",
               "RelativeDocumentMoniker": "UseControl\\UCQuanTri.cs",
               "ToolTip": "F:\\Project\\Phanmembancafe\\UseControl\\UCQuanTri.cs [Design]",
               "RelativeToolTip": "UseControl\\UCQuanTri.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T19:02:45.24Z",
+              "WhenOpened": "2026-05-26T19:02:45.24Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UCBaoCao.cs [Design]",
+              "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UseControl\\UCBaoCao.cs",
+              "RelativeDocumentMoniker": "UseControl\\UCBaoCao.cs",
+              "ToolTip": "F:\\Project\\Phanmembancafe\\UseControl\\UCBaoCao.cs [Design]",
+              "RelativeToolTip": "UseControl\\UCBaoCao.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T19:03:09.651Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
+              "Title": "QuanTriService.cs",
+              "DocumentMoniker": "F:\\Project\\Phanmembancafe\\Sevice\\QuanTriService.cs",
+              "RelativeDocumentMoniker": "Sevice\\QuanTriService.cs",
+              "ToolTip": "F:\\Project\\Phanmembancafe\\Sevice\\QuanTriService.cs",
+              "RelativeToolTip": "Sevice\\QuanTriService.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAYwLwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T19:49:51.194Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DbHelper.cs",
+              "DocumentMoniker": "F:\\Project\\Phanmembancafe\\DbHelper.cs",
+              "RelativeDocumentMoniker": "DbHelper.cs",
+              "ToolTip": "F:\\Project\\Phanmembancafe\\DbHelper.cs",
+              "RelativeToolTip": "DbHelper.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAwwGQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T17:54:33.851Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "AppSession.cs",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\AppSession.cs",
               "RelativeDocumentMoniker": "AppSession.cs",
@@ -219,12 +270,11 @@
               "RelativeToolTip": "AppSession.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T19:39:34.051Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T19:39:34.051Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "UCLoginManger.cs",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UseControl\\UCLoginManger.cs",
               "RelativeDocumentMoniker": "UseControl\\UCLoginManger.cs",
@@ -237,7 +287,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "MPI.Designer.cs",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\From\\MPI.Designer.cs",
               "RelativeDocumentMoniker": "From\\MPI.Designer.cs",
@@ -245,12 +295,11 @@
               "RelativeToolTip": "From\\MPI.Designer.cs",
               "ViewState": "AgIAAEoAAAAAAAAAAAAtwGEAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T18:58:09.577Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T18:58:09.577Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "UCLoginManger.Designer.cs",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UseControl\\UCLoginManger.Designer.cs",
               "RelativeDocumentMoniker": "UseControl\\UCLoginManger.Designer.cs",
@@ -263,55 +312,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "UCBaoCao.cs [Design]",
-              "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UseControl\\UCBaoCao.cs",
-              "RelativeDocumentMoniker": "UseControl\\UCBaoCao.cs",
-              "ToolTip": "F:\\Project\\Phanmembancafe\\UseControl\\UCBaoCao.cs [Design]",
-              "RelativeToolTip": "UseControl\\UCBaoCao.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T19:03:09.651Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "MPI.cs [Design]",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\From\\MPI.cs",
               "RelativeDocumentMoniker": "From\\MPI.cs",
               "ToolTip": "F:\\Project\\Phanmembancafe\\From\\MPI.cs [Design]",
               "RelativeToolTip": "From\\MPI.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T19:06:12.889Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-26T19:06:12.889Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "UCDongca.cs [Design]",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UseControl\\UCDongca.cs",
               "RelativeDocumentMoniker": "UseControl\\UCDongca.cs",
               "ToolTip": "F:\\Project\\Phanmembancafe\\UseControl\\UCDongca.cs [Design]",
               "RelativeToolTip": "UseControl\\UCDongca.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T19:02:59.927Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-26T19:02:59.927Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "Login.cs [Design]",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\From\\Login.cs",
               "RelativeDocumentMoniker": "From\\Login.cs",
               "ToolTip": "F:\\Project\\Phanmembancafe\\From\\Login.cs [Design]",
               "RelativeToolTip": "From\\Login.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T18:15:14.046Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-05-26T18:15:14.046Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "UCQuanTri.Designer.cs",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UseControl\\UCQuanTri.Designer.cs",
               "RelativeDocumentMoniker": "UseControl\\UCQuanTri.Designer.cs",
@@ -319,24 +353,11 @@
               "RelativeToolTip": "UseControl\\UCQuanTri.Designer.cs",
               "ViewState": "AgIAAOsBAAAAAAAAAAAIwP4BAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T18:00:40.293Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-26T18:00:40.293Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "DbHelper.cs",
-              "DocumentMoniker": "F:\\Project\\Phanmembancafe\\DbHelper.cs",
-              "RelativeDocumentMoniker": "DbHelper.cs",
-              "ToolTip": "F:\\Project\\Phanmembancafe\\DbHelper.cs",
-              "RelativeToolTip": "DbHelper.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAwwGQAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-26T17:54:33.851Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "App.config",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\App.config",
               "RelativeDocumentMoniker": "App.config",
@@ -349,7 +370,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "UCBanHang.cs [Design]",
               "DocumentMoniker": "F:\\Project\\Phanmembancafe\\UCBanHang.cs",
               "RelativeDocumentMoniker": "UCBanHang.cs",

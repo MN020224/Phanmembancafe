@@ -2,7 +2,6 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace CafeOrder
 {
@@ -15,6 +14,7 @@ namespace CafeOrder
         public UCBanHang()
         {
             InitializeComponent();
+            pnlSidebar.AutoScroll = true;
             InitializeNumericUpDown();
         }
 
@@ -57,12 +57,22 @@ namespace CafeOrder
         private void UCBanHang_Load(object sender, EventArgs e)
         {
             UiTheme.StyleDataGridView(dgvGioHang);
-
-            // Style các button
             UiTheme.StyleFlatButton(btnThanhToan, UiTheme.Success, 44);
+            btnThanhToan.Click -= BtnThanhToan_Click;
+            btnThanhToan.Click += BtnThanhToan_Click;
+
             UiTheme.StyleFlatButton(btnHuyHoaDon, UiTheme.Danger, 36);
+            btnHuyHoaDon.Click -= BtnHuyHoaDon_Click;
+            btnHuyHoaDon.Click += BtnHuyHoaDon_Click;
+
             UiTheme.StyleFlatButton(btnThemMon, UiTheme.Primary, 30);
+            btnThemMon.Click -= BtnThemMon_Click;
+            btnThemMon.Click += BtnThemMon_Click;
+
             UiTheme.StyleFlatButton(btnXoaMon, UiTheme.Warning, 30);
+            btnXoaMon.Click -= BtnXoaMon_Click;
+            btnXoaMon.Click += BtnXoaMon_Click;
+
 
             // Thiết lập DataGridView
             dgvGioHang.Columns.Clear();
@@ -74,11 +84,7 @@ namespace CafeOrder
             dgvGioHang.Columns.Add("DonGia", "Đơn giá");
             dgvGioHang.Columns.Add("ThanhTien", "Thành tiền");
 
-            // Gán sự kiện
-            btnThanhToan.Click += BtnThanhToan_Click;
-            btnHuyHoaDon.Click += BtnHuyHoaDon_Click;
-            btnThemMon.Click += BtnThemMon_Click;
-            btnXoaMon.Click += BtnXoaMon_Click;
+
 
             // Thiết lập ComboBox mặc định
             if (cboPhuongThucThanhToan.Items.Count == 0)
@@ -113,40 +119,68 @@ namespace CafeOrder
         {
             try
             {
+                pnlSidebar.SuspendLayout();
                 pnlSidebar.Controls.Clear();
+
+                // Label DANH MỤC - dùng DockStyle.Top
                 var lbl = new Label
                 {
-                    Text = "DANH MỤC",
+                    Text = "📂 DANH MỤC",
                     Dock = DockStyle.Top,
-                    Height = 36,
-                    Font = new Font("Segoe UI", 9F, FontStyle.Bold),
-                    ForeColor = Color.FromArgb(189, 195, 199),
-                    Padding = new Padding(12, 8, 0, 8)
+                    Height = 50,
+                    Font = new Font("Segoe UI", 12F, FontStyle.Bold),
+                    ForeColor = Color.White,
+                    BackColor = Color.FromArgb(112, 77, 59),
+                    Padding = new Padding(17, 11, 0, 11),
+                    TextAlign = ContentAlignment.MiddleLeft
                 };
                 pnlSidebar.Controls.Add(lbl);
 
-                var dt = BanHangService.GetDanhMuc();
-                Button first = null;
-                foreach (DataRow row in dt.Rows)
+                // Lấy danh mục từ database
+                DataTable dt = BanHangService.GetDanhMuc();
+                if (dt.Rows.Count == 0) return;
+
+                Button firstButton = null;
+                // Duyệt từ cuối lên để đảm bảo thứ tự đúng (vì Dock=Top)
+                for (int i = dt.Rows.Count - 1; i >= 0; i--)
                 {
+                    DataRow row = dt.Rows[i];
                     int id = Convert.ToInt32(row["id"]);
                     string ten = row["ten_danh_muc"].ToString();
-                    var btn = new Button { Text = "  " + ten, Tag = id };
-                    UiTheme.StyleSidebarButton(btn, false);
-                    btn.BackColor = UiTheme.Sidebar;
+
+                    var btn = new Button
+                    {
+                        Text = "  " + ten,
+                        Tag = id,
+                        Dock = DockStyle.Top,
+                        Height = 45,
+                        FlatStyle = FlatStyle.Flat,
+                        TextAlign = ContentAlignment.MiddleLeft,
+                        BackColor = Color.FromArgb(112, 77, 59),
+                        ForeColor = Color.White,
+                        Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                        UseVisualStyleBackColor = false,
+                        Margin = new Padding(0),
+                        Padding = new Padding(0),
+                        FlatAppearance = { BorderSize = 0 }
+                    };
                     btn.Click += DanhMuc_Click;
                     pnlSidebar.Controls.Add(btn);
-                    if (first == null)
-                        first = btn;
+                    firstButton = btn; // lấy button cuối cùng (sẽ là Cà phê sau vòng lặp)
                 }
 
-                if (first != null)
-                    first.PerformClick();
+                pnlSidebar.ResumeLayout();
+
+                // Chọn danh mục đầu tiên nếu có
+                if (firstButton != null)
+                {
+                    // Dùng BeginInvoke để tránh gọi click khi control chưa sẵn sàng
+                    this.BeginInvoke(new Action(() => firstButton.PerformClick()));
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tải danh mục: " + ex.Message, "Lỗi",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi tải danh mục: " + ex.Message);
             }
         }
 
@@ -259,7 +293,7 @@ namespace CafeOrder
             {
                 if (Convert.ToInt32(row["id"]) == chiTietId)
                 {
-                    monAnId = Convert.ToInt32(row["mon_an_id"]);
+                    monAnId = Convert.ToInt32(row["MonAnId"]);
                     break;
                 }
             }
@@ -378,30 +412,19 @@ namespace CafeOrder
             txtTongTien.Text = BanHangService.LayTongTien(_hoaDonId.Value).ToString("N0") + " đ";
         }
 
-        private async void BtnThanhToan_Click(object sender, EventArgs e)
+        private void BtnThanhToan_Click(object sender, EventArgs e)
         {
-             btnThanhToan.Enabled = false;
-            btnThanhToan.Text = "ĐANG XỬ LÝ...";
+            // Kiểm tra hóa đơn tồn tại
+            if (!_hoaDonId.HasValue)
+            {
+                MessageBox.Show("Chưa có món trong hóa đơn.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
             try
             {
-                // Kiểm tra hóa đơn tồn tại
-                if (!_hoaDonId.HasValue)
-                {
-                    MessageBox.Show("Chưa có hóa đơn. Vui lòng thêm món trước khi thanh toán.", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Kiểm tra có món trong giỏ hàng không
-                var dt = BanHangService.GetChiTietHoaDon(_hoaDonId.Value);
-                if (dt == null || dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("Chưa có món trong hóa đơn. Vui lòng thêm món trước khi thanh toán.", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
+                // Lấy tổng tiền từ service thay vì từ textbox
                 decimal tongTien = BanHangService.LayTongTien(_hoaDonId.Value);
 
                 if (tongTien <= 0)
@@ -411,7 +434,10 @@ namespace CafeOrder
                     return;
                 }
 
+                // Lấy phương thức thanh toán được chọn
                 string phuongThucHienThi = cboPhuongThucThanhToan.SelectedItem?.ToString();
+                string phuongThuc = "";
+
                 if (string.IsNullOrEmpty(phuongThucHienThi))
                 {
                     MessageBox.Show("Vui lòng chọn phương thức thanh toán.", "Thông báo",
@@ -420,7 +446,6 @@ namespace CafeOrder
                 }
 
                 // Chuyển đổi phương thức thanh toán
-                string phuongThuc = "";
                 if (phuongThucHienThi.Contains("Tiền mặt"))
                     phuongThuc = "tien_mat";
                 else if (phuongThucHienThi.Contains("Chuyển khoản"))
@@ -440,33 +465,21 @@ namespace CafeOrder
                 if (confirm != DialogResult.Yes)
                     return;
 
-                // 🔥 GỌI SERVICE THANH TOÁN (ĐÃ THIẾU DÒNG NÀY)
+                // Gọi service thanh toán
                 BanHangService.ThanhToan(_hoaDonId.Value, phuongThuc);
 
+                // Hiển thị thông báo thành công
                 MessageBox.Show($"Thanh toán thành công bằng {phuongThucHienThi}!",
                     "Thành công",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
 
-                // Reset ngay lập tức - Tạo hóa đơn mới
+                // Reset hóa đơn
                 _hoaDonId = null;
-                dgvGioHang.Rows.Clear();  // Xóa giỏ hàng hiển thị
-                txtTongTien.Text = "0 đ";  // Reset tổng tiền
+                KhoiTaoHoaDon();
 
-                // Tạo hóa đơn mới
-                if (AppSession.CaId.HasValue)
-                {
-                    _hoaDonId = BanHangService.TaoHoaDon(AppSession.CaId.Value);
-                }
-
+                // Reset comboBox về mặc định
                 cboPhuongThucThanhToan.SelectedIndex = 0;
-                nudSoLuong.Value = 1;
-
-                // Làm mới danh sách món ăn
-                if (_categorySelected != null && _categorySelected.Tag != null)
-                {
-                    NapSanPham(Convert.ToInt32(_categorySelected.Tag));
-                }
             }
             catch (Exception ex)
             {
@@ -475,13 +488,8 @@ namespace CafeOrder
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-            finally
-            {
-                // 🔥 Bật lại nút sau khi xử lý xong
-                btnThanhToan.Enabled = true;
-                btnThanhToan.Text = "THANH TOÁN";
-            }
         }
+
         private void BtnHuyHoaDon_Click(object sender, EventArgs e)
         {
             if (!_hoaDonId.HasValue)
@@ -502,6 +510,11 @@ namespace CafeOrder
                 MessageBox.Show("Lỗi: " + ex.Message, "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void lblDanhMuc_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

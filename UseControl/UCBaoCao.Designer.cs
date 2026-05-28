@@ -13,9 +13,6 @@
         private System.Windows.Forms.DateTimePicker dtpDenNgay;
         private System.Windows.Forms.Button btnXemBaoCao;
         private System.Windows.Forms.FlowLayoutPanel flowKpi;
-        private System.Windows.Forms.Panel pnlChart;
-        private System.Windows.Forms.Label lblChartTitle;
-        private System.Windows.Forms.Label lblChartPlaceholder;
         private System.Windows.Forms.Panel pnlGrid;
         private System.Windows.Forms.DataGridView dgvBaoCao;
         private System.Windows.Forms.Label lblTongDoanhThu;
@@ -41,9 +38,6 @@
             this.dtpTuNgay = new System.Windows.Forms.DateTimePicker();
             this.lblTuNgay = new System.Windows.Forms.Label();
             this.flowKpi = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlChart = new System.Windows.Forms.Panel();
-            this.lblChartPlaceholder = new System.Windows.Forms.Label();
-            this.lblChartTitle = new System.Windows.Forms.Label();
             this.pnlGrid = new System.Windows.Forms.Panel();
             this.dgvBaoCao = new System.Windows.Forms.DataGridView();
             this.txtSoLuongHoaDon = new System.Windows.Forms.TextBox();
@@ -52,7 +46,6 @@
             this.lblTongDoanhThu = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.pnlFilter.SuspendLayout();
-            this.pnlChart.SuspendLayout();
             this.pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaoCao)).BeginInit();
             this.SuspendLayout();
@@ -70,7 +63,6 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
@@ -82,6 +74,7 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "📊 BÁO CÁO — Thống kê doanh thu";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
             // 
             // pnlFilter
             // 
@@ -162,44 +155,6 @@
             this.flowKpi.Size = new System.Drawing.Size(868, 6);
             this.flowKpi.TabIndex = 2;
             // 
-            // pnlChart
-            // 
-            this.pnlChart.BackColor = System.Drawing.Color.White;
-            this.pnlChart.Controls.Add(this.lblChartPlaceholder);
-            this.pnlChart.Controls.Add(this.lblChartTitle);
-            this.pnlChart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlChart.Location = new System.Drawing.Point(0, 76);
-            this.pnlChart.Margin = new System.Windows.Forms.Padding(2);
-            this.pnlChart.Name = "pnlChart";
-            this.pnlChart.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
-            this.pnlChart.Size = new System.Drawing.Size(868, 117);
-            this.pnlChart.TabIndex = 3;
-            // 
-            // lblChartPlaceholder
-            // 
-            this.lblChartPlaceholder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblChartPlaceholder.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Italic);
-            this.lblChartPlaceholder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(165)))), ((int)(((byte)(166)))));
-            this.lblChartPlaceholder.Location = new System.Drawing.Point(12, 28);
-            this.lblChartPlaceholder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblChartPlaceholder.Name = "lblChartPlaceholder";
-            this.lblChartPlaceholder.Size = new System.Drawing.Size(844, 79);
-            this.lblChartPlaceholder.TabIndex = 0;
-            this.lblChartPlaceholder.Text = "📈 Khu vực biểu đồ (kết nối dữ liệu sau)";
-            this.lblChartPlaceholder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblChartTitle
-            // 
-            this.lblChartTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblChartTitle.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblChartTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblChartTitle.Location = new System.Drawing.Point(12, 10);
-            this.lblChartTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblChartTitle.Name = "lblChartTitle";
-            this.lblChartTitle.Size = new System.Drawing.Size(844, 18);
-            this.lblChartTitle.TabIndex = 1;
-            this.lblChartTitle.Text = "Biểu đồ doanh thu theo ngày";
-            // 
             // pnlGrid
             // 
             this.pnlGrid.Controls.Add(this.dgvBaoCao);
@@ -208,11 +163,11 @@
             this.pnlGrid.Controls.Add(this.txtTongDoanhThu);
             this.pnlGrid.Controls.Add(this.lblTongDoanhThu);
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGrid.Location = new System.Drawing.Point(0, 193);
+            this.pnlGrid.Location = new System.Drawing.Point(0, 76);
             this.pnlGrid.Margin = new System.Windows.Forms.Padding(2);
             this.pnlGrid.Name = "pnlGrid";
             this.pnlGrid.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
-            this.pnlGrid.Size = new System.Drawing.Size(868, 284);
+            this.pnlGrid.Size = new System.Drawing.Size(868, 401);
             this.pnlGrid.TabIndex = 4;
             // 
             // dgvBaoCao
@@ -225,13 +180,13 @@
             this.dgvBaoCao.Name = "dgvBaoCao";
             this.dgvBaoCao.ReadOnly = true;
             this.dgvBaoCao.RowHeadersWidth = 51;
-            this.dgvBaoCao.Size = new System.Drawing.Size(850, 198);
+            this.dgvBaoCao.Size = new System.Drawing.Size(850, 315);
             this.dgvBaoCao.TabIndex = 0;
             // 
             // txtSoLuongHoaDon
             // 
             this.txtSoLuongHoaDon.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtSoLuongHoaDon.Location = new System.Drawing.Point(9, 206);
+            this.txtSoLuongHoaDon.Location = new System.Drawing.Point(9, 323);
             this.txtSoLuongHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.txtSoLuongHoaDon.Name = "txtSoLuongHoaDon";
             this.txtSoLuongHoaDon.ReadOnly = true;
@@ -244,7 +199,7 @@
             this.lblSoLuongHoaDon.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblSoLuongHoaDon.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblSoLuongHoaDon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
-            this.lblSoLuongHoaDon.Location = new System.Drawing.Point(9, 226);
+            this.lblSoLuongHoaDon.Location = new System.Drawing.Point(9, 343);
             this.lblSoLuongHoaDon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSoLuongHoaDon.Name = "lblSoLuongHoaDon";
             this.lblSoLuongHoaDon.Size = new System.Drawing.Size(850, 0);
@@ -258,7 +213,7 @@
             this.txtTongDoanhThu.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.txtTongDoanhThu.ForeColor = System.Drawing.Color.Black;
-            this.txtTongDoanhThu.Location = new System.Drawing.Point(9, 226);
+            this.txtTongDoanhThu.Location = new System.Drawing.Point(9, 343);
             this.txtTongDoanhThu.Margin = new System.Windows.Forms.Padding(2);
             this.txtTongDoanhThu.Name = "txtTongDoanhThu";
             this.txtTongDoanhThu.ReadOnly = true;
@@ -271,7 +226,7 @@
             this.lblTongDoanhThu.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblTongDoanhThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
-            this.lblTongDoanhThu.Location = new System.Drawing.Point(9, 258);
+            this.lblTongDoanhThu.Location = new System.Drawing.Point(9, 375);
             this.lblTongDoanhThu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTongDoanhThu.Name = "lblTongDoanhThu";
             this.lblTongDoanhThu.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
@@ -285,7 +240,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
             this.Controls.Add(this.pnlGrid);
-            this.Controls.Add(this.pnlChart);
             this.Controls.Add(this.flowKpi);
             this.Controls.Add(this.pnlFilter);
             this.Controls.Add(this.pnlHeader);
@@ -296,13 +250,11 @@
             this.pnlHeader.ResumeLayout(false);
             this.pnlFilter.ResumeLayout(false);
             this.pnlFilter.PerformLayout();
-            this.pnlChart.ResumeLayout(false);
             this.pnlGrid.ResumeLayout(false);
             this.pnlGrid.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaoCao)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
     }
 }

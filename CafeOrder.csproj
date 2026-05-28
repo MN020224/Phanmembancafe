@@ -71,10 +71,10 @@
     <Compile Include="From\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="From\MPI.cs">
+    <Compile Include="Sevice\MPI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="From\MPI.Designer.cs">
+    <Compile Include="Sevice\MPI.Designer.cs">
       <DependentUpon>MPI.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -139,7 +139,7 @@
     <EmbeddedResource Include="From\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="From\MPI.resx">
+    <EmbeddedResource Include="Sevice\MPI.resx">
       <DependentUpon>MPI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
