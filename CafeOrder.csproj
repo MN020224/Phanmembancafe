@@ -50,95 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormLoginManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormLoginManager.Designer.cs">
-      <DependentUpon>FormLoginManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
-    </Compile>
-<<<<<<< HEAD
-    <Compile Include="Sevice\MPI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Sevice\MPI.Designer.cs">
-=======
-    <Compile Include="MPI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MPI.Designer.cs">
->>>>>>> ac1862470c1ebabf0f7b9a7cae4f290d1111e3e4
-      <DependentUpon>MPI.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="QuanTriServiceHelpers.cs" />
-    <Compile Include="UiTheme.cs" />
     <Compile Include="AppSession.cs" />
     <Compile Include="DbHelper.cs" />
-    <Compile Include="CaService.cs" />
-    <Compile Include="BanHangService.cs" />
-    <Compile Include="BaoCaoService.cs" />
-    <Compile Include="QuanTriService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UCBanHang.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="From\Login1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Login.resx</DependentUpon>
     </Compile>
-    <Compile Include="UCBanHang.Designer.cs">
-      <DependentUpon>UCBanHang.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UCBaoCao.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UCBaoCao.Designer.cs">
-      <DependentUpon>UCBaoCao.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UCDongca.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UCDongca.Designer.cs">
-      <DependentUpon>UCDongca.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UCQuanTri.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UCQuanTri.Designer.cs">
-      <DependentUpon>UCQuanTri.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="FormLoginManager.resx">
-      <DependentUpon>FormLoginManager.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MPI.resx">
-      <DependentUpon>MPI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UCBanHang.resx">
-      <DependentUpon>UCBanHang.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UCBaoCao.resx">
-      <DependentUpon>UCBaoCao.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UCDongca.resx">
-      <DependentUpon>UCDongca.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UCQuanTri.resx">
-      <DependentUpon>UCQuanTri.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,24 +65,72 @@
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="UiTheme.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="From\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="From\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="From\MPI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="From\MPI.Designer.cs">
+      <DependentUpon>MPI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sevice\CaService.cs" />
+    <Compile Include="Sevice\BanHangService.cs" />
+    <Compile Include="Sevice\BaoCaoService.cs" />
+    <Compile Include="Sevice\QuanTriService.cs" />
+    <Compile Include="UseControl\UCBanHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseControl\UCBanHang.Designer.cs">
+      <DependentUpon>UCBanHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UseControl\UCBaoCao.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseControl\UCBaoCao.Designer.cs">
+      <DependentUpon>UCBaoCao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UseControl\UCDongca.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseControl\UCDongca.Designer.cs">
+      <DependentUpon>UCDongca.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UseControl\UCQuanTri.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseControl\UCQuanTri.Designer.cs">
+      <DependentUpon>UCQuanTri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UseControl\UCLoginManger.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseControl\UCLoginManger.Designer.cs">
+      <DependentUpon>UCLoginManger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UseControl\UCThuChi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseControl\UCThuChi.Designer.cs">
+      <DependentUpon>UCThuChi.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-<<<<<<< HEAD
     <EmbeddedResource Include="From\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Sevice\MPI.resx">
-      <DependentUpon>MPI.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Login1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="From\MPI.resx">
+      <DependentUpon>MPI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UseControl\UCBanHang.resx">
       <DependentUpon>UCBanHang.cs</DependentUpon>
@@ -180,24 +147,25 @@
     <EmbeddedResource Include="UseControl\UCLoginManger.resx">
       <DependentUpon>UCLoginManger.cs</DependentUpon>
     </EmbeddedResource>
-=======
-    <None Include="Resources\f2d8165b20ed454c1f2f5bc12f190a23.jpg" />
->>>>>>> ac1862470c1ebabf0f7b9a7cae4f290d1111e3e4
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UseControl\UCThuChi.resx">
+      <DependentUpon>UCThuChi.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\78ce787e51b5b3a85f5dd60797876a03.jpg" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\f2d8165b20ed454c1f2f5bc12f190a231.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\f2d8165b20ed454c1f2f5bc12f190a232.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\78ce787e51b5b3a85f5dd60797876a031.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\f2d8165b20ed454c1f2f5bc12f190a233.jpg" />
+    <Content Include="Resources\78ce787e51b5b3a85f5dd60797876a03.jpg" />
+    <Content Include="Resources\f2d8165b20ed454c1f2f5bc12f190a23.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

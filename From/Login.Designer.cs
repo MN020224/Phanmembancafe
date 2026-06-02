@@ -50,11 +50,10 @@ namespace CafeOrder
             this.label1.Location = new System.Drawing.Point(736, 286);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(332, 62);
             this.label1.Size = new System.Drawing.Size(266, 49);
             this.label1.TabIndex = 1;
             this.label1.Text = "Đăng Nhập";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // btndangnhap
             // 
@@ -67,7 +66,7 @@ namespace CafeOrder
             this.btndangnhap.TabIndex = 5;
             this.btndangnhap.Text = "Đăng Nhập";
             this.btndangnhap.UseVisualStyleBackColor = true;
-            this.btndangnhap.Click += new System.EventHandler(this.btndangnhap_Click);
+            this.btndangnhap.Click += new System.EventHandler(this.Btndangnhap_Click);
             // 
             // Btnthoat
             // 
@@ -90,11 +89,10 @@ namespace CafeOrder
             this.label2.Location = new System.Drawing.Point(584, 464);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 32);
             this.label2.Size = new System.Drawing.Size(92, 25);
             this.label2.TabIndex = 7;
             this.label2.Text = "Mật Khẩu";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
             // label3
             // 
@@ -104,11 +102,10 @@ namespace CafeOrder
             this.label3.Location = new System.Drawing.Point(583, 400);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 32);
             this.label3.Size = new System.Drawing.Size(95, 25);
             this.label3.TabIndex = 8;
             this.label3.Text = "Tài Khoản";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
             // txtUsername
             // 
@@ -121,7 +118,7 @@ namespace CafeOrder
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(376, 30);
             this.txtUsername.TabIndex = 9;
-            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
+            this.txtUsername.TextChanged += new System.EventHandler(this.TxtUsername_TextChanged);
             // 
             // txtPassword
             // 
@@ -144,7 +141,6 @@ namespace CafeOrder
             this.label4.Location = new System.Drawing.Point(692, 507);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 28);
             this.label4.Size = new System.Drawing.Size(0, 23);
             this.label4.TabIndex = 12;
             // 
@@ -155,36 +151,31 @@ namespace CafeOrder
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(524, 737);
             this.pictureBox2.Size = new System.Drawing.Size(524, 745);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 11;
+            this.pictureBox2.TabIndex = 22;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CafeOrder.Properties.Resources.f2d8165b20ed454c1f2f5bc12f190a23;
-            this.pictureBox1.Location = new System.Drawing.Point(758, 61);
+            this.pictureBox1.Location = new System.Drawing.Point(745, 74);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(228, 162);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(235)))), ((int)(((byte)(221)))));
-            this.ClientSize = new System.Drawing.Size(1128, 737);
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(235)))), ((int)(((byte)(221)))));
             this.ClientSize = new System.Drawing.Size(1128, 745);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.label3);
@@ -192,7 +183,6 @@ namespace CafeOrder
             this.Controls.Add(this.Btnthoat);
             this.Controls.Add(this.btndangnhap);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(235)))), ((int)(((byte)(221)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -219,8 +209,8 @@ namespace CafeOrder
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -12,7 +12,7 @@ namespace CafeOrder
     {
         private Button _tabSelected;
         private bool _daKhoiTao;
-        private string _currentMaHoaDon;  // Lưu mã hóa đơn đang chọn
+        private string _currentMaHoaDon;
 
         public UCBaoCao()
         {
@@ -29,17 +29,14 @@ namespace CafeOrder
             dtpTuNgay.Value = DateTime.Today.AddDays(-7);
             dtpDenNgay.Value = DateTime.Today;
 
-            // Thiết lập DataGridView chính
             dgvBaoCao.Columns.Clear();
             dgvBaoCao.Columns.Add("Ngay", "Ngày");
             dgvBaoCao.Columns.Add("MaHD", "Mã HĐ");
             dgvBaoCao.Columns.Add("Ban", "Ghi chú");
             dgvBaoCao.Columns.Add("TongTien", "Tổng tiền");
 
-            // 🔥 Thêm sự kiện click vào dòng
             dgvBaoCao.CellClick += DgvBaoCao_CellClick;
 
-            // 🔥 Tạo DataGridView chi tiết hóa đơn (nếu chưa có)
             TaoDataGridViewChiTiet();
 
             btnXemBaoCao.Click += (s, ev) => NapBaoCao();
@@ -48,15 +45,10 @@ namespace CafeOrder
             NapBaoCao();
         }
 
-        /// <summary>
-        /// Tạo DataGridView hiển thị chi tiết hóa đơn
-        /// </summary>
         private void TaoDataGridViewChiTiet()
         {
-            // Tìm panel hoặc tạo mới để chứa chi tiết
             Panel pnlChiTiet = null;
 
-            // Tìm panel chi tiết (có thể đã có sẵn trong Designer)
             foreach (Control ctl in this.Controls)
             {
                 if (ctl.Name == "pnlChiTiet")
@@ -66,7 +58,6 @@ namespace CafeOrder
                 }
             }
 
-            // Nếu chưa có, tạo mới
             if (pnlChiTiet == null)
             {
                 pnlChiTiet = new Panel
@@ -79,7 +70,6 @@ namespace CafeOrder
                 };
                 this.Controls.Add(pnlChiTiet);
 
-                // Thêm label tiêu đề
                 var lblTitle = new Label
                 {
                     Text = "CHI TIẾT HÓA ĐƠN",
@@ -93,7 +83,6 @@ namespace CafeOrder
                 pnlChiTiet.Controls.Add(lblTitle);
             }
 
-            // Tạo DataGridView chi tiết
             var dgvChiTiet = new DataGridView
             {
                 Name = "dgvChiTiet",
@@ -103,24 +92,20 @@ namespace CafeOrder
                 RowHeadersVisible = false
             };
 
-            // Style cho DataGridView chi tiết
             UiTheme.StyleDataGridView(dgvChiTiet);
 
-            // Thêm các cột
             dgvChiTiet.Columns.Clear();
             dgvChiTiet.Columns.Add("TenMon", "Tên món");
             dgvChiTiet.Columns.Add("SoLuong", "Số lượng");
             dgvChiTiet.Columns.Add("DonGia", "Đơn giá");
             dgvChiTiet.Columns.Add("ThanhTien", "Thành tiền");
 
-            // Format cột tiền
             dgvChiTiet.Columns["DonGia"].DefaultCellStyle.Format = "N0";
             dgvChiTiet.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
             dgvChiTiet.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvChiTiet.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvChiTiet.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-            // Xóa control cũ nếu có
             var oldGrid = pnlChiTiet.Controls.Find("dgvChiTiet", true);
             if (oldGrid.Length > 0)
                 pnlChiTiet.Controls.Remove(oldGrid[0]);
@@ -128,9 +113,6 @@ namespace CafeOrder
             pnlChiTiet.Controls.Add(dgvChiTiet);
         }
 
-        /// <summary>
-        /// Sự kiện click vào dòng - Hiển thị chi tiết hóa đơn
-        /// </summary>
         private void DgvBaoCao_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
@@ -145,26 +127,16 @@ namespace CafeOrder
             }
         }
 
-        /// <summary>
-        /// Sự kiện double click - Mở form chi tiết riêng
-        /// </summary>
-       
-
-        /// <summary>
-        /// Hiển thị chi tiết hóa đơn trong DataGridView
-        /// </summary>
         private void HienThiChiTietHoaDon(string maHoaDon)
         {
             try
             {
-                // Tìm DataGridView chi tiết
                 var dgvChiTiet = this.Controls.Find("dgvChiTiet", true);
                 if (dgvChiTiet.Length == 0) return;
 
                 var grid = dgvChiTiet[0] as DataGridView;
                 if (grid == null) return;
 
-                // Lấy chi tiết hóa đơn từ database
                 var dt = LayChiTietHoaDon(maHoaDon);
 
                 grid.Rows.Clear();
@@ -247,11 +219,15 @@ namespace CafeOrder
                 txtTongDoanhThu.Text = tong.ToString("N0") + " đ";
                 txtSoLuongHoaDon.Text = soHd.ToString();
 
-                // Xóa chi tiết khi tải báo cáo mới
+                // 🔥 ĐÃ SỬA: Dùng as thay vì is (tương thích C# 7.3)
                 var dgvChiTiet = this.Controls.Find("dgvChiTiet", true);
                 if (dgvChiTiet.Length > 0)
                 {
-                    (dgvChiTiet[0] as DataGridView)?.Rows.Clear();
+                    var gridChiTiet = dgvChiTiet[0] as DataGridView;
+                    if (gridChiTiet != null)
+                    {
+                        gridChiTiet.Rows.Clear();
+                    }
                 }
                 _currentMaHoaDon = null;
             }
@@ -287,13 +263,13 @@ namespace CafeOrder
             }
             btn.UseVisualStyleBackColor = false;
         }
-        private void lblTitle_Click(object sender, EventArgs e)
+
+        private void LblTitle_Click(object sender, EventArgs e)
         {
-            // Refresh dữ liệu khi click vào tiêu đề
             NapBaoCao();
         }
 
-        private void lblChartPlaceholder_Click(object sender, EventArgs e)
+        private void LblChartPlaceholder_Click(object sender, EventArgs e)
         {
 
         }

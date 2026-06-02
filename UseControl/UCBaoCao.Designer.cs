@@ -63,6 +63,7 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
@@ -74,7 +75,7 @@
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "📊 BÁO CÁO — Thống kê doanh thu";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblTitle.Click += new System.EventHandler(this.lblTitle_Click);
+            this.lblTitle.Click += new System.EventHandler(this.LblTitle_Click);
             // 
             // pnlFilter
             // 
@@ -245,7 +246,7 @@
             this.Controls.Add(this.pnlHeader);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UCBaoCao";
-            this.Size = new System.Drawing.Size(868, 477);
+            this.Size = new System.Drawing.Size(868, 500);
             this.Load += new System.EventHandler(this.UCBaoCao_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlFilter.ResumeLayout(false);
@@ -255,6 +256,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBaoCao)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
     }
 }

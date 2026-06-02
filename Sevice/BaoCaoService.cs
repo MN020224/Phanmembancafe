@@ -161,9 +161,6 @@ namespace CafeOrder
         /// <returns>DataTable chứa doanh thu từng ngày</returns>
         public static DataTable ThongKeDoanhThuTheoNgayTrongThang(int thang, int nam)
         {
-            DateTime tuNgay = new DateTime(nam, thang, 1);
-            DateTime denNgay = tuNgay.AddMonths(1).AddDays(-1);
-
             return DbHelper.Query(@"
                 SELECT 
                     DAY(tao_luc) AS Ngay,

@@ -5,8 +5,9 @@ namespace CafeOrder
 {
     public static class UiTheme
     {
-        public static readonly Color Primary = Color.FromArgb(41, 128, 185);
-        public static readonly Color PrimaryDark = Color.FromArgb(44, 62, 80);
+        // 🔥 Đã đổi màu chính thành nâu (112, 77, 59)
+        public static readonly Color Primary = Color.FromArgb(112, 77, 59);
+        public static readonly Color PrimaryDark = Color.FromArgb(92, 57, 39);  // Nâu đậm hơn
         public static readonly Color Sidebar = Color.FromArgb(52, 73, 94);
         public static readonly Color Background = Color.FromArgb(245, 246, 250);
         public static readonly Color Card = Color.White;
