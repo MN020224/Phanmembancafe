@@ -209,5 +209,19 @@ namespace CafeOrder
                 new SqlParameter("@tuNgay", tuNgay),
                 new SqlParameter("@denNgay", denNgay));
         }
+        public static string LayGhiChuHoaDon(int hoaDonId)
+        {
+            var o = DbHelper.Scalar("SELECT ghi_chu FROM HoaDon WHERE id = @id",
+                new SqlParameter("@id", hoaDonId));
+            return o == null || o == DBNull.Value ? "" : o.ToString();
+        }
+
+        public static void CapNhatGhiChuHoaDon(int hoaDonId, string ghiChu)
+        {
+            DbHelper.Execute(
+                "UPDATE HoaDon SET ghi_chu = @ghichu WHERE id = @id",
+                new SqlParameter("@ghichu", string.IsNullOrEmpty(ghiChu) ? (object)DBNull.Value : ghiChu),
+                new SqlParameter("@id", hoaDonId));
+        }
     }
 }

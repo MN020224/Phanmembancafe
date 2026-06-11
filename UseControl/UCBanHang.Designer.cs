@@ -68,6 +68,8 @@ namespace CafeOrder
             this.btnTra = new System.Windows.Forms.Button();
             this.btnSinhTo = new System.Windows.Forms.Button();
             this.btnBanh = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoLuong)).BeginInit();
             this.pnlHeader.SuspendLayout();
             this.pnlBody.SuspendLayout();
@@ -88,7 +90,7 @@ namespace CafeOrder
             0,
             0});
             this.nudSoLuong.Name = "nudSoLuong";
-            this.nudSoLuong.Size = new System.Drawing.Size(80, 20);
+            this.nudSoLuong.Size = new System.Drawing.Size(80, 22);
             this.nudSoLuong.TabIndex = 0;
             this.nudSoLuong.Value = new decimal(new int[] {
             1,
@@ -102,9 +104,9 @@ namespace CafeOrder
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(5);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(943, 52);
+            this.pnlHeader.Size = new System.Drawing.Size(1257, 64);
             this.pnlHeader.TabIndex = 0;
             // 
             // lblTitle
@@ -114,10 +116,10 @@ namespace CafeOrder
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Padding = new System.Windows.Forms.Padding(17, 0, 0, 0);
-            this.lblTitle.Size = new System.Drawing.Size(943, 52);
+            this.lblTitle.Padding = new System.Windows.Forms.Padding(23, 0, 0, 0);
+            this.lblTitle.Size = new System.Drawing.Size(1257, 64);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "☕ CAFE ORDER - HỆ THỐNG BÁN HÀNG";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -128,11 +130,11 @@ namespace CafeOrder
             this.pnlBody.Controls.Add(this.pnlSanPham);
             this.pnlBody.Controls.Add(this.pnlSidebar);
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBody.Location = new System.Drawing.Point(0, 52);
-            this.pnlBody.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlBody.Location = new System.Drawing.Point(0, 64);
+            this.pnlBody.Margin = new System.Windows.Forms.Padding(5);
             this.pnlBody.Name = "pnlBody";
-            this.pnlBody.Padding = new System.Windows.Forms.Padding(9);
-            this.pnlBody.Size = new System.Drawing.Size(943, 555);
+            this.pnlBody.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
+            this.pnlBody.Size = new System.Drawing.Size(1257, 683);
             this.pnlBody.TabIndex = 1;
             // 
             // pnlDonHang
@@ -142,11 +144,11 @@ namespace CafeOrder
             this.pnlDonHang.Controls.Add(this.pnlFooter);
             this.pnlDonHang.Controls.Add(this.lblDonHang);
             this.pnlDonHang.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlDonHang.Location = new System.Drawing.Point(496, 9);
-            this.pnlDonHang.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlDonHang.Location = new System.Drawing.Point(661, 11);
+            this.pnlDonHang.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDonHang.Name = "pnlDonHang";
-            this.pnlDonHang.Padding = new System.Windows.Forms.Padding(13);
-            this.pnlDonHang.Size = new System.Drawing.Size(438, 537);
+            this.pnlDonHang.Padding = new System.Windows.Forms.Padding(17, 16, 17, 16);
+            this.pnlDonHang.Size = new System.Drawing.Size(584, 661);
             this.pnlDonHang.TabIndex = 2;
             // 
             // dgvGioHang
@@ -158,19 +160,21 @@ namespace CafeOrder
             this.dgvGioHang.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvGioHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGioHang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvGioHang.Location = new System.Drawing.Point(13, 48);
-            this.dgvGioHang.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvGioHang.Location = new System.Drawing.Point(17, 59);
+            this.dgvGioHang.Margin = new System.Windows.Forms.Padding(5);
             this.dgvGioHang.Name = "dgvGioHang";
             this.dgvGioHang.ReadOnly = true;
             this.dgvGioHang.RowHeadersVisible = false;
             this.dgvGioHang.RowHeadersWidth = 51;
             this.dgvGioHang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGioHang.Size = new System.Drawing.Size(412, 298);
+            this.dgvGioHang.Size = new System.Drawing.Size(550, 256);
             this.dgvGioHang.TabIndex = 1;
             // 
             // pnlFooter
             // 
             this.pnlFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
+            this.pnlFooter.Controls.Add(this.txtGhiChu);
+            this.pnlFooter.Controls.Add(this.label1);
             this.pnlFooter.Controls.Add(this.pnlThanhToan);
             this.pnlFooter.Controls.Add(this.lblSoLuong);
             this.pnlFooter.Controls.Add(this.btnXoaMon);
@@ -180,20 +184,20 @@ namespace CafeOrder
             this.pnlFooter.Controls.Add(this.txtTongTien);
             this.pnlFooter.Controls.Add(this.lblTongTien);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(13, 346);
-            this.pnlFooter.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlFooter.Location = new System.Drawing.Point(17, 315);
+            this.pnlFooter.Margin = new System.Windows.Forms.Padding(5);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(412, 178);
+            this.pnlFooter.Size = new System.Drawing.Size(550, 330);
             this.pnlFooter.TabIndex = 2;
             // 
             // pnlThanhToan
             // 
             this.pnlThanhToan.Controls.Add(this.lblPhuongThucThanhToan);
             this.pnlThanhToan.Controls.Add(this.cboPhuongThucThanhToan);
-            this.pnlThanhToan.Location = new System.Drawing.Point(209, 61);
-            this.pnlThanhToan.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlThanhToan.Location = new System.Drawing.Point(279, 171);
+            this.pnlThanhToan.Margin = new System.Windows.Forms.Padding(5);
             this.pnlThanhToan.Name = "pnlThanhToan";
-            this.pnlThanhToan.Size = new System.Drawing.Size(167, 71);
+            this.pnlThanhToan.Size = new System.Drawing.Size(223, 87);
             this.pnlThanhToan.TabIndex = 8;
             // 
             // lblPhuongThucThanhToan
@@ -201,10 +205,10 @@ namespace CafeOrder
             this.lblPhuongThucThanhToan.AutoSize = true;
             this.lblPhuongThucThanhToan.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.lblPhuongThucThanhToan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
-            this.lblPhuongThucThanhToan.Location = new System.Drawing.Point(15, 8);
-            this.lblPhuongThucThanhToan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPhuongThucThanhToan.Location = new System.Drawing.Point(20, 10);
+            this.lblPhuongThucThanhToan.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPhuongThucThanhToan.Name = "lblPhuongThucThanhToan";
-            this.lblPhuongThucThanhToan.Size = new System.Drawing.Size(138, 13);
+            this.lblPhuongThucThanhToan.Size = new System.Drawing.Size(163, 19);
             this.lblPhuongThucThanhToan.TabIndex = 0;
             this.lblPhuongThucThanhToan.Text = "Phương thức thanh toán:";
             // 
@@ -217,20 +221,20 @@ namespace CafeOrder
             "💵 Tiền mặt",
             "🏦 Chuyển khoản",
             "📱 Ví điện tử"});
-            this.cboPhuongThucThanhToan.Location = new System.Drawing.Point(3, 37);
-            this.cboPhuongThucThanhToan.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPhuongThucThanhToan.Location = new System.Drawing.Point(4, 46);
+            this.cboPhuongThucThanhToan.Margin = new System.Windows.Forms.Padding(5);
             this.cboPhuongThucThanhToan.Name = "cboPhuongThucThanhToan";
-            this.cboPhuongThucThanhToan.Size = new System.Drawing.Size(161, 23);
+            this.cboPhuongThucThanhToan.Size = new System.Drawing.Size(213, 28);
             this.cboPhuongThucThanhToan.TabIndex = 1;
             // 
             // lblSoLuong
             // 
             this.lblSoLuong.AutoSize = true;
             this.lblSoLuong.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblSoLuong.Location = new System.Drawing.Point(3, 87);
-            this.lblSoLuong.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSoLuong.Location = new System.Drawing.Point(4, 107);
+            this.lblSoLuong.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSoLuong.Name = "lblSoLuong";
-            this.lblSoLuong.Size = new System.Drawing.Size(0, 15);
+            this.lblSoLuong.Size = new System.Drawing.Size(0, 20);
             this.lblSoLuong.TabIndex = 7;
             // 
             // btnXoaMon
@@ -240,10 +244,10 @@ namespace CafeOrder
             this.btnXoaMon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnXoaMon.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnXoaMon.ForeColor = System.Drawing.Color.White;
-            this.btnXoaMon.Location = new System.Drawing.Point(3, 136);
-            this.btnXoaMon.Margin = new System.Windows.Forms.Padding(4);
+            this.btnXoaMon.Location = new System.Drawing.Point(4, 263);
+            this.btnXoaMon.Margin = new System.Windows.Forms.Padding(5);
             this.btnXoaMon.Name = "btnXoaMon";
-            this.btnXoaMon.Size = new System.Drawing.Size(112, 35);
+            this.btnXoaMon.Size = new System.Drawing.Size(149, 43);
             this.btnXoaMon.TabIndex = 6;
             this.btnXoaMon.Text = "XÓA MÓN";
             this.btnXoaMon.UseVisualStyleBackColor = false;
@@ -255,10 +259,10 @@ namespace CafeOrder
             this.btnThemMon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThemMon.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnThemMon.ForeColor = System.Drawing.Color.White;
-            this.btnThemMon.Location = new System.Drawing.Point(3, 97);
-            this.btnThemMon.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThemMon.Location = new System.Drawing.Point(4, 215);
+            this.btnThemMon.Margin = new System.Windows.Forms.Padding(5);
             this.btnThemMon.Name = "btnThemMon";
-            this.btnThemMon.Size = new System.Drawing.Size(112, 35);
+            this.btnThemMon.Size = new System.Drawing.Size(149, 43);
             this.btnThemMon.TabIndex = 5;
             this.btnThemMon.Text = "THÊM MÓN";
             this.btnThemMon.UseVisualStyleBackColor = false;
@@ -271,10 +275,10 @@ namespace CafeOrder
             this.btnThanhToan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThanhToan.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.btnThanhToan.ForeColor = System.Drawing.Color.White;
-            this.btnThanhToan.Location = new System.Drawing.Point(209, 143);
-            this.btnThanhToan.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThanhToan.Location = new System.Drawing.Point(279, 272);
+            this.btnThanhToan.Margin = new System.Windows.Forms.Padding(5);
             this.btnThanhToan.Name = "btnThanhToan";
-            this.btnThanhToan.Size = new System.Drawing.Size(167, 35);
+            this.btnThanhToan.Size = new System.Drawing.Size(223, 43);
             this.btnThanhToan.TabIndex = 3;
             this.btnThanhToan.Text = "💰 THANH TOÁN";
             this.btnThanhToan.UseVisualStyleBackColor = false;
@@ -287,10 +291,10 @@ namespace CafeOrder
             this.btnHuyHoaDon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHuyHoaDon.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnHuyHoaDon.ForeColor = System.Drawing.Color.White;
-            this.btnHuyHoaDon.Location = new System.Drawing.Point(3, 58);
-            this.btnHuyHoaDon.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHuyHoaDon.Location = new System.Drawing.Point(4, 167);
+            this.btnHuyHoaDon.Margin = new System.Windows.Forms.Padding(5);
             this.btnHuyHoaDon.Name = "btnHuyHoaDon";
-            this.btnHuyHoaDon.Size = new System.Drawing.Size(112, 35);
+            this.btnHuyHoaDon.Size = new System.Drawing.Size(149, 43);
             this.btnHuyHoaDon.TabIndex = 2;
             this.btnHuyHoaDon.Text = "HỦY HÓA ĐƠN";
             this.btnHuyHoaDon.UseVisualStyleBackColor = false;
@@ -300,11 +304,11 @@ namespace CafeOrder
             this.txtTongTien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
             this.txtTongTien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTongTien.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.txtTongTien.Location = new System.Drawing.Point(131, 9);
-            this.txtTongTien.Margin = new System.Windows.Forms.Padding(4);
+            this.txtTongTien.Location = new System.Drawing.Point(175, 107);
+            this.txtTongTien.Margin = new System.Windows.Forms.Padding(5);
             this.txtTongTien.Name = "txtTongTien";
             this.txtTongTien.ReadOnly = true;
-            this.txtTongTien.Size = new System.Drawing.Size(245, 36);
+            this.txtTongTien.Size = new System.Drawing.Size(326, 43);
             this.txtTongTien.TabIndex = 1;
             this.txtTongTien.Text = "0 VNĐ";
             this.txtTongTien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -313,10 +317,10 @@ namespace CafeOrder
             // 
             this.lblTongTien.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblTongTien.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblTongTien.Location = new System.Drawing.Point(3, 9);
-            this.lblTongTien.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTongTien.Location = new System.Drawing.Point(4, 107);
+            this.lblTongTien.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblTongTien.Name = "lblTongTien";
-            this.lblTongTien.Size = new System.Drawing.Size(112, 26);
+            this.lblTongTien.Size = new System.Drawing.Size(149, 32);
             this.lblTongTien.TabIndex = 0;
             this.lblTongTien.Text = "TỔNG TIỀN:";
             this.lblTongTien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -326,10 +330,10 @@ namespace CafeOrder
             this.lblDonHang.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblDonHang.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblDonHang.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblDonHang.Location = new System.Drawing.Point(13, 13);
-            this.lblDonHang.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDonHang.Location = new System.Drawing.Point(17, 16);
+            this.lblDonHang.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDonHang.Name = "lblDonHang";
-            this.lblDonHang.Size = new System.Drawing.Size(412, 35);
+            this.lblDonHang.Size = new System.Drawing.Size(550, 43);
             this.lblDonHang.TabIndex = 0;
             this.lblDonHang.Text = "🧾 HÓA ĐƠN HIỆN TẠI";
             this.lblDonHang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -339,11 +343,11 @@ namespace CafeOrder
             this.pnlSanPham.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlSanPham.Controls.Add(this.flowSanPham);
             this.pnlSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlSanPham.Location = new System.Drawing.Point(180, 9);
-            this.pnlSanPham.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlSanPham.Location = new System.Drawing.Point(240, 11);
+            this.pnlSanPham.Margin = new System.Windows.Forms.Padding(5);
             this.pnlSanPham.Name = "pnlSanPham";
-            this.pnlSanPham.Padding = new System.Windows.Forms.Padding(9);
-            this.pnlSanPham.Size = new System.Drawing.Size(754, 537);
+            this.pnlSanPham.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
+            this.pnlSanPham.Size = new System.Drawing.Size(1005, 661);
             this.pnlSanPham.TabIndex = 1;
             // 
             // flowSanPham
@@ -351,11 +355,11 @@ namespace CafeOrder
             this.flowSanPham.AutoScroll = true;
             this.flowSanPham.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
             this.flowSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowSanPham.Location = new System.Drawing.Point(9, 9);
-            this.flowSanPham.Margin = new System.Windows.Forms.Padding(4);
+            this.flowSanPham.Location = new System.Drawing.Point(12, 11);
+            this.flowSanPham.Margin = new System.Windows.Forms.Padding(5);
             this.flowSanPham.Name = "flowSanPham";
-            this.flowSanPham.Padding = new System.Windows.Forms.Padding(4);
-            this.flowSanPham.Size = new System.Drawing.Size(736, 519);
+            this.flowSanPham.Padding = new System.Windows.Forms.Padding(5);
+            this.flowSanPham.Size = new System.Drawing.Size(981, 639);
             this.flowSanPham.TabIndex = 0;
             // 
             // pnlSidebar
@@ -367,11 +371,11 @@ namespace CafeOrder
             this.pnlSidebar.Controls.Add(this.btnSinhTo);
             this.pnlSidebar.Controls.Add(this.btnBanh);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlSidebar.Location = new System.Drawing.Point(9, 9);
-            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlSidebar.Location = new System.Drawing.Point(12, 11);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(5);
             this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Padding = new System.Windows.Forms.Padding(0, 9, 0, 9);
-            this.pnlSidebar.Size = new System.Drawing.Size(171, 537);
+            this.pnlSidebar.Padding = new System.Windows.Forms.Padding(0, 11, 0, 11);
+            this.pnlSidebar.Size = new System.Drawing.Size(228, 661);
             this.pnlSidebar.TabIndex = 0;
             // 
             // lblDanhMuc
@@ -379,11 +383,11 @@ namespace CafeOrder
             this.lblDanhMuc.Dock = System.Windows.Forms.DockStyle.Top;
             this.lblDanhMuc.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDanhMuc.ForeColor = System.Drawing.Color.White;
-            this.lblDanhMuc.Location = new System.Drawing.Point(0, 9);
-            this.lblDanhMuc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDanhMuc.Location = new System.Drawing.Point(0, 11);
+            this.lblDanhMuc.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDanhMuc.Name = "lblDanhMuc";
-            this.lblDanhMuc.Padding = new System.Windows.Forms.Padding(13, 9, 0, 9);
-            this.lblDanhMuc.Size = new System.Drawing.Size(171, 39);
+            this.lblDanhMuc.Padding = new System.Windows.Forms.Padding(17, 11, 0, 11);
+            this.lblDanhMuc.Size = new System.Drawing.Size(228, 48);
             this.lblDanhMuc.TabIndex = 0;
             this.lblDanhMuc.Text = "📂 DANH MỤC";
             this.lblDanhMuc.Click += new System.EventHandler(this.lblDanhMuc_Click);
@@ -395,10 +399,10 @@ namespace CafeOrder
             this.btnCaPhe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCaPhe.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCaPhe.ForeColor = System.Drawing.Color.White;
-            this.btnCaPhe.Location = new System.Drawing.Point(0, 48);
-            this.btnCaPhe.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCaPhe.Location = new System.Drawing.Point(0, 59);
+            this.btnCaPhe.Margin = new System.Windows.Forms.Padding(5);
             this.btnCaPhe.Name = "btnCaPhe";
-            this.btnCaPhe.Size = new System.Drawing.Size(171, 48);
+            this.btnCaPhe.Size = new System.Drawing.Size(228, 59);
             this.btnCaPhe.TabIndex = 1;
             this.btnCaPhe.Text = "☕ Cà phê";
             this.btnCaPhe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -411,10 +415,10 @@ namespace CafeOrder
             this.btnTra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTra.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTra.ForeColor = System.Drawing.Color.White;
-            this.btnTra.Location = new System.Drawing.Point(0, 95);
-            this.btnTra.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTra.Location = new System.Drawing.Point(0, 117);
+            this.btnTra.Margin = new System.Windows.Forms.Padding(5);
             this.btnTra.Name = "btnTra";
-            this.btnTra.Size = new System.Drawing.Size(171, 48);
+            this.btnTra.Size = new System.Drawing.Size(228, 59);
             this.btnTra.TabIndex = 2;
             this.btnTra.Text = "🍵 Trà";
             this.btnTra.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -427,10 +431,10 @@ namespace CafeOrder
             this.btnSinhTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSinhTo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSinhTo.ForeColor = System.Drawing.Color.White;
-            this.btnSinhTo.Location = new System.Drawing.Point(0, 143);
-            this.btnSinhTo.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSinhTo.Location = new System.Drawing.Point(0, 176);
+            this.btnSinhTo.Margin = new System.Windows.Forms.Padding(5);
             this.btnSinhTo.Name = "btnSinhTo";
-            this.btnSinhTo.Size = new System.Drawing.Size(171, 48);
+            this.btnSinhTo.Size = new System.Drawing.Size(228, 59);
             this.btnSinhTo.TabIndex = 3;
             this.btnSinhTo.Text = "🥤 Sinh tố";
             this.btnSinhTo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -443,25 +447,44 @@ namespace CafeOrder
             this.btnBanh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBanh.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBanh.ForeColor = System.Drawing.Color.White;
-            this.btnBanh.Location = new System.Drawing.Point(0, 191);
-            this.btnBanh.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBanh.Location = new System.Drawing.Point(0, 235);
+            this.btnBanh.Margin = new System.Windows.Forms.Padding(5);
             this.btnBanh.Name = "btnBanh";
-            this.btnBanh.Size = new System.Drawing.Size(171, 48);
+            this.btnBanh.Size = new System.Drawing.Size(228, 59);
             this.btnBanh.TabIndex = 4;
             this.btnBanh.Text = "🥐 Bánh ngọt";
             this.btnBanh.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBanh.UseVisualStyleBackColor = false;
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(5, 25);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(149, 32);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Ghi chú:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Location = new System.Drawing.Point(174, 33);
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(321, 22);
+            this.txtGhiChu.TabIndex = 10;
+            // 
             // UCBanHang
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
             this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.pnlHeader);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "UCBanHang";
-            this.Size = new System.Drawing.Size(943, 607);
+            this.Size = new System.Drawing.Size(1257, 747);
             this.Load += new System.EventHandler(this.UCBanHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudSoLuong)).EndInit();
             this.pnlHeader.ResumeLayout(false);
@@ -477,5 +500,8 @@ namespace CafeOrder
             this.ResumeLayout(false);
 
         }
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtGhiChu;
     }
 }

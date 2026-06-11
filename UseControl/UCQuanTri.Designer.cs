@@ -122,9 +122,9 @@ namespace CafeOrder
             // 
             // btnExitAdmin
             // 
-            this.btnExitAdmin.Location = new System.Drawing.Point(883, 7);
+            this.btnExitAdmin.Location = new System.Drawing.Point(982, 15);
             this.btnExitAdmin.Name = "btnExitAdmin";
-            this.btnExitAdmin.Size = new System.Drawing.Size(169, 40);
+            this.btnExitAdmin.Size = new System.Drawing.Size(110, 31);
             this.btnExitAdmin.TabIndex = 1;
             this.btnExitAdmin.Text = "Thoát quản trị";
             this.btnExitAdmin.UseVisualStyleBackColor = true;
@@ -183,10 +183,10 @@ namespace CafeOrder
             // 
             this.tabMonAn.Controls.Add(this.dgvMonAn);
             this.tabMonAn.Controls.Add(this.pnlToolbarMon);
-            this.tabMonAn.Location = new System.Drawing.Point(4, 22);
+            this.tabMonAn.Location = new System.Drawing.Point(4, 25);
             this.tabMonAn.Name = "tabMonAn";
             this.tabMonAn.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMonAn.Size = new System.Drawing.Size(860, 470);
+            this.tabMonAn.Size = new System.Drawing.Size(860, 467);
             this.tabMonAn.TabIndex = 0;
             this.tabMonAn.Text = "Sản phẩm";
             this.tabMonAn.UseVisualStyleBackColor = true;
@@ -199,7 +199,7 @@ namespace CafeOrder
             this.dgvMonAn.Location = new System.Drawing.Point(3, 51);
             this.dgvMonAn.Name = "dgvMonAn";
             this.dgvMonAn.RowHeadersWidth = 51;
-            this.dgvMonAn.Size = new System.Drawing.Size(854, 416);
+            this.dgvMonAn.Size = new System.Drawing.Size(854, 413);
             this.dgvMonAn.TabIndex = 0;
             // 
             // pnlToolbarMon
@@ -220,7 +220,7 @@ namespace CafeOrder
             // 
             this.txtTenMon.Location = new System.Drawing.Point(8, 14);
             this.txtTenMon.Name = "txtTenMon";
-            this.txtTenMon.Size = new System.Drawing.Size(180, 20);
+            this.txtTenMon.Size = new System.Drawing.Size(180, 22);
             this.txtTenMon.TabIndex = 0;
             this.txtTenMon.Text = "Tên món";
             // 
@@ -228,7 +228,7 @@ namespace CafeOrder
             // 
             this.txtGia.Location = new System.Drawing.Point(194, 14);
             this.txtGia.Name = "txtGia";
-            this.txtGia.Size = new System.Drawing.Size(100, 20);
+            this.txtGia.Size = new System.Drawing.Size(100, 22);
             this.txtGia.TabIndex = 1;
             this.txtGia.Text = "Giá";
             // 
@@ -237,7 +237,7 @@ namespace CafeOrder
             this.cboDanhMuc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDanhMuc.Location = new System.Drawing.Point(300, 13);
             this.cboDanhMuc.Name = "cboDanhMuc";
-            this.cboDanhMuc.Size = new System.Drawing.Size(140, 21);
+            this.cboDanhMuc.Size = new System.Drawing.Size(140, 24);
             this.cboDanhMuc.TabIndex = 2;
             // 
             // btnThemMon
@@ -271,10 +271,10 @@ namespace CafeOrder
             // 
             this.tabDanhMuc.Controls.Add(this.dgvDanhMuc);
             this.tabDanhMuc.Controls.Add(this.pnlToolbarDm);
-            this.tabDanhMuc.Location = new System.Drawing.Point(4, 22);
+            this.tabDanhMuc.Location = new System.Drawing.Point(4, 25);
             this.tabDanhMuc.Name = "tabDanhMuc";
             this.tabDanhMuc.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDanhMuc.Size = new System.Drawing.Size(860, 470);
+            this.tabDanhMuc.Size = new System.Drawing.Size(860, 467);
             this.tabDanhMuc.TabIndex = 1;
             this.tabDanhMuc.Text = "Danh mục";
             this.tabDanhMuc.UseVisualStyleBackColor = true;
@@ -287,7 +287,7 @@ namespace CafeOrder
             this.dgvDanhMuc.Location = new System.Drawing.Point(3, 51);
             this.dgvDanhMuc.Name = "dgvDanhMuc";
             this.dgvDanhMuc.RowHeadersWidth = 51;
-            this.dgvDanhMuc.Size = new System.Drawing.Size(854, 416);
+            this.dgvDanhMuc.Size = new System.Drawing.Size(854, 413);
             this.dgvDanhMuc.TabIndex = 0;
             // 
             // pnlToolbarDm
@@ -306,7 +306,7 @@ namespace CafeOrder
             // 
             this.txtTenDanhMuc.Location = new System.Drawing.Point(8, 14);
             this.txtTenDanhMuc.Name = "txtTenDanhMuc";
-            this.txtTenDanhMuc.Size = new System.Drawing.Size(250, 20);
+            this.txtTenDanhMuc.Size = new System.Drawing.Size(250, 22);
             this.txtTenDanhMuc.TabIndex = 0;
             this.txtTenDanhMuc.Text = "Tên danh mục";
             // 
@@ -348,9 +348,9 @@ namespace CafeOrder
             this.tabPageBaoCao.Controls.Add(this.lblDenNgay);
             this.tabPageBaoCao.Controls.Add(this.lblTongDoanhThu);
             this.tabPageBaoCao.Controls.Add(this.cboLoaiBaoCao);
-            this.tabPageBaoCao.Location = new System.Drawing.Point(4, 22);
+            this.tabPageBaoCao.Location = new System.Drawing.Point(4, 25);
             this.tabPageBaoCao.Name = "tabPageBaoCao";
-            this.tabPageBaoCao.Size = new System.Drawing.Size(860, 470);
+            this.tabPageBaoCao.Size = new System.Drawing.Size(860, 467);
             this.tabPageBaoCao.TabIndex = 2;
             this.tabPageBaoCao.Text = "Báo cáo";
             this.tabPageBaoCao.UseVisualStyleBackColor = true;
@@ -367,7 +367,7 @@ namespace CafeOrder
             this.dgvBaoCao.Name = "dgvBaoCao";
             this.dgvBaoCao.ReadOnly = true;
             this.dgvBaoCao.RowHeadersWidth = 51;
-            this.dgvBaoCao.Size = new System.Drawing.Size(828, 340);
+            this.dgvBaoCao.Size = new System.Drawing.Size(828, 337);
             this.dgvBaoCao.TabIndex = 0;
             // 
             // dtpTuNgay
@@ -375,7 +375,7 @@ namespace CafeOrder
             this.dtpTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpTuNgay.Location = new System.Drawing.Point(96, 24);
             this.dtpTuNgay.Name = "dtpTuNgay";
-            this.dtpTuNgay.Size = new System.Drawing.Size(120, 20);
+            this.dtpTuNgay.Size = new System.Drawing.Size(120, 22);
             this.dtpTuNgay.TabIndex = 1;
             this.dtpTuNgay.Value = new System.DateTime(2024, 1, 1, 0, 0, 0, 0);
             // 
@@ -384,7 +384,7 @@ namespace CafeOrder
             this.dtpDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDenNgay.Location = new System.Drawing.Point(280, 24);
             this.dtpDenNgay.Name = "dtpDenNgay";
-            this.dtpDenNgay.Size = new System.Drawing.Size(120, 20);
+            this.dtpDenNgay.Size = new System.Drawing.Size(120, 22);
             this.dtpDenNgay.TabIndex = 2;
             this.dtpDenNgay.Value = new System.DateTime(2026, 5, 20, 3, 35, 42, 418);
             // 
@@ -411,7 +411,7 @@ namespace CafeOrder
             this.lblTuNgay.AutoSize = true;
             this.lblTuNgay.Location = new System.Drawing.Point(32, 28);
             this.lblTuNgay.Name = "lblTuNgay";
-            this.lblTuNgay.Size = new System.Drawing.Size(49, 13);
+            this.lblTuNgay.Size = new System.Drawing.Size(59, 16);
             this.lblTuNgay.TabIndex = 5;
             this.lblTuNgay.Text = "Từ ngày:";
             // 
@@ -420,7 +420,7 @@ namespace CafeOrder
             this.lblDenNgay.AutoSize = true;
             this.lblDenNgay.Location = new System.Drawing.Point(224, 28);
             this.lblDenNgay.Name = "lblDenNgay";
-            this.lblDenNgay.Size = new System.Drawing.Size(56, 13);
+            this.lblDenNgay.Size = new System.Drawing.Size(67, 16);
             this.lblDenNgay.TabIndex = 6;
             this.lblDenNgay.Text = "Đến ngày:";
             // 
@@ -430,7 +430,7 @@ namespace CafeOrder
             this.lblTongDoanhThu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.lblTongDoanhThu.Location = new System.Drawing.Point(16, 72);
             this.lblTongDoanhThu.Name = "lblTongDoanhThu";
-            this.lblTongDoanhThu.Size = new System.Drawing.Size(179, 17);
+            this.lblTongDoanhThu.Size = new System.Drawing.Size(204, 20);
             this.lblTongDoanhThu.TabIndex = 7;
             this.lblTongDoanhThu.Text = "Tổng doanh thu: 0 VNĐ";
             // 
@@ -444,7 +444,7 @@ namespace CafeOrder
             "Chi tiết hóa đơn"});
             this.cboLoaiBaoCao.Location = new System.Drawing.Point(650, 24);
             this.cboLoaiBaoCao.Name = "cboLoaiBaoCao";
-            this.cboLoaiBaoCao.Size = new System.Drawing.Size(180, 21);
+            this.cboLoaiBaoCao.Size = new System.Drawing.Size(180, 24);
             this.cboLoaiBaoCao.TabIndex = 8;
             // 
             // pnlNav

@@ -56,9 +56,9 @@
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(868, 34);
+            this.pnlHeader.Size = new System.Drawing.Size(1157, 42);
             this.pnlHeader.TabIndex = 0;
             // 
             // lblTitle
@@ -68,10 +68,9 @@
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.White;
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
-            this.lblTitle.Size = new System.Drawing.Size(868, 34);
+            this.lblTitle.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
+            this.lblTitle.Size = new System.Drawing.Size(1157, 42);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "📊 BÁO CÁO — Thống kê doanh thu";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -86,19 +85,19 @@
             this.pnlFilter.Controls.Add(this.dtpTuNgay);
             this.pnlFilter.Controls.Add(this.lblTuNgay);
             this.pnlFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlFilter.Location = new System.Drawing.Point(0, 34);
-            this.pnlFilter.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlFilter.Location = new System.Drawing.Point(0, 42);
+            this.pnlFilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlFilter.Name = "pnlFilter";
-            this.pnlFilter.Padding = new System.Windows.Forms.Padding(9, 6, 9, 6);
-            this.pnlFilter.Size = new System.Drawing.Size(868, 36);
+            this.pnlFilter.Padding = new System.Windows.Forms.Padding(12, 7, 12, 7);
+            this.pnlFilter.Size = new System.Drawing.Size(1157, 44);
             this.pnlFilter.TabIndex = 1;
             // 
             // btnXemBaoCao
             // 
-            this.btnXemBaoCao.Location = new System.Drawing.Point(330, 8);
-            this.btnXemBaoCao.Margin = new System.Windows.Forms.Padding(2);
+            this.btnXemBaoCao.Location = new System.Drawing.Point(440, 10);
+            this.btnXemBaoCao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnXemBaoCao.Name = "btnXemBaoCao";
-            this.btnXemBaoCao.Size = new System.Drawing.Size(105, 21);
+            this.btnXemBaoCao.Size = new System.Drawing.Size(140, 26);
             this.btnXemBaoCao.TabIndex = 3;
             this.btnXemBaoCao.Text = "🔍 Xem báo cáo";
             this.btnXemBaoCao.UseVisualStyleBackColor = true;
@@ -106,10 +105,10 @@
             // dtpDenNgay
             // 
             this.dtpDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDenNgay.Location = new System.Drawing.Point(222, 9);
-            this.dtpDenNgay.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpDenNgay.Location = new System.Drawing.Point(296, 11);
+            this.dtpDenNgay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpDenNgay.Name = "dtpDenNgay";
-            this.dtpDenNgay.Size = new System.Drawing.Size(98, 20);
+            this.dtpDenNgay.Size = new System.Drawing.Size(129, 22);
             this.dtpDenNgay.TabIndex = 2;
             // 
             // lblDenNgay
@@ -117,20 +116,19 @@
             this.lblDenNgay.AutoSize = true;
             this.lblDenNgay.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblDenNgay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
-            this.lblDenNgay.Location = new System.Drawing.Point(168, 12);
-            this.lblDenNgay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDenNgay.Location = new System.Drawing.Point(224, 15);
             this.lblDenNgay.Name = "lblDenNgay";
-            this.lblDenNgay.Size = new System.Drawing.Size(67, 17);
+            this.lblDenNgay.Size = new System.Drawing.Size(83, 21);
             this.lblDenNgay.TabIndex = 7;
             this.lblDenNgay.Text = "Đến ngày";
             // 
             // dtpTuNgay
             // 
             this.dtpTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTuNgay.Location = new System.Drawing.Point(60, 9);
-            this.dtpTuNgay.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpTuNgay.Location = new System.Drawing.Point(80, 11);
+            this.dtpTuNgay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpTuNgay.Name = "dtpTuNgay";
-            this.dtpTuNgay.Size = new System.Drawing.Size(98, 20);
+            this.dtpTuNgay.Size = new System.Drawing.Size(129, 22);
             this.dtpTuNgay.TabIndex = 1;
             // 
             // lblTuNgay
@@ -138,10 +136,9 @@
             this.lblTuNgay.AutoSize = true;
             this.lblTuNgay.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             this.lblTuNgay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
-            this.lblTuNgay.Location = new System.Drawing.Point(12, 12);
-            this.lblTuNgay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTuNgay.Location = new System.Drawing.Point(16, 15);
             this.lblTuNgay.Name = "lblTuNgay";
-            this.lblTuNgay.Size = new System.Drawing.Size(59, 17);
+            this.lblTuNgay.Size = new System.Drawing.Size(72, 21);
             this.lblTuNgay.TabIndex = 8;
             this.lblTuNgay.Text = "Từ ngày";
             // 
@@ -149,11 +146,11 @@
             // 
             this.flowKpi.AutoSize = true;
             this.flowKpi.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowKpi.Location = new System.Drawing.Point(0, 70);
-            this.flowKpi.Margin = new System.Windows.Forms.Padding(2);
+            this.flowKpi.Location = new System.Drawing.Point(0, 86);
+            this.flowKpi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowKpi.Name = "flowKpi";
-            this.flowKpi.Padding = new System.Windows.Forms.Padding(6, 3, 6, 3);
-            this.flowKpi.Size = new System.Drawing.Size(868, 6);
+            this.flowKpi.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
+            this.flowKpi.Size = new System.Drawing.Size(1157, 8);
             this.flowKpi.TabIndex = 2;
             // 
             // pnlGrid
@@ -164,34 +161,35 @@
             this.pnlGrid.Controls.Add(this.txtTongDoanhThu);
             this.pnlGrid.Controls.Add(this.lblTongDoanhThu);
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGrid.Location = new System.Drawing.Point(0, 76);
-            this.pnlGrid.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlGrid.Location = new System.Drawing.Point(0, 94);
+            this.pnlGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
-            this.pnlGrid.Size = new System.Drawing.Size(868, 401);
+            this.pnlGrid.Padding = new System.Windows.Forms.Padding(12, 10, 12, 10);
+            this.pnlGrid.Size = new System.Drawing.Size(1157, 521);
             this.pnlGrid.TabIndex = 4;
             // 
             // dgvBaoCao
             // 
             this.dgvBaoCao.AllowUserToAddRows = false;
             this.dgvBaoCao.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBaoCao.ColumnHeadersHeight = 29;
             this.dgvBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvBaoCao.Location = new System.Drawing.Point(9, 8);
-            this.dgvBaoCao.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvBaoCao.Location = new System.Drawing.Point(12, 10);
+            this.dgvBaoCao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvBaoCao.Name = "dgvBaoCao";
             this.dgvBaoCao.ReadOnly = true;
             this.dgvBaoCao.RowHeadersWidth = 51;
-            this.dgvBaoCao.Size = new System.Drawing.Size(850, 315);
+            this.dgvBaoCao.Size = new System.Drawing.Size(1133, 324);
             this.dgvBaoCao.TabIndex = 0;
             // 
             // txtSoLuongHoaDon
             // 
             this.txtSoLuongHoaDon.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtSoLuongHoaDon.Location = new System.Drawing.Point(9, 323);
-            this.txtSoLuongHoaDon.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSoLuongHoaDon.Location = new System.Drawing.Point(12, 334);
+            this.txtSoLuongHoaDon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSoLuongHoaDon.Name = "txtSoLuongHoaDon";
             this.txtSoLuongHoaDon.ReadOnly = true;
-            this.txtSoLuongHoaDon.Size = new System.Drawing.Size(850, 20);
+            this.txtSoLuongHoaDon.Size = new System.Drawing.Size(1133, 22);
             this.txtSoLuongHoaDon.TabIndex = 4;
             this.txtSoLuongHoaDon.Visible = false;
             // 
@@ -200,10 +198,9 @@
             this.lblSoLuongHoaDon.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblSoLuongHoaDon.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblSoLuongHoaDon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
-            this.lblSoLuongHoaDon.Location = new System.Drawing.Point(9, 343);
-            this.lblSoLuongHoaDon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSoLuongHoaDon.Location = new System.Drawing.Point(12, 356);
             this.lblSoLuongHoaDon.Name = "lblSoLuongHoaDon";
-            this.lblSoLuongHoaDon.Size = new System.Drawing.Size(850, 0);
+            this.lblSoLuongHoaDon.Size = new System.Drawing.Size(1133, 0);
             this.lblSoLuongHoaDon.TabIndex = 3;
             this.lblSoLuongHoaDon.Visible = false;
             // 
@@ -214,11 +211,11 @@
             this.txtTongDoanhThu.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.txtTongDoanhThu.ForeColor = System.Drawing.Color.Black;
-            this.txtTongDoanhThu.Location = new System.Drawing.Point(9, 343);
-            this.txtTongDoanhThu.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTongDoanhThu.Location = new System.Drawing.Point(12, 356);
+            this.txtTongDoanhThu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTongDoanhThu.Name = "txtTongDoanhThu";
             this.txtTongDoanhThu.ReadOnly = true;
-            this.txtTongDoanhThu.Size = new System.Drawing.Size(850, 32);
+            this.txtTongDoanhThu.Size = new System.Drawing.Size(1133, 39);
             this.txtTongDoanhThu.TabIndex = 2;
             this.txtTongDoanhThu.Text = "0 đ";
             // 
@@ -227,26 +224,25 @@
             this.lblTongDoanhThu.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblTongDoanhThu.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblTongDoanhThu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
-            this.lblTongDoanhThu.Location = new System.Drawing.Point(9, 375);
-            this.lblTongDoanhThu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTongDoanhThu.Location = new System.Drawing.Point(12, 395);
             this.lblTongDoanhThu.Name = "lblTongDoanhThu";
-            this.lblTongDoanhThu.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.lblTongDoanhThu.Size = new System.Drawing.Size(850, 18);
+            this.lblTongDoanhThu.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.lblTongDoanhThu.Size = new System.Drawing.Size(1133, 116);
             this.lblTongDoanhThu.TabIndex = 1;
             this.lblTongDoanhThu.Text = "Tổng doanh thu:";
             // 
             // UCBaoCao
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.flowKpi);
             this.Controls.Add(this.pnlFilter);
             this.Controls.Add(this.pnlHeader);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UCBaoCao";
-            this.Size = new System.Drawing.Size(868, 500);
+            this.Size = new System.Drawing.Size(1157, 615);
             this.Load += new System.EventHandler(this.UCBaoCao_Load);
             this.pnlHeader.ResumeLayout(false);
             this.pnlFilter.ResumeLayout(false);
