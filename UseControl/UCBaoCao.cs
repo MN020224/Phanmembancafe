@@ -89,7 +89,10 @@ namespace CafeOrder
                 Dock = DockStyle.Fill,
                 AllowUserToAddRows = false,
                 ReadOnly = true,
-                RowHeadersVisible = false
+                RowHeadersVisible = false,
+                AutoGenerateColumns = false,
+                EnableHeadersVisualStyles = false
+
             };
 
             UiTheme.StyleDataGridView(dgvChiTiet);
@@ -99,6 +102,8 @@ namespace CafeOrder
             dgvChiTiet.Columns.Add("SoLuong", "Số lượng");
             dgvChiTiet.Columns.Add("DonGia", "Đơn giá");
             dgvChiTiet.Columns.Add("ThanhTien", "Thành tiền");
+            dgvChiTiet.Columns.Add("GhiChu", "Ghi chú");
+            dgvChiTiet.Columns["GhiChu"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvChiTiet.Columns["DonGia"].DefaultCellStyle.Format = "N0";
             dgvChiTiet.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
@@ -120,11 +125,22 @@ namespace CafeOrder
             var row = dgvBaoCao.Rows[e.RowIndex];
             string maHoaDon = row.Cells["MaHD"].Value?.ToString();
 
-            if (!string.IsNullOrEmpty(maHoaDon))
+            // Kiểm tra nếu mã hóa đơn rỗng hoặc null
+            if (string.IsNullOrEmpty(maHoaDon))
             {
-                _currentMaHoaDon = maHoaDon;
-                HienThiChiTietHoaDon(maHoaDon);
+                var dgvChiTiet = this.Controls.Find("dgvChiTiet", true)[0] as DataGridView;
+                if (dgvChiTiet != null)
+                {
+                    dgvChiTiet.Rows.Clear();
+                    dgvChiTiet.Rows.Add("❌ Mã hóa đơn không hợp lệ", "", "", "");
+                }
+                return;
             }
+
+
+            _currentMaHoaDon = maHoaDon;
+            HienThiChiTietHoaDon(maHoaDon);
+
         }
 
         private void HienThiChiTietHoaDon(string maHoaDon)
@@ -148,7 +164,8 @@ namespace CafeOrder
                             row["TenMon"],
                             row["SoLuong"],
                             Convert.ToDecimal(row["DonGia"]).ToString("N0"),
-                            Convert.ToDecimal(row["ThanhTien"]).ToString("N0"));
+                            Convert.ToDecimal(row["ThanhTien"]).ToString("N0"),
+                            row["GhiChu"].ToString());
                     }
                 }
                 else
@@ -170,7 +187,8 @@ namespace CafeOrder
                     m.ten_mon AS TenMon,
                     ct.so_luong AS SoLuong,
                     ct.don_gia AS DonGia,
-                    ct.thanh_tien AS ThanhTien
+                    ct.thanh_tien AS ThanhTien,
+                    ISNULL(ct.ghi_chu, N'') AS GhiChu 
                 FROM ChiTietHoaDon ct
                 INNER JOIN HoaDon h ON ct.hoa_don_id = h.id
                 INNER JOIN MonAn m ON ct.mon_an_id = m.id

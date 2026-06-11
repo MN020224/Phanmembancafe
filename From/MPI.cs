@@ -10,7 +10,7 @@ namespace CafeOrder
         private UCBaoCao ucBaoCao;
         private UCQuanTri ucQuanTri;
         private UCDongca ucDongCa;
-        private UCThuChi ucThuChi;  // 🔥 THÊM DÒNG NÀY
+        private UCThuChi ucThuChi;  
 
         public MPI()
         {
@@ -20,8 +20,7 @@ namespace CafeOrder
             MnBaoCao.Click += MnBaoCao_Click;
             MnQuanTri.Click += MnQuanTri_Click;
             MnDongCa.Click += MnDongCa_Click;
-            MnDangXuat.Click += MnDangXuat_Click;
-            MnThuChi.Click += MnThuChi_Click;  // 🔥 SỬA: MnThuchi_Click -> MnThuChi_Click
+            MnThuChi.Click += MnThuChi_Click;  
         }
 
         private static void LamMoiCaSession()

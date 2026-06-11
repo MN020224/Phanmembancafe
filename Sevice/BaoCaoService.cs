@@ -16,9 +16,10 @@ namespace CafeOrder
         {
             return DbHelper.Query(@"
                 SELECT CONVERT(varchar(10), tao_luc, 103) AS Ngay,
-                       ma_hoa_don AS MaHD,
-                       N'—' AS Ban,
-                       thanh_toan AS TongTien
+                       ISNULL(ma_hoa_don, N'') AS MaHD,  
+                       ISNULL(ghi_chu, N'') AS Ban, 
+                       thanh_toan AS TongTien,
+                       ghi_chu AS GhiChu
                 FROM HoaDon
                 WHERE trang_thai = N'da_thanh_toan'
                   AND CAST(tao_luc AS date) BETWEEN @tu AND @den
@@ -76,7 +77,8 @@ namespace CafeOrder
                     m.ten_mon AS TenMon,
                     ct.so_luong AS SoLuong,
                     ct.don_gia AS DonGia,
-                    ct.thanh_tien AS ThanhTien
+                    ct.thanh_tien AS ThanhTien,
+                    ISNULL(ct.ghi_chu, N'') AS GhiChu  
                 FROM ChiTietHoaDon ct
                 INNER JOIN HoaDon h ON ct.hoa_don_id = h.id
                 INNER JOIN MonAn m ON ct.mon_an_id = m.id

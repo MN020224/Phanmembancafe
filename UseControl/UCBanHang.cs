@@ -25,7 +25,7 @@ namespace CafeOrder
             {
                 nudSoLuong = new NumericUpDown
                 {
-                    Location = new Point(120, 97),
+                    // Không set Location ở đây
                     Size = new Size(80, 20),
                     Minimum = 1,
                     Maximum = 100,
@@ -99,6 +99,23 @@ namespace CafeOrder
 
             _daKhoiTao = true;
             TaiLai();
+
+            // Căn chỉnh nudSoLuong nằm cạnh nút Thêm món (giả sử btnThemMon đã có)
+            if (btnThemMon != null && nudSoLuong != null && pnlFooter != null)
+            {
+                // Đặt ngang hàng với btnThemMon, bên phải cách 5px
+                nudSoLuong.Location = new Point(btnThemMon.Right + 5, btnThemMon.Top);
+            }
+
+            // Tự động lưu ghi chú khi rời khỏi ô
+            txtGhiChu.Leave += (s, ev) =>
+            {
+                if (_hoaDonId.HasValue)
+                {
+                    string ghichu = txtGhiChu.Text.Trim();
+                    BanHangService.CapNhatGhiChuHoaDon(_hoaDonId.Value, ghichu);
+                }
+            };
         }
 
         private bool KiemTraCa()
@@ -274,6 +291,7 @@ namespace CafeOrder
 
         private void BtnThemMon_Click(object sender, EventArgs e)
         {
+            // 1. Kiểm tra đã chọn dòng trong giỏ hàng
             if (dgvGioHang.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Vui lòng chọn món cần thêm số lượng trong giỏ hàng.", "Hướng dẫn",
@@ -281,31 +299,81 @@ namespace CafeOrder
                 return;
             }
 
-            var selectedRow = dgvGioHang.SelectedRows[0];
-            int chiTietId = Convert.ToInt32(selectedRow.Cells["ChiTietId"].Value);
-            string tenMon = selectedRow.Cells["TenMon"].Value.ToString();
-            decimal donGia = decimal.Parse(selectedRow.Cells["DonGia"].Value.ToString().Replace(",", ""));
+            // 2. Kiểm tra hóa đơn tồn tại (KHÔNG NULL)
+            if (!_hoaDonId.HasValue)
+            {
+                MessageBox.Show("Chưa có hóa đơn. Vui lòng thêm món từ danh sách bên trái trước.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            // Tìm MonAnId từ chi tiết
-            var dt = BanHangService.GetChiTietHoaDon(_hoaDonId.Value);
+            var selectedRow = dgvGioHang.SelectedRows[0];
+
+            // 3. Lấy ChiTietId an toàn
+            object chiTietObj = selectedRow.Cells["ChiTietId"].Value;
+            if (chiTietObj == null || chiTietObj == DBNull.Value)
+            {
+                MessageBox.Show("Dữ liệu ChiTietId không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int chiTietId = Convert.ToInt32(chiTietObj);
+
+            // 4. Lấy Tên món an toàn
+            object tenMonObj = selectedRow.Cells["TenMon"].Value;
+            if (tenMonObj == null || tenMonObj == DBNull.Value)
+            {
+                MessageBox.Show("Dữ liệu Tên món không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string tenMon = tenMonObj.ToString();
+
+            // 5. Lấy Đơn giá an toàn (loại bỏ dấu phẩy, xử lý định dạng)
+            object donGiaObj = selectedRow.Cells["DonGia"].Value;
+            if (donGiaObj == null || donGiaObj == DBNull.Value)
+            {
+                MessageBox.Show("Dữ liệu Đơn giá không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string donGiaStr = donGiaObj.ToString().Replace(",", "");
+            if (!decimal.TryParse(donGiaStr, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal donGia))
+            {
+                MessageBox.Show("Đơn giá không đúng định dạng số.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // 6. Tìm MonAnId từ chi tiết (dùng DataTable)
+            DataTable dt = BanHangService.GetChiTietHoaDon(_hoaDonId.Value);
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                MessageBox.Show("Không tìm thấy chi tiết hóa đơn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             int monAnId = 0;
             foreach (DataRow row in dt.Rows)
             {
                 if (Convert.ToInt32(row["id"]) == chiTietId)
                 {
-                    monAnId = Convert.ToInt32(row["MonAnId"]);
+                    monAnId = Convert.ToInt32(row["mon_an_id"]); // Chú ý: cột trong query là mon_an_id
                     break;
                 }
             }
 
-            if (monAnId == 0) return;
+            if (monAnId == 0)
+            {
+                MessageBox.Show("Không tìm thấy mã món ăn tương ứng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            // Hiển thị form nhập số lượng
+            // 7. Hiển thị form nhập số lượng
             var form = new Form
             {
                 Text = $"Thêm số lượng - {tenMon}",
                 Size = new Size(300, 150),
-                StartPosition = FormStartPosition.CenterParent
+                StartPosition = FormStartPosition.CenterParent,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                MaximizeBox = false,
+                MinimizeBox = false
             };
 
             var nud = new NumericUpDown
@@ -331,8 +399,15 @@ namespace CafeOrder
             if (form.ShowDialog() == DialogResult.OK)
             {
                 int soLuong = (int)nud.Value;
-                BanHangService.ThemChiTiet(_hoaDonId.Value, monAnId, soLuong, donGia);
-                NapGioHang();
+                try
+                {
+                    BanHangService.ThemChiTiet(_hoaDonId.Value, monAnId, soLuong, donGia);
+                    NapGioHang();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi thêm món: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -410,6 +485,12 @@ namespace CafeOrder
                     Convert.ToDecimal(row["ThanhTien"]).ToString("N0"));
             }
             txtTongTien.Text = BanHangService.LayTongTien(_hoaDonId.Value).ToString("N0") + " đ";
+
+            // Load ghi chú của hóa đơn hiện tại
+            if (_hoaDonId.HasValue)
+                txtGhiChu.Text = BanHangService.LayGhiChuHoaDon(_hoaDonId.Value);
+            else
+                txtGhiChu.Text = "";
         }
 
         private void BtnThanhToan_Click(object sender, EventArgs e)
