@@ -54,7 +54,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -314,7 +314,7 @@
             // lblTienMat
             // 
             this.lblTienMat.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTienMat.Location = new System.Drawing.Point(11, 64);
+            this.lblTienMat.Location = new System.Drawing.Point(13, 72);
             this.lblTienMat.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTienMat.Name = "lblTienMat";
             this.lblTienMat.Size = new System.Drawing.Size(98, 20);
@@ -339,10 +339,10 @@
             // lblChuyenKhoan
             // 
             this.lblChuyenKhoan.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChuyenKhoan.Location = new System.Drawing.Point(11, 124);
+            this.lblChuyenKhoan.Location = new System.Drawing.Point(13, 123);
             this.lblChuyenKhoan.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChuyenKhoan.Name = "lblChuyenKhoan";
-            this.lblChuyenKhoan.Size = new System.Drawing.Size(98, 20);
+            this.lblChuyenKhoan.Size = new System.Drawing.Size(150, 20);
             this.lblChuyenKhoan.TabIndex = 4;
             this.lblChuyenKhoan.Text = "Chuyển khoản:";
             this.lblChuyenKhoan.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -364,7 +364,7 @@
             // lblTienDauCa
             // 
             this.lblTienDauCa.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTienDauCa.Location = new System.Drawing.Point(312, 15);
+            this.lblTienDauCa.Location = new System.Drawing.Point(312, 17);
             this.lblTienDauCa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTienDauCa.Name = "lblTienDauCa";
             this.lblTienDauCa.Size = new System.Drawing.Size(137, 20);
@@ -388,7 +388,7 @@
             // lblThucThu
             // 
             this.lblThucThu.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThucThu.Location = new System.Drawing.Point(312, 67);
+            this.lblThucThu.Location = new System.Drawing.Point(312, 64);
             this.lblThucThu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblThucThu.Name = "lblThucThu";
             this.lblThucThu.Size = new System.Drawing.Size(137, 23);
@@ -483,15 +483,16 @@
             this.btnInBaoCao.Name = "btnInBaoCao";
             this.btnInBaoCao.Size = new System.Drawing.Size(150, 27);
             this.btnInBaoCao.TabIndex = 15;
-            this.btnInBaoCao.Text = "🖨️ IN BÁO CÁO";
+            this.btnInBaoCao.Text = "🖨️ XUẤT BÁO CÁO";
             this.btnInBaoCao.UseVisualStyleBackColor = false;
+            this.btnInBaoCao.Click += new System.EventHandler(this.btnInBaoCao_Click_1);
             // 
             // dgvHoaDonTrongCa
             // 
             this.dgvHoaDonTrongCa.AllowUserToAddRows = false;
             this.dgvHoaDonTrongCa.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.dgvHoaDonTrongCa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.dgvHoaDonTrongCa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvHoaDonTrongCa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvHoaDonTrongCa.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
             this.dgvHoaDonTrongCa.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;

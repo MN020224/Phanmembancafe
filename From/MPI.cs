@@ -10,7 +10,7 @@ namespace CafeOrder
         private UCBaoCao ucBaoCao;
         private UCQuanTri ucQuanTri;
         private UCDongca ucDongCa;
-        private UCThuChi ucThuChi;  
+        private UCTHuchi ucThuChi;  // Fixed: Changed from UCTHuChi to UCTHuchi
 
         public MPI()
         {
@@ -20,7 +20,7 @@ namespace CafeOrder
             MnBaoCao.Click += MnBaoCao_Click;
             MnQuanTri.Click += MnQuanTri_Click;
             MnDongCa.Click += MnDongCa_Click;
-            MnThuChi.Click += MnThuChi_Click;  
+            MnThuChi.Click += MnThuChi_Click;
         }
 
         private static void LamMoiCaSession()
@@ -134,13 +134,13 @@ namespace CafeOrder
             }
         }
 
-        // 🔥 THÊM METHOD NÀY - XỬ LÝ MENU THU CHI
+        // Fixed method with correct class name
         private void MnThuChi_Click(object sender, EventArgs e)
         {
             LamMoiCaSession();
 
             if (ucThuChi == null)
-                ucThuChi = new UCThuChi();
+                ucThuChi = new UCTHuchi();  // Fixed: Changed from UCTHuChi to UCTHuchi
 
             HienThiUserControl(ucThuChi);
 

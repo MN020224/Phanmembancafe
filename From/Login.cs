@@ -16,16 +16,18 @@ namespace CafeOrder
     {
         readonly string connectionString = ConfigurationManager.ConnectionStrings["cafe_quanly"]?.ConnectionString
             ?? "Data Source=.\\SQLEXPRESS;Initial Catalog=cafe_quanly;Integrated Security=True;TrustServerCertificate=True";
+
         public Login()
         {
             InitializeComponent();
+            // Đặt nút đăng nhập là nút mặc định khi nhấn Enter
+            this.AcceptButton = btndangnhap;
         }
 
         private void Label1_Click(object sender, EventArgs e)
         {
 
         }
-
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
@@ -41,7 +43,6 @@ namespace CafeOrder
         {
 
         }
-
 
         private void Btndangnhap_Click(object sender, EventArgs e)
         {
@@ -65,6 +66,7 @@ namespace CafeOrder
             // Vô hiệu nút trong lúc xử lý
             btndangnhap.Enabled = false;
             btndangnhap.Text = "Đang xử lý...";
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -80,7 +82,6 @@ namespace CafeOrder
                         btndangnhap.Text = "ĐĂNG NHẬP";
                         return;
                     }
-
 
                     string sql = "SELECT id, ten_dang_nhap, vai_tro FROM TaiKhoan WHERE ten_dang_nhap = @username AND mat_khau = @password AND vai_tro = N'nhan_vien'";
 
@@ -127,6 +128,7 @@ namespace CafeOrder
                 btndangnhap.Text = "ĐĂNG NHẬP";
             }
         }
+
         private bool IsAdminAccount(string username, string password)
         {
             try
@@ -154,6 +156,16 @@ namespace CafeOrder
         private void Btnthoat_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        // Xử lý phím Enter trên ô mật khẩu - ĐÃ SỬA
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                Btndangnhap_Click(sender, e);  // Đã sửa: gọi đúng tên method
+                e.Handled = true;  // Thêm dòng này để ngăn tiếng beep
+            }
         }
 
         private void Login_Load(object sender, EventArgs e)

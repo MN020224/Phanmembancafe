@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 
 namespace CafeOrder
@@ -327,31 +328,123 @@ namespace CafeOrder
             }
         }
 
-        private void BtnXemBaoCao_Click(object sender, EventArgs e)
-        {
-            NapDuLieu();
-        }
-
+        // THÊM METHOD NÀY - XUẤT BÁO CÁO EXCEL
         private void BtnInBaoCao_Click(object sender, EventArgs e)
         {
             if (!AppSession.CaId.HasValue)
             {
-                MessageBox.Show("Không có ca nào để in báo cáo!", "Thông báo",
+                MessageBox.Show("Không có ca nào để xuất báo cáo!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
-                // Print report logic here
-                MessageBox.Show("Tính năng in báo cáo đang được phát triển!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Lấy tiền đầu ca
+                decimal tienDauCa = 0;
+                string tienText = txtTienDauCa.Text.Replace(",", "").Trim();
+                if (!string.IsNullOrEmpty(tienText))
+                {
+                    decimal.TryParse(tienText, out tienDauCa);
+                }
+
+                // Lấy dữ liệu
+                var caInfo = CaService.GetCaInfo(AppSession.CaId.Value);
+                var hoaDonList = CaService.GetHoaDonTrongCa(AppSession.CaId.Value);
+
+                // Tính tổng
+                decimal tongDoanhThu = CaService.TongDoanhThuCa(AppSession.CaId.Value);
+                decimal tongTienMat = CaService.TongTienMatCa(AppSession.CaId.Value);
+                decimal tongChuyenKhoan = CaService.TongChuyenKhoanCa(AppSession.CaId.Value);
+
+                // Hộp thoại lưu file
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel Files (*.csv)|*.csv|All Files (*.*)|*.*";
+                saveDialog.FileName = $"BaoCaoCa_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+                saveDialog.Title = "Xuất báo cáo Excel";
+
+                if (saveDialog.ShowDialog() == DialogResult.OK)
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    // Tiêu đề
+                    sb.AppendLine("================== CAFE ORDER ==================");
+                    sb.AppendLine("              BÁO CÁO TỔNG KẾT CA");
+                    sb.AppendLine("==================================================");
+                    sb.AppendLine();
+
+                    // Thông tin ca
+                    sb.AppendLine("THÔNG TIN CA,");
+                    sb.AppendLine($"Mở ca,{Convert.ToDateTime(caInfo["gio_mo"]):HH:mm:ss dd/MM/yyyy}");
+                    if (caInfo["gio_dong"] != DBNull.Value)
+                        sb.AppendLine($"Đóng ca,{Convert.ToDateTime(caInfo["gio_dong"]):HH:mm:ss dd/MM/yyyy}");
+                    else
+                        sb.AppendLine("Đóng ca,Chưa đóng");
+                    sb.AppendLine($"Tiền đầu ca,{tienDauCa:N0} đ");
+                    sb.AppendLine();
+
+                    // Danh sách hóa đơn
+                    sb.AppendLine("DANH SÁCH HÓA ĐƠN,");
+                    sb.AppendLine("Mã HĐ,Giờ,Tổng tiền,Hình thức");
+
+                    foreach (DataRow r in hoaDonList.Rows)
+                    {
+                        string ma = r["MaHD"].ToString();
+                        string gio = Convert.ToDateTime(r["Gio"]).ToString("HH:mm:ss");
+                        decimal tien = Convert.ToDecimal(r["TongTien"]);
+                        string ht = r["HinhThuc"].ToString() == "TienMat" ? "Tiền mặt" : "Chuyển khoản";
+
+                        sb.AppendLine($"{ma},{gio},{tien:N0},{ht}");
+                    }
+
+                    sb.AppendLine();
+
+                    // Tổng kết
+                    sb.AppendLine("TỔNG KẾT,");
+                    sb.AppendLine($"Số hóa đơn,{hoaDonList.Rows.Count}");
+                    sb.AppendLine($"Tổng doanh thu,{tongDoanhThu:N0} đ");
+                    sb.AppendLine($"Tiền mặt,{tongTienMat:N0} đ");
+                    sb.AppendLine($"Chuyển khoản,{tongChuyenKhoan:N0} đ");
+                    sb.AppendLine();
+
+                    // Đối chiếu
+                    decimal thucThu = tienDauCa + tongTienMat;
+                    decimal chenhLech = thucThu - tongDoanhThu;
+
+                    sb.AppendLine("ĐỐI CHIẾU TIỀN,");
+                    sb.AppendLine($"Tiền đầu ca,{tienDauCa:N0} đ");
+                    sb.AppendLine($"Tiền mặt thu,{tongTienMat:N0} đ");
+                    sb.AppendLine($"Tiền thực thu,{thucThu:N0} đ");
+                    sb.AppendLine($"Chênh lệch,{chenhLech:N0} đ");
+                    sb.AppendLine();
+                    sb.AppendLine($"In lúc,{DateTime.Now:HH:mm:ss dd/MM/yyyy}");
+
+                    // Ghi file
+                    System.IO.File.WriteAllText(saveDialog.FileName, sb.ToString(), Encoding.UTF8);
+
+                    // Thông báo thành công và hỏi mở file
+                    DialogResult result = MessageBox.Show(
+                        $"Xuất báo cáo thành công!\nFile lưu tại: {saveDialog.FileName}\n\nBạn có muốn mở file không?",
+                        "Thành công",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Information);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        System.Diagnostics.Process.Start(saveDialog.FileName);
+                    }
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi in báo cáo: {ex.Message}", "Lỗi",
+                MessageBox.Show($"Lỗi xuất báo cáo: {ex.Message}", "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void BtnXemBaoCao_Click(object sender, EventArgs e)
+        {
+            NapDuLieu();
         }
 
         // Helper method to format currency
@@ -380,11 +473,15 @@ namespace CafeOrder
 
         private void btnXemBaoCao_Click_1(object sender, EventArgs e)
         {
-        
-          
+
         }
 
         private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnInBaoCao_Click_1(object sender, EventArgs e)
         {
 
         }

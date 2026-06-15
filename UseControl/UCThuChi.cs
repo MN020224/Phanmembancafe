@@ -1,72 +1,59 @@
 ﻿using System;
-using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace CafeOrder.UseControl
 {
-    public partial class UCThuChi : UserControl
+    public partial class UCTHuchi : UserControl
     {
-        private DataTable currentData;
-        private int? selectedId;
+        private int? editId = null;
 
-        public UCThuChi()
+        public UCTHuchi()
         {
             InitializeComponent();
-            SetupTheme();
+            dtpNgayTao.Value = DateTime.Now;
+
+            if (cboLoai.Items.Count == 0)
+            {
+                cboLoai.Items.AddRange(new string[] { "Thu", "Chi" });
+            }
+
+            dtpDenNgay.Value = DateTime.Now;
+            dtpTuNgay.Value = DateTime.Now.AddDays(-30);
+
             LoadData();
         }
 
-        private void SetupTheme()
+        public UCTHuchi(int id, string loai, string moTa, decimal soTien, DateTime ngayTao)
         {
-            // Style DataGridView
-            dgvThuChi.BackgroundColor = Color.White;
-            dgvThuChi.BorderStyle = BorderStyle.None;
-            dgvThuChi.EnableHeadersVisualStyles = false;
-            dgvThuChi.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(112, 77, 59);
-            dgvThuChi.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvThuChi.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dgvThuChi.ColumnHeadersHeight = 40;
-            dgvThuChi.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 249, 250);
-            dgvThuChi.RowHeadersVisible = false;
-            dgvThuChi.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvThuChi.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvThuChi.GridColor = Color.FromArgb(236, 240, 241);
+            InitializeComponent();
+            editId = id;
 
-            // Style buttons
-            StyleButton(btnXem, Color.FromArgb(112, 77, 59));
-            StyleButton(btnThem, Color.FromArgb(39, 174, 96));
-            StyleButton(btnSua, Color.FromArgb(241, 196, 15));
-            StyleButton(btnXoa, Color.FromArgb(231, 76, 60));
-            StyleButton(btnXuatExcel, Color.FromArgb(41, 128, 185));
+            if (cboLoai.Items.Count == 0)
+            {
+                cboLoai.Items.AddRange(new string[] { "Thu", "Chi" });
+            }
 
-            // Set default dates
-            dtpTuNgay.Value = DateTime.Now.AddDays(-30);
+            if (cboLoai.Items.Contains(loai))
+                cboLoai.SelectedItem = loai;
+            else if (cboLoai.Items.Count > 0)
+                cboLoai.SelectedIndex = 0;
+
+            txtMoTa.Text = moTa;
+            txtSoTien.Text = soTien.ToString();
+            dtpNgayTao.Value = ngayTao;
+
             dtpDenNgay.Value = DateTime.Now;
+            dtpTuNgay.Value = DateTime.Now.AddDays(-30);
 
-            // Register events
-            btnXem.Click += BtnXem_Click;
-            btnThem.Click += BtnThem_Click;
-            btnSua.Click += BtnSua_Click;
-            btnXoa.Click += BtnXoa_Click;
-            btnXuatExcel.Click += BtnXuatExcel_Click;
-            dgvThuChi.SelectionChanged += DgvThuChi_SelectionChanged;
+            if (this.ParentForm != null)
+                this.ParentForm.Text = "✏️ SỬA THU CHI";
+
+            LoadData();
         }
 
-        private void StyleButton(Button btn, Color backColor)
-        {
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.FlatAppearance.BorderSize = 0;
-            btn.BackColor = backColor;
-            btn.ForeColor = Color.White;
-            btn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btn.Cursor = Cursors.Hand;
-            btn.UseVisualStyleBackColor = false;
-        }
-
-        // 🔥 ĐÃ SỬA: private -> public
-        public void LoadData()
+        private void LoadData()
         {
             try
             {
@@ -75,58 +62,69 @@ namespace CafeOrder.UseControl
 
                 string query = @"
                     SELECT 
-                        tc.id,
-                        tc.loai,
-                        tc.mo_ta,
-                        tc.so_tien,
-                        tc.tao_luc AS NgayTao,
-                        CASE tc.loai 
-                            WHEN 'thu' THEN tc.so_tien 
-                            ELSE 0 
-                        END AS Thu,
-                        CASE tc.loai 
-                            WHEN 'chi' THEN tc.so_tien 
-                            ELSE 0 
-                        END AS Chi
-                    FROM ThuChi tc
-                    WHERE tc.tao_luc >= @tuNgay AND tc.tao_luc <= @denNgay
-                    ORDER BY tc.tao_luc DESC";
+                        id, 
+                        loai, 
+                        mo_ta AS MoTa, 
+                        so_tien, 
+                        tao_luc AS NgayTao,
+                        CASE WHEN loai = N'Thu' THEN so_tien ELSE 0 END AS Thu,
+                        CASE WHEN loai = N'Chi' THEN so_tien ELSE 0 END AS Chi
+                    FROM ThuChi 
+                    WHERE tao_luc BETWEEN @tuNgay AND @denNgay
+                    ORDER BY tao_luc DESC";
 
-                currentData = DbHelper.Query(query,
+                DataTable dt = DbHelper.Query(query,
                     new SqlParameter("@tuNgay", tuNgay),
                     new SqlParameter("@denNgay", denNgay));
 
-                dgvThuChi.DataSource = currentData;
+                dgvDanhSach.DataSource = dt;
 
-                // Set column headers
-                if (dgvThuChi.Columns.Contains("id"))
-                    dgvThuChi.Columns["id"].Visible = false;
-                if (dgvThuChi.Columns.Contains("loai"))
-                    dgvThuChi.Columns["loai"].HeaderText = "Loại";
-                if (dgvThuChi.Columns.Contains("mo_ta"))
-                    dgvThuChi.Columns["mo_ta"].HeaderText = "Mô tả";
-                if (dgvThuChi.Columns.Contains("so_tien"))
-                    dgvThuChi.Columns["so_tien"].HeaderText = "Số tiền";
-                if (dgvThuChi.Columns.Contains("NgayTao"))
-                    dgvThuChi.Columns["NgayTao"].HeaderText = "Ngày tạo";
-                if (dgvThuChi.Columns.Contains("Thu"))
-                    dgvThuChi.Columns["Thu"].Visible = false;
-                if (dgvThuChi.Columns.Contains("Chi"))
-                    dgvThuChi.Columns["Chi"].Visible = false;
-
-                // Format columns
-                if (dgvThuChi.Columns.Contains("so_tien"))
+                if (dgvDanhSach.Columns.Count > 0)
                 {
-                    dgvThuChi.Columns["so_tien"].DefaultCellStyle.Format = "N0";
-                    dgvThuChi.Columns["so_tien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                }
-                if (dgvThuChi.Columns.Contains("NgayTao"))
-                {
-                    dgvThuChi.Columns["NgayTao"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+                    if (dgvDanhSach.Columns["id"] != null)
+                        dgvDanhSach.Columns["id"].Visible = false;
+
+                    if (dgvDanhSach.Columns["loai"] != null)
+                        dgvDanhSach.Columns["loai"].HeaderText = "Loại";
+
+                    if (dgvDanhSach.Columns["MoTa"] != null)
+                        dgvDanhSach.Columns["MoTa"].HeaderText = "Mô tả";
+
+                    if (dgvDanhSach.Columns["so_tien"] != null)
+                    {
+                        dgvDanhSach.Columns["so_tien"].HeaderText = "Số tiền";
+                        dgvDanhSach.Columns["so_tien"].DefaultCellStyle.Format = "#,##0";
+                        dgvDanhSach.Columns["so_tien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    }
+
+                    if (dgvDanhSach.Columns["NgayTao"] != null)
+                    {
+                        dgvDanhSach.Columns["NgayTao"].HeaderText = "Ngày tạo";
+                        dgvDanhSach.Columns["NgayTao"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm:ss";
+                    }
+
+                    if (dgvDanhSach.Columns["Thu"] != null)
+                        dgvDanhSach.Columns["Thu"].Visible = false;
+
+                    if (dgvDanhSach.Columns["Chi"] != null)
+                        dgvDanhSach.Columns["Chi"].Visible = false;
                 }
 
-                // Calculate totals
-                CalculateTotals();
+                // Calculate total - ĐÃ SỬA: dùng "so_tien" thay vì "SoTien"
+                decimal tongThu = 0;
+                decimal tongChi = 0;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["loai"].ToString() == "Thu")
+                        tongThu += Convert.ToDecimal(row["so_tien"]);
+                    else if (row["loai"].ToString() == "Chi")
+                        tongChi += Convert.ToDecimal(row["so_tien"]);
+                }
+
+                decimal tongCong = tongThu - tongChi;
+
+                lblTitle.Text = $"QUẢN LÝ THU CHI | Thu: {tongThu:#,##0}đ | Chi: {tongChi:#,##0}đ | Tổng: {tongCong:#,##0}đ";
             }
             catch (Exception ex)
             {
@@ -135,153 +133,212 @@ namespace CafeOrder.UseControl
             }
         }
 
-        private void CalculateTotals()
+        private void BtnTimKiem_Click(object sender, EventArgs e)
         {
-            if (currentData == null || currentData.Rows.Count == 0)
+            if (dtpTuNgay.Value.Date > dtpDenNgay.Value.Date)
             {
-                txtTongThu.Text = "0 đ";
-                txtTongChi.Text = "0 đ";
-                txtChenhLech.Text = "0 đ";
+                MessageBox.Show("Từ ngày không được lớn hơn đến ngày!", "Cảnh báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            decimal tongThu = 0;
-            decimal tongChi = 0;
-
-            foreach (DataRow row in currentData.Rows)
-            {
-                string loai = row["loai"].ToString();
-                decimal soTien = Convert.ToDecimal(row["so_tien"]);
-
-                if (loai == "thu")
-                    tongThu += soTien;
-                else if (loai == "chi")
-                    tongChi += soTien;
-            }
-
-            decimal chenhLech = tongThu - tongChi;
-
-            txtTongThu.Text = tongThu.ToString("N0") + " đ";
-            txtTongChi.Text = tongChi.ToString("N0") + " đ";
-            txtChenhLech.Text = chenhLech.ToString("N0") + " đ";
-
-            // Set color for chênh lệch
-            if (chenhLech > 0)
-                txtChenhLech.ForeColor = Color.FromArgb(39, 174, 96);
-            else if (chenhLech < 0)
-                txtChenhLech.ForeColor = Color.FromArgb(231, 76, 60);
-            else
-                txtChenhLech.ForeColor = Color.FromArgb(41, 128, 185);
-        }
-
-        private void BtnXem_Click(object sender, EventArgs e)
-        {
             LoadData();
         }
 
-        private void BtnThem_Click(object sender, EventArgs e)
+        private void BtnLuu_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Chức năng đang phát triển!", "Thông báo",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void BtnSua_Click(object sender, EventArgs e)
-        {
-            if (!selectedId.HasValue)
+            if (string.IsNullOrWhiteSpace(txtMoTa.Text))
             {
-                MessageBox.Show("Vui lòng chọn một bản ghi để sửa!", "Thông báo",
+                MessageBox.Show("Vui lòng nhập mô tả!", "Cảnh báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            MessageBox.Show("Chức năng đang phát triển!", "Thông báo",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void BtnXoa_Click(object sender, EventArgs e)
-        {
-            if (!selectedId.HasValue)
-            {
-                MessageBox.Show("Vui lòng chọn một bản ghi để xóa!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtMoTa.Focus();
                 return;
             }
 
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa bản ghi này?", "Xác nhận",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            string soTienRaw = txtSoTien.Text.Replace(",", "");
+            if (!decimal.TryParse(soTienRaw, out decimal soTien) || soTien <= 0)
             {
-                try
-                {
-                    DbHelper.Execute("DELETE FROM ThuChi WHERE id = @id",
-                        new SqlParameter("@id", selectedId.Value));
-
-                    MessageBox.Show("Xóa thành công!", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Lỗi xóa: {ex.Message}", "Lỗi",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void BtnXuatExcel_Click(object sender, EventArgs e)
-        {
-            if (currentData == null || currentData.Rows.Count == 0)
-            {
-                MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo",
+                MessageBox.Show("Số tiền phải lớn hơn 0!", "Cảnh báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSoTien.Focus();
                 return;
             }
 
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "CSV Files|*.csv";
-            sfd.FileName = $"ThuChi_{DateTime.Now:yyyyMMdd_HHmmss}";
-
-            if (sfd.ShowDialog() == DialogResult.OK)
+            soTien = Math.Round(soTien, 0);
+            if (soTien >= 10000000000)
             {
-                try
+                MessageBox.Show("Số tiền không được vượt quá 9,999,999,999đ!", "Cảnh báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSoTien.Focus();
+                return;
+            }
+
+            if (cboLoai.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn loại thu/chi!", "Cảnh báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cboLoai.Focus();
+                return;
+            }
+
+            try
+            {
+                string loai = cboLoai.SelectedItem.ToString();
+                string moTa = txtMoTa.Text.Trim();
+                DateTime ngayTao = dtpNgayTao.Value;
+
+                if (editId.HasValue)
                 {
-                    string content = "";
-                    content += "Loại,Mô tả,Số tiền,Ngày tạo" + Environment.NewLine;
+                    DbHelper.Execute("UPDATE ThuChi SET loai=@loai, mo_ta=@moTa, so_tien=@soTien, tao_luc=@ngayTao WHERE id=@id",
+                        new SqlParameter("@loai", loai),
+                        new SqlParameter("@moTa", moTa),
+                        new SqlParameter("@soTien", soTien),
+                        new SqlParameter("@ngayTao", ngayTao),
+                        new SqlParameter("@id", editId.Value));
 
-                    foreach (DataRow row in currentData.Rows)
-                    {
-                        content += $"{row["loai"]}," +
-                                  $"{row["mo_ta"]}," +
-                                  $"{row["so_tien"]}," +
-                                  $"{row["NgayTao"]}" + Environment.NewLine;
-                    }
-
-                    System.IO.File.WriteAllText(sfd.FileName, content, System.Text.Encoding.UTF8);
-                    MessageBox.Show($"Xuất file thành công!\n{sfd.FileName}", "Thành công",
+                    MessageBox.Show("Cập nhật thành công!", "Thông báo",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"Lỗi xuất file: {ex.Message}", "Lỗi",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DbHelper.Execute("INSERT INTO ThuChi (loai, mo_ta, so_tien, tao_luc) VALUES (@loai, @moTa, @soTien, @ngayTao)",
+                        new SqlParameter("@loai", loai),
+                        new SqlParameter("@moTa", moTa),
+                        new SqlParameter("@soTien", soTien),
+                        new SqlParameter("@ngayTao", ngayTao));
+
+                    MessageBox.Show("Thêm mới thành công!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                editId = null;
+                ClearForm();
+                LoadData();
+
+                if (this.ParentForm != null)
+                    this.ParentForm.Text = "QUẢN LÝ THU CHI";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void DgvThuChi_SelectionChanged(object sender, EventArgs e)
+        private void BtnHuy_Click(object sender, EventArgs e)
         {
-            if (dgvThuChi.SelectedRows.Count > 0)
+            ClearForm();
+            editId = null;
+
+            if (this.ParentForm != null)
+                this.ParentForm.Text = "QUẢN LÝ THU CHI";
+        }
+
+        private void TxtSoTien_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                var row = dgvThuChi.SelectedRows[0];
-                if (row.Cells["id"].Value != null && row.Cells["id"].Value != DBNull.Value)
+                e.Handled = true;
+            }
+
+            TextBox txt = sender as TextBox;
+            if (char.IsDigit(e.KeyChar) && txt.Text.Replace(",", "").Length >= 10)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxtSoTien_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtSoTien.Text))
+                return;
+
+            if (decimal.TryParse(txtSoTien.Text.Replace(",", ""), out decimal amount))
+            {
+                amount = Math.Round(amount, 0);
+                if (amount >= 10000000000)
                 {
-                    selectedId = Convert.ToInt32(row.Cells["id"].Value);
+                    MessageBox.Show("Số tiền không được vượt quá 9,999,999,999đ!", "Cảnh báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtSoTien.Text = "";
+                    txtSoTien.Focus();
+                    return;
                 }
+                txtSoTien.Text = amount.ToString("#,##0");
             }
-            else
+            else if (!string.IsNullOrWhiteSpace(txtSoTien.Text))
             {
-                selectedId = null;
+                MessageBox.Show("Vui lòng nhập số tiền hợp lệ!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtSoTien.Text = "";
+                txtSoTien.Focus();
             }
+        }
+
+        private void DgvDanhSach_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvDanhSach.Rows[e.RowIndex];
+
+                editId = Convert.ToInt32(row.Cells["id"].Value);
+                string loai = row.Cells["loai"].Value.ToString();
+                string moTa = row.Cells["MoTa"].Value.ToString();
+                decimal soTien = Convert.ToDecimal(row.Cells["so_tien"].Value);
+                DateTime ngayTao = Convert.ToDateTime(row.Cells["NgayTao"].Value);
+
+                if (cboLoai.Items.Contains(loai))
+                    cboLoai.SelectedItem = loai;
+
+                txtMoTa.Text = moTa;
+                txtSoTien.Text = soTien.ToString("#,##0");
+                dtpNgayTao.Value = ngayTao;
+
+                if (this.ParentForm != null)
+                    this.ParentForm.Text = "✏️ SỬA THU CHI";
+            }
+        }
+
+        private void UCTHuchi_Load(object sender, EventArgs e)
+        {
+            if (cboLoai.SelectedItem == null && cboLoai.Items.Count > 0)
+            {
+                cboLoai.SelectedIndex = 0;
+            }
+        }
+
+        public void ClearForm()
+        {
+            editId = null;
+            cboLoai.SelectedIndex = -1;
+            txtMoTa.Text = string.Empty;
+            txtSoTien.Text = string.Empty;
+            dtpNgayTao.Value = DateTime.Now;
+
+            if (this.ParentForm != null)
+                this.ParentForm.Text = "QUẢN LÝ THU CHI";
+        }
+
+        public void SetEditData(int id, string loai, string moTa, decimal soTien, DateTime ngayTao)
+        {
+            editId = id;
+
+            if (cboLoai.Items.Contains(loai))
+                cboLoai.SelectedItem = loai;
+            else if (cboLoai.Items.Count > 0)
+                cboLoai.SelectedIndex = 0;
+
+            txtMoTa.Text = moTa;
+            txtSoTien.Text = soTien.ToString("#,##0");
+            dtpNgayTao.Value = ngayTao;
+
+            if (this.ParentForm != null)
+                this.ParentForm.Text = "✏️ SỬA THU CHI";
+        }
+
+        public void RefreshData()
+        {
+            LoadData();
         }
     }
 }

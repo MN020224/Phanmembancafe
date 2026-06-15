@@ -92,7 +92,6 @@ namespace CafeOrder
                 RowHeadersVisible = false,
                 AutoGenerateColumns = false,
                 EnableHeadersVisualStyles = false
-
             };
 
             UiTheme.StyleDataGridView(dgvChiTiet);
@@ -128,19 +127,21 @@ namespace CafeOrder
             // Kiểm tra nếu mã hóa đơn rỗng hoặc null
             if (string.IsNullOrEmpty(maHoaDon))
             {
-                var dgvChiTiet = this.Controls.Find("dgvChiTiet", true)[0] as DataGridView;
-                if (dgvChiTiet != null)
+                var dgvChiTiet = this.Controls.Find("dgvChiTiet", true);
+                if (dgvChiTiet.Length > 0)
                 {
-                    dgvChiTiet.Rows.Clear();
-                    dgvChiTiet.Rows.Add("❌ Mã hóa đơn không hợp lệ", "", "", "");
+                    var gridChiTiet = dgvChiTiet[0] as DataGridView;
+                    if (gridChiTiet != null)
+                    {
+                        gridChiTiet.Rows.Clear();
+                        gridChiTiet.Rows.Add("❌ Mã hóa đơn không hợp lệ", "", "", "", "");
+                    }
                 }
                 return;
             }
 
-
             _currentMaHoaDon = maHoaDon;
             HienThiChiTietHoaDon(maHoaDon);
-
         }
 
         private void HienThiChiTietHoaDon(string maHoaDon)
@@ -170,7 +171,7 @@ namespace CafeOrder
                 }
                 else
                 {
-                    grid.Rows.Add("Không có dữ liệu", "", "", "");
+                    grid.Rows.Add("Không có dữ liệu", "", "", "", "");
                 }
             }
             catch (Exception ex)
@@ -225,7 +226,7 @@ namespace CafeOrder
 
                 dgvBaoCao.Rows.Clear();
                 var dt = BaoCaoService.LayBaoCao(tu, den);
-                foreach (System.Data.DataRow row in dt.Rows)
+                foreach (DataRow row in dt.Rows)
                 {
                     dgvBaoCao.Rows.Add(
                         row["Ngay"],
@@ -237,7 +238,6 @@ namespace CafeOrder
                 txtTongDoanhThu.Text = tong.ToString("N0") + " đ";
                 txtSoLuongHoaDon.Text = soHd.ToString();
 
-                // 🔥 ĐÃ SỬA: Dùng as thay vì is (tương thích C# 7.3)
                 var dgvChiTiet = this.Controls.Find("dgvChiTiet", true);
                 if (dgvChiTiet.Length > 0)
                 {
