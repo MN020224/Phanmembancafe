@@ -29,10 +29,6 @@
         private System.Windows.Forms.TextBox txtChuyenKhoan;
         private System.Windows.Forms.Label lblTienDauCa;
         private System.Windows.Forms.TextBox txtTienDauCa;
-        private System.Windows.Forms.Label lblThucThu;
-        private System.Windows.Forms.TextBox txtThucThu;
-        private System.Windows.Forms.Label lblChenhLech;
-        private System.Windows.Forms.TextBox txtChenhLech;
 
         // Buttons
         private System.Windows.Forms.Button btnMoCa;
@@ -54,7 +50,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -76,10 +72,6 @@
             this.txtChuyenKhoan = new System.Windows.Forms.TextBox();
             this.lblTienDauCa = new System.Windows.Forms.Label();
             this.txtTienDauCa = new System.Windows.Forms.TextBox();
-            this.lblThucThu = new System.Windows.Forms.Label();
-            this.txtThucThu = new System.Windows.Forms.TextBox();
-            this.lblChenhLech = new System.Windows.Forms.Label();
-            this.txtChenhLech = new System.Windows.Forms.TextBox();
             this.btnMoCa = new System.Windows.Forms.Button();
             this.btnDongCa = new System.Windows.Forms.Button();
             this.btnInBaoCao = new System.Windows.Forms.Button();
@@ -270,10 +262,6 @@
             this.pnlFinancial.Controls.Add(this.txtChuyenKhoan);
             this.pnlFinancial.Controls.Add(this.lblTienDauCa);
             this.pnlFinancial.Controls.Add(this.txtTienDauCa);
-            this.pnlFinancial.Controls.Add(this.lblThucThu);
-            this.pnlFinancial.Controls.Add(this.txtThucThu);
-            this.pnlFinancial.Controls.Add(this.lblChenhLech);
-            this.pnlFinancial.Controls.Add(this.txtChenhLech);
             this.pnlFinancial.Controls.Add(this.btnMoCa);
             this.pnlFinancial.Controls.Add(this.btnDongCa);
             this.pnlFinancial.Controls.Add(this.btnInBaoCao);
@@ -364,10 +352,10 @@
             // lblTienDauCa
             // 
             this.lblTienDauCa.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTienDauCa.Location = new System.Drawing.Point(312, 17);
+            this.lblTienDauCa.Location = new System.Drawing.Point(310, 14);
             this.lblTienDauCa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTienDauCa.Name = "lblTienDauCa";
-            this.lblTienDauCa.Size = new System.Drawing.Size(137, 20);
+            this.lblTienDauCa.Size = new System.Drawing.Size(148, 27);
             this.lblTienDauCa.TabIndex = 6;
             this.lblTienDauCa.Text = " Tiền đầu ca:";
             this.lblTienDauCa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -377,63 +365,13 @@
             this.txtTienDauCa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTienDauCa.Enabled = false;
             this.txtTienDauCa.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtTienDauCa.Location = new System.Drawing.Point(453, 15);
+            this.txtTienDauCa.Location = new System.Drawing.Point(462, 12);
             this.txtTienDauCa.Margin = new System.Windows.Forms.Padding(2);
             this.txtTienDauCa.Name = "txtTienDauCa";
             this.txtTienDauCa.Size = new System.Drawing.Size(136, 27);
             this.txtTienDauCa.TabIndex = 7;
             this.txtTienDauCa.Text = "0";
             this.txtTienDauCa.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblThucThu
-            // 
-            this.lblThucThu.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblThucThu.Location = new System.Drawing.Point(312, 64);
-            this.lblThucThu.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblThucThu.Name = "lblThucThu";
-            this.lblThucThu.Size = new System.Drawing.Size(137, 23);
-            this.lblThucThu.TabIndex = 8;
-            this.lblThucThu.Text = "Thực thu:";
-            this.lblThucThu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtThucThu
-            // 
-            this.txtThucThu.BackColor = System.Drawing.Color.White;
-            this.txtThucThu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtThucThu.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtThucThu.Location = new System.Drawing.Point(453, 65);
-            this.txtThucThu.Margin = new System.Windows.Forms.Padding(2);
-            this.txtThucThu.Name = "txtThucThu";
-            this.txtThucThu.ReadOnly = true;
-            this.txtThucThu.Size = new System.Drawing.Size(136, 27);
-            this.txtThucThu.TabIndex = 9;
-            this.txtThucThu.Text = "0 VNĐ";
-            this.txtThucThu.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblChenhLech
-            // 
-            this.lblChenhLech.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChenhLech.Location = new System.Drawing.Point(312, 128);
-            this.lblChenhLech.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblChenhLech.Name = "lblChenhLech";
-            this.lblChenhLech.Size = new System.Drawing.Size(137, 20);
-            this.lblChenhLech.TabIndex = 10;
-            this.lblChenhLech.Text = " Chênh lệch:";
-            this.lblChenhLech.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtChenhLech
-            // 
-            this.txtChenhLech.BackColor = System.Drawing.Color.White;
-            this.txtChenhLech.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtChenhLech.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtChenhLech.Location = new System.Drawing.Point(453, 126);
-            this.txtChenhLech.Margin = new System.Windows.Forms.Padding(2);
-            this.txtChenhLech.Name = "txtChenhLech";
-            this.txtChenhLech.ReadOnly = true;
-            this.txtChenhLech.Size = new System.Drawing.Size(136, 27);
-            this.txtChenhLech.TabIndex = 11;
-            this.txtChenhLech.Text = "0 VNĐ";
-            this.txtChenhLech.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnMoCa
             // 
@@ -491,8 +429,8 @@
             // 
             this.dgvHoaDonTrongCa.AllowUserToAddRows = false;
             this.dgvHoaDonTrongCa.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.dgvHoaDonTrongCa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.dgvHoaDonTrongCa.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvHoaDonTrongCa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvHoaDonTrongCa.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
             this.dgvHoaDonTrongCa.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;

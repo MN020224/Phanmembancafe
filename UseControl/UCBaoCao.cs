@@ -5,9 +5,6 @@ using System.Data;
 
 namespace CafeOrder
 {
-    /// <summary>
-    /// UserControl báo cáo thống kê doanh thu
-    /// </summary>
     public partial class UCBaoCao : UserControl
     {
         private Button _tabSelected;
@@ -124,7 +121,6 @@ namespace CafeOrder
             var row = dgvBaoCao.Rows[e.RowIndex];
             string maHoaDon = row.Cells["MaHD"].Value?.ToString();
 
-            // Kiểm tra nếu mã hóa đơn rỗng hoặc null
             if (string.IsNullOrEmpty(maHoaDon))
             {
                 var dgvChiTiet = this.Controls.Find("dgvChiTiet", true);

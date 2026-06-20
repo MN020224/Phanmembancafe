@@ -18,7 +18,6 @@ namespace CafeOrder
 
             MnBanHang.Click += MnBanHang_Click;
             MnBaoCao.Click += MnBaoCao_Click;
-            MnQuanTri.Click += MnQuanTri_Click;
             MnDongCa.Click += MnDongCa_Click;
             MnThuChi.Click += MnThuChi_Click;
         }
@@ -66,6 +65,26 @@ namespace CafeOrder
             Text = "☕ CAFE POS - Đang bán hàng — " + AppSession.TenDangNhap;
         }
 
+        public void CapNhatThongTinNguoiDung()
+        {
+            string ten = AppSession.TenDangNhap ?? "—";
+            string vaiTro = AppSession.IsAdmin ? "Quản trị viên" : "Nhân viên";
+            lblNguoiDung.Text = "👤 " + ten + "\r\n" + vaiTro;
+
+            if (AppSession.IsAdmin)
+            {
+                btnQuanTri.BackColor = System.Drawing.Color.FromArgb(39, 174, 96);
+                btnQuanTri.Text = "⚙️ Quản trị";
+            }
+            else
+            {
+                btnQuanTri.BackColor = System.Drawing.Color.FromArgb(112, 77, 59);
+                btnQuanTri.Text = "🔐 Đăng nhập QT";
+            }
+
+            Text = "☕ CAFE POS — " + ten;
+        }
+
         private void MnBaoCao_Click(object sender, EventArgs e)
         {
             if (ucBaoCao == null)
@@ -77,7 +96,7 @@ namespace CafeOrder
             Text = "☕ CAFE POS - Báo cáo thống kê";
         }
 
-        private void MnQuanTri_Click(object sender, EventArgs e)
+        private void BtnQuanTri_Click(object sender, EventArgs e)
         {
             if (AppSession.HasAdminAccess)
             {
@@ -90,6 +109,7 @@ namespace CafeOrder
             ucLogin.LoginSuccess += (s, args) =>
             {
                 AppSession.IsImpersonatedAdmin = true;
+                CapNhatThongTinNguoiDung();
                 ShowQuanTri();
             };
 
@@ -149,7 +169,7 @@ namespace CafeOrder
 
         private void MPI_Load(object sender, EventArgs e)
         {
-            Text = "☕ CAFE POS — " + (AppSession.TenDangNhap ?? "");
+            CapNhatThongTinNguoiDung();
             MnBanHang_Click(null, EventArgs.Empty);
         }
     }

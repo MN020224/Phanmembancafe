@@ -19,6 +19,21 @@ namespace CafeOrder
                 new SqlParameter("@dm", danhMucId));
         }
 
+        public static DataTable TimKiemMonAn(string tuKhoa)
+        {
+            if (string.IsNullOrWhiteSpace(tuKhoa))
+                return new DataTable();
+
+            return DbHelper.Query(@"
+                SELECT m.id, m.ten_mon, m.gia, d.ten_danh_muc
+                FROM MonAn m
+                INNER JOIN DanhMuc d ON d.id = m.danh_muc_id
+                WHERE m.kha_dung = 1 AND d.hien_thi = 1
+                  AND m.ten_mon LIKE @kw
+                ORDER BY m.thu_tu, m.ten_mon",
+                new SqlParameter("@kw", "%" + tuKhoa.Trim() + "%"));
+        }
+
         public static int? GetHoaDonChoThanhToan(int caId)
         {
             var o = DbHelper.Scalar(
@@ -186,8 +201,6 @@ namespace CafeOrder
             int count = GetTongSoLuongMon(hoaDonId);
             return count == 0;
         }
-
-        // 🔥 ĐÃ XÓA METHOD ApGiamGia
 
         public static DataTable ThongKeDoanhThuTheoPhuongThuc(DateTime tuNgay, DateTime denNgay)
         {

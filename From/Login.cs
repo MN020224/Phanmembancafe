@@ -14,8 +14,7 @@ namespace CafeOrder
 {
     public partial class Login : Form
     {
-        readonly string connectionString = ConfigurationManager.ConnectionStrings["cafe_quanly"]?.ConnectionString
-            ?? "Data Source=.\\SQLEXPRESS;Initial Catalog=cafe_quanly;Integrated Security=True;TrustServerCertificate=True";
+        readonly string connectionString = DbHelper.ConnectionString;
 
         public Login()
         {

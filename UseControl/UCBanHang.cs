@@ -16,7 +16,7 @@ namespace CafeOrder
         public UCBanHang()
         {
             InitializeComponent();
-            pnlSidebar.AutoScroll = true;
+            pnlDanhMucList.AutoScroll = true;
             InitializeNumericUpDown();
         }
 
@@ -138,29 +138,20 @@ namespace CafeOrder
         {
             try
             {
-                pnlSidebar.SuspendLayout();
-                pnlSidebar.Controls.Clear();
-
-
-                var lbl = new Label
-                {
-                    Text = "📂 DANH MỤC",
-                    Dock = DockStyle.Top,
-                    Height = 50,
-                    Font = new Font("Segoe UI", 12F, FontStyle.Bold),
-                    ForeColor = Color.White,
-                    BackColor = Color.FromArgb(112, 77, 59),
-                    Padding = new Padding(17, 11, 0, 11),
-                    TextAlign = ContentAlignment.MiddleLeft
-                };
-                pnlSidebar.Controls.Add(lbl);
+                pnlDanhMucList.SuspendLayout();
+                pnlDanhMucList.Controls.Clear();
+                _categorySelected = null;
 
                 DataTable dt = BanHangService.GetDanhMuc();
-                if (dt.Rows.Count == 0) return;
+                if (dt.Rows.Count == 0)
+                {
+                    pnlDanhMucList.ResumeLayout();
+                    return;
+                }
 
                 Button firstButton = null;
 
-                for (int i = dt.Rows.Count - 1; i >= 0; i--)
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     DataRow row = dt.Rows[i];
                     int id = Convert.ToInt32(row["id"]);
@@ -168,32 +159,21 @@ namespace CafeOrder
 
                     var btn = new Button
                     {
-                        Text = "  " + ten,
-                        Tag = id,
-                        Dock = DockStyle.Top,
-                        Height = 45,
-                        FlatStyle = FlatStyle.Flat,
-                        TextAlign = ContentAlignment.MiddleLeft,
-                        BackColor = Color.FromArgb(112, 77, 59),
-                        ForeColor = Color.White,
-                        Font = new Font("Segoe UI", 10F, FontStyle.Bold),
-                        UseVisualStyleBackColor = false,
-                        Margin = new Padding(0),
-                        Padding = new Padding(0),
-                        FlatAppearance = { BorderSize = 0 }
+                        Text = LayIconDanhMuc(ten) + "  " + ten,
+                        Tag = id
                     };
+                    UiTheme.StyleSidebarButton(btn, false);
                     btn.Click += DanhMuc_Click;
-                    pnlSidebar.Controls.Add(btn);
-                    firstButton = btn; 
+                    pnlDanhMucList.Controls.Add(btn);
+
+                    if (i == 0)
+                        firstButton = btn;
                 }
 
-                pnlSidebar.ResumeLayout();
-
+                pnlDanhMucList.ResumeLayout();
 
                 if (firstButton != null)
-                {
-                    this.BeginInvoke(new Action(() => firstButton.PerformClick()));
-                }
+                    BeginInvoke(new Action(() => firstButton.PerformClick()));
             }
             catch (Exception ex)
             {
@@ -201,14 +181,25 @@ namespace CafeOrder
             }
         }
 
+        private static string LayIconDanhMuc(string tenDanhMuc)
+        {
+            string ten = (tenDanhMuc ?? "").ToLowerInvariant();
+            if (ten.Contains("cà phê") || ten.Contains("ca phe") || ten.Contains("coffee"))
+                return "☕";
+            if (ten.Contains("trà") || ten.Contains("tra") || ten.Contains("tea"))
+                return "🍵";
+            if (ten.Contains("sinh tố") || ten.Contains("sinh to") || ten.Contains("nước"))
+                return "🥤";
+            if (ten.Contains("bánh") || ten.Contains("banh"))
+                return "🥐";
+            return "•";
+        }
+
         private void DanhMuc_Click(object sender, EventArgs e)
         {
             var btn = (Button)sender;
             if (_categorySelected != null)
-            {
                 UiTheme.StyleSidebarButton(_categorySelected, false);
-                _categorySelected.BackColor = UiTheme.Sidebar;
-            }
             UiTheme.StyleSidebarButton(btn, true);
             _categorySelected = btn;
             _danhMucDangChon = Convert.ToInt32(btn.Tag);
@@ -708,9 +699,5 @@ namespace CafeOrder
             }
         }
 
-        private void lblDanhMuc_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

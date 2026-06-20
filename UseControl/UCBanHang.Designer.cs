@@ -9,11 +9,12 @@ namespace CafeOrder
         private System.Windows.Forms.Panel pnlBody;
         private System.Windows.Forms.Panel pnlSidebar;
         private System.Windows.Forms.Label lblDanhMuc;
-        private System.Windows.Forms.Button btnCaPhe;
-        private System.Windows.Forms.Button btnTra;
-        private System.Windows.Forms.Button btnSinhTo;
-        private System.Windows.Forms.Button btnBanh;
+        private System.Windows.Forms.Panel pnlDanhMucList;
         private System.Windows.Forms.Panel pnlSanPham;
+        private System.Windows.Forms.Panel pnlTimKiem;
+        private System.Windows.Forms.Label lblTimKiem;
+        private System.Windows.Forms.TextBox txtTimKiem;
+        private System.Windows.Forms.Button btnXoaTimKiem;
         private System.Windows.Forms.FlowLayoutPanel flowSanPham;
         private System.Windows.Forms.Panel pnlDonHang;
         private System.Windows.Forms.Label lblDonHang;
@@ -61,13 +62,14 @@ namespace CafeOrder
             this.lblTongTien = new System.Windows.Forms.Label();
             this.lblDonHang = new System.Windows.Forms.Label();
             this.pnlSanPham = new System.Windows.Forms.Panel();
+            this.pnlTimKiem = new System.Windows.Forms.Panel();
+            this.btnXoaTimKiem = new System.Windows.Forms.Button();
+            this.txtTimKiem = new System.Windows.Forms.TextBox();
+            this.lblTimKiem = new System.Windows.Forms.Label();
             this.flowSanPham = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
+            this.pnlDanhMucList = new System.Windows.Forms.Panel();
             this.lblDanhMuc = new System.Windows.Forms.Label();
-            this.btnCaPhe = new System.Windows.Forms.Button();
-            this.btnTra = new System.Windows.Forms.Button();
-            this.btnSinhTo = new System.Windows.Forms.Button();
-            this.btnBanh = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudSoLuong)).BeginInit();
@@ -78,6 +80,7 @@ namespace CafeOrder
             this.pnlFooter.SuspendLayout();
             this.pnlThanhToan.SuspendLayout();
             this.pnlSanPham.SuspendLayout();
+            this.pnlTimKiem.SuspendLayout();
             this.pnlSidebar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -342,6 +345,7 @@ namespace CafeOrder
             // 
             this.pnlSanPham.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlSanPham.Controls.Add(this.flowSanPham);
+            this.pnlSanPham.Controls.Add(this.pnlTimKiem);
             this.pnlSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSanPham.Location = new System.Drawing.Point(240, 11);
             this.pnlSanPham.Margin = new System.Windows.Forms.Padding(5);
@@ -349,6 +353,59 @@ namespace CafeOrder
             this.pnlSanPham.Padding = new System.Windows.Forms.Padding(12, 11, 12, 11);
             this.pnlSanPham.Size = new System.Drawing.Size(1005, 661);
             this.pnlSanPham.TabIndex = 1;
+            // 
+            // pnlTimKiem
+            // 
+            this.pnlTimKiem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(245)))), ((int)(((byte)(236)))));
+            this.pnlTimKiem.Controls.Add(this.btnXoaTimKiem);
+            this.pnlTimKiem.Controls.Add(this.txtTimKiem);
+            this.pnlTimKiem.Controls.Add(this.lblTimKiem);
+            this.pnlTimKiem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTimKiem.Location = new System.Drawing.Point(12, 11);
+            this.pnlTimKiem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.pnlTimKiem.Name = "pnlTimKiem";
+            this.pnlTimKiem.Padding = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.pnlTimKiem.Size = new System.Drawing.Size(981, 48);
+            this.pnlTimKiem.TabIndex = 1;
+            // 
+            // btnXoaTimKiem
+            // 
+            this.btnXoaTimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnXoaTimKiem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.btnXoaTimKiem.FlatAppearance.BorderSize = 0;
+            this.btnXoaTimKiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXoaTimKiem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnXoaTimKiem.ForeColor = System.Drawing.Color.White;
+            this.btnXoaTimKiem.Location = new System.Drawing.Point(893, 8);
+            this.btnXoaTimKiem.Name = "btnXoaTimKiem";
+            this.btnXoaTimKiem.Size = new System.Drawing.Size(72, 32);
+            this.btnXoaTimKiem.TabIndex = 2;
+            this.btnXoaTimKiem.Text = "✕ Xóa";
+            this.btnXoaTimKiem.UseVisualStyleBackColor = false;
+            this.btnXoaTimKiem.Click += new System.EventHandler(this.BtnXoaTimKiem_Click);
+            // 
+            // txtTimKiem
+            // 
+            this.txtTimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTimKiem.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtTimKiem.Location = new System.Drawing.Point(132, 10);
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(751, 32);
+            this.txtTimKiem.TabIndex = 1;
+            this.txtTimKiem.TextChanged += new System.EventHandler(this.TxtTimKiem_TextChanged);
+            this.txtTimKiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtTimKiem_KeyDown);
+            // 
+            // lblTimKiem
+            // 
+            this.lblTimKiem.AutoSize = true;
+            this.lblTimKiem.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblTimKiem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.lblTimKiem.Location = new System.Drawing.Point(11, 13);
+            this.lblTimKiem.Name = "lblTimKiem";
+            this.lblTimKiem.Size = new System.Drawing.Size(115, 23);
+            this.lblTimKiem.TabIndex = 0;
+            this.lblTimKiem.Text = "🔍 Tìm nhanh:";
             // 
             // flowSanPham
             // 
@@ -365,96 +422,39 @@ namespace CafeOrder
             // pnlSidebar
             // 
             this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            this.pnlSidebar.Controls.Add(this.pnlDanhMucList);
             this.pnlSidebar.Controls.Add(this.lblDanhMuc);
-            this.pnlSidebar.Controls.Add(this.btnCaPhe);
-            this.pnlSidebar.Controls.Add(this.btnTra);
-            this.pnlSidebar.Controls.Add(this.btnSinhTo);
-            this.pnlSidebar.Controls.Add(this.btnBanh);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Location = new System.Drawing.Point(12, 11);
             this.pnlSidebar.Margin = new System.Windows.Forms.Padding(5);
             this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Padding = new System.Windows.Forms.Padding(0, 11, 0, 11);
+            this.pnlSidebar.Padding = new System.Windows.Forms.Padding(0, 0, 0, 8);
             this.pnlSidebar.Size = new System.Drawing.Size(228, 661);
             this.pnlSidebar.TabIndex = 0;
+            // 
+            // pnlDanhMucList
+            // 
+            this.pnlDanhMucList.AutoScroll = true;
+            this.pnlDanhMucList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(57)))), ((int)(((byte)(39)))));
+            this.pnlDanhMucList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDanhMucList.Location = new System.Drawing.Point(0, 48);
+            this.pnlDanhMucList.Name = "pnlDanhMucList";
+            this.pnlDanhMucList.Size = new System.Drawing.Size(228, 605);
+            this.pnlDanhMucList.TabIndex = 1;
             // 
             // lblDanhMuc
             // 
             this.lblDanhMuc.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblDanhMuc.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDanhMuc.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblDanhMuc.ForeColor = System.Drawing.Color.White;
-            this.lblDanhMuc.Location = new System.Drawing.Point(0, 11);
+            this.lblDanhMuc.Location = new System.Drawing.Point(0, 0);
             this.lblDanhMuc.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDanhMuc.Name = "lblDanhMuc";
             this.lblDanhMuc.Padding = new System.Windows.Forms.Padding(17, 11, 0, 11);
             this.lblDanhMuc.Size = new System.Drawing.Size(228, 48);
             this.lblDanhMuc.TabIndex = 0;
             this.lblDanhMuc.Text = "📂 DANH MỤC";
-            this.lblDanhMuc.Click += new System.EventHandler(this.lblDanhMuc_Click);
-            // 
-            // btnCaPhe
-            // 
-            this.btnCaPhe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.btnCaPhe.FlatAppearance.BorderSize = 0;
-            this.btnCaPhe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCaPhe.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCaPhe.ForeColor = System.Drawing.Color.White;
-            this.btnCaPhe.Location = new System.Drawing.Point(0, 59);
-            this.btnCaPhe.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCaPhe.Name = "btnCaPhe";
-            this.btnCaPhe.Size = new System.Drawing.Size(228, 59);
-            this.btnCaPhe.TabIndex = 1;
-            this.btnCaPhe.Text = "☕ Cà phê";
-            this.btnCaPhe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCaPhe.UseVisualStyleBackColor = false;
-            // 
-            // btnTra
-            // 
-            this.btnTra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.btnTra.FlatAppearance.BorderSize = 0;
-            this.btnTra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTra.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTra.ForeColor = System.Drawing.Color.White;
-            this.btnTra.Location = new System.Drawing.Point(0, 117);
-            this.btnTra.Margin = new System.Windows.Forms.Padding(5);
-            this.btnTra.Name = "btnTra";
-            this.btnTra.Size = new System.Drawing.Size(228, 59);
-            this.btnTra.TabIndex = 2;
-            this.btnTra.Text = "🍵 Trà";
-            this.btnTra.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTra.UseVisualStyleBackColor = false;
-            // 
-            // btnSinhTo
-            // 
-            this.btnSinhTo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.btnSinhTo.FlatAppearance.BorderSize = 0;
-            this.btnSinhTo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSinhTo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSinhTo.ForeColor = System.Drawing.Color.White;
-            this.btnSinhTo.Location = new System.Drawing.Point(0, 176);
-            this.btnSinhTo.Margin = new System.Windows.Forms.Padding(5);
-            this.btnSinhTo.Name = "btnSinhTo";
-            this.btnSinhTo.Size = new System.Drawing.Size(228, 59);
-            this.btnSinhTo.TabIndex = 3;
-            this.btnSinhTo.Text = "🥤 Sinh tố";
-            this.btnSinhTo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSinhTo.UseVisualStyleBackColor = false;
-            // 
-            // btnBanh
-            // 
-            this.btnBanh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
-            this.btnBanh.FlatAppearance.BorderSize = 0;
-            this.btnBanh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBanh.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBanh.ForeColor = System.Drawing.Color.White;
-            this.btnBanh.Location = new System.Drawing.Point(0, 235);
-            this.btnBanh.Margin = new System.Windows.Forms.Padding(5);
-            this.btnBanh.Name = "btnBanh";
-            this.btnBanh.Size = new System.Drawing.Size(228, 59);
-            this.btnBanh.TabIndex = 4;
-            this.btnBanh.Text = "🥐 Bánh ngọt";
-            this.btnBanh.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBanh.UseVisualStyleBackColor = false;
+            this.lblDanhMuc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
             // 
@@ -496,6 +496,8 @@ namespace CafeOrder
             this.pnlThanhToan.ResumeLayout(false);
             this.pnlThanhToan.PerformLayout();
             this.pnlSanPham.ResumeLayout(false);
+            this.pnlTimKiem.ResumeLayout(false);
+            this.pnlTimKiem.PerformLayout();
             this.pnlSidebar.ResumeLayout(false);
             this.ResumeLayout(false);
 

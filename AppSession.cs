@@ -12,10 +12,8 @@ namespace CafeOrder
 
 
 
-        // Nh�n vi�n sau khi nh?p ��ng admin s? ��?c c?p quy?n t?m
         public static bool IsImpersonatedAdmin { get; set; } = false;
 
-        // Ki?m tra chung: c� ph?i admin th?t ho?c �? ��?c c?p quy?n
         public static bool HasAdminAccess => IsAdmin || IsImpersonatedAdmin;
 
         public static void Clear()
@@ -24,6 +22,7 @@ namespace CafeOrder
             TenDangNhap = null;
             VaiTro = null;
             CaId = null;
+            IsImpersonatedAdmin = false;
         }
     }
 }

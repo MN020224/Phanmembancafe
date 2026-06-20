@@ -110,7 +110,6 @@ namespace CafeOrder.UseControl
                         dgvDanhSach.Columns["Chi"].Visible = false;
                 }
 
-                // Calculate total - ĐÃ SỬA: dùng "so_tien" thay vì "SoTien"
                 decimal tongThu = 0;
                 decimal tongChi = 0;
 

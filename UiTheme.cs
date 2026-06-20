@@ -5,9 +5,9 @@ namespace CafeOrder
 {
     public static class UiTheme
     {
-        // 🔥 Đã đổi màu chính thành nâu (112, 77, 59)
+
         public static readonly Color Primary = Color.FromArgb(112, 77, 59);
-        public static readonly Color PrimaryDark = Color.FromArgb(92, 57, 39);  // Nâu đậm hơn
+        public static readonly Color PrimaryDark = Color.FromArgb(92, 57, 39);  
         public static readonly Color Sidebar = Color.FromArgb(52, 73, 94);
         public static readonly Color Background = Color.FromArgb(245, 246, 250);
         public static readonly Color Card = Color.White;
@@ -46,13 +46,13 @@ namespace CafeOrder
             btn.UseVisualStyleBackColor = false;
             if (selected)
             {
-                btn.BackColor = Primary;
+                btn.BackColor = Color.FromArgb(160, 120, 95);
                 btn.ForeColor = Color.White;
             }
             else
             {
-                btn.BackColor = Sidebar;
-                btn.ForeColor = Color.FromArgb(236, 240, 241);
+                btn.BackColor = PrimaryDark;
+                btn.ForeColor = Color.FromArgb(253, 245, 236);
             }
         }
 

@@ -6,12 +6,6 @@ namespace CafeOrder
 {
     public static class BaoCaoService
     {
-        /// <summary>
-        /// Lấy danh sách hóa đơn đã thanh toán trong khoảng thời gian
-        /// </summary>
-        /// <param name="tuNgay">Ngày bắt đầu</param>
-        /// <param name="denNgay">Ngày kết thúc</param>
-        /// <returns>DataTable chứa danh sách hóa đơn</returns>
         public static DataTable LayBaoCao(DateTime tuNgay, DateTime denNgay)
         {
             return DbHelper.Query(@"
@@ -28,12 +22,6 @@ namespace CafeOrder
                 new SqlParameter("@den", denNgay.Date));
         }
 
-        /// <summary>
-        /// Tính tổng doanh thu trong khoảng thời gian
-        /// </summary>
-        /// <param name="tuNgay">Ngày bắt đầu</param>
-        /// <param name="denNgay">Ngày kết thúc</param>
-        /// <returns>Tổng doanh thu</returns>
         public static decimal TongDoanhThu(DateTime tuNgay, DateTime denNgay)
         {
             var o = DbHelper.Scalar(@"
@@ -44,13 +32,6 @@ namespace CafeOrder
                 new SqlParameter("@den", denNgay.Date));
             return Convert.ToDecimal(o);
         }
-
-        /// <summary>
-        /// Đếm số lượng hóa đơn trong khoảng thời gian
-        /// </summary>
-        /// <param name="tuNgay">Ngày bắt đầu</param>
-        /// <param name="denNgay">Ngày kết thúc</param>
-        /// <returns>Số lượng hóa đơn</returns>
         public static int DemHoaDon(DateTime tuNgay, DateTime denNgay)
         {
             var o = DbHelper.Scalar(@"
@@ -62,11 +43,6 @@ namespace CafeOrder
             return Convert.ToInt32(o);
         }
 
-        /// <summary>
-        /// Lấy chi tiết hóa đơn theo mã hóa đơn
-        /// </summary>
-        /// <param name="maHoaDon">Mã hóa đơn (VD: HD260527013856)</param>
-        /// <returns>DataTable chứa chi tiết các món trong hóa đơn</returns>
         public static DataTable LayChiTietHoaDon(string maHoaDon)
         {
             if (string.IsNullOrEmpty(maHoaDon))
@@ -87,11 +63,6 @@ namespace CafeOrder
                 new SqlParameter("@maHoaDon", maHoaDon));
         }
 
-        /// <summary>
-        /// Lấy thông tin tổng quan của một hóa đơn
-        /// </summary>
-        /// <param name="maHoaDon">Mã hóa đơn</param>
-        /// <returns>DataRow chứa thông tin hóa đơn</returns>
         public static DataRow LayThongTinHoaDon(string maHoaDon)
         {
             var dt = DbHelper.Query(@"
@@ -112,14 +83,7 @@ namespace CafeOrder
             return null;
         }
 
-        /// <summary>
-        /// Lấy danh sách hóa đơn theo ngày (có phân trang)
-        /// </summary>
-        /// <param name="tuNgay">Ngày bắt đầu</param>
-        /// <param name="denNgay">Ngày kết thúc</param>
-        /// <param name="offset">Vị trí bắt đầu</param>
-        /// <param name="limit">Số lượng bản ghi</param>
-        /// <returns>DataTable chứa danh sách hóa đơn</returns>
+      
         public static DataTable LayBaoCaoPhanTrang(DateTime tuNgay, DateTime denNgay, int offset, int limit)
         {
             return DbHelper.Query(@"
@@ -138,12 +102,7 @@ namespace CafeOrder
                 new SqlParameter("@limit", limit));
         }
 
-        /// <summary>
-        /// Lấy tổng số lượng hóa đơn (cho phân trang)
-        /// </summary>
-        /// <param name="tuNgay">Ngày bắt đầu</param>
-        /// <param name="denNgay">Ngày kết thúc</param>
-        /// <returns>Tổng số hóa đơn</returns>
+       
         public static int DemTongHoaDon(DateTime tuNgay, DateTime denNgay)
         {
             var o = DbHelper.Scalar(@"
@@ -155,12 +114,7 @@ namespace CafeOrder
             return Convert.ToInt32(o);
         }
 
-        /// <summary>
-        /// Lấy thống kê doanh thu theo ngày trong tháng
-        /// </summary>
-        /// <param name="thang">Tháng (1-12)</param>
-        /// <param name="nam">Năm</param>
-        /// <returns>DataTable chứa doanh thu từng ngày</returns>
+       
         public static DataTable ThongKeDoanhThuTheoNgayTrongThang(int thang, int nam)
         {
             return DbHelper.Query(@"
@@ -178,11 +132,7 @@ namespace CafeOrder
                 new SqlParameter("@nam", nam));
         }
 
-        /// <summary>
-        /// Lấy thống kê doanh thu theo tháng trong năm
-        /// </summary>
-        /// <param name="nam">Năm</param>
-        /// <returns>DataTable chứa doanh thu từng tháng</returns>
+      
         public static DataTable ThongKeDoanhThuTheoThangTrongNam(int nam)
         {
             return DbHelper.Query(@"
@@ -198,13 +148,7 @@ namespace CafeOrder
                 new SqlParameter("@nam", nam));
         }
 
-        /// <summary>
-        /// Lấy top món ăn bán chạy nhất
-        /// </summary>
-        /// <param name="tuNgay">Ngày bắt đầu</param>
-        /// <param name="denNgay">Ngày kết thúc</param>
-        /// <param name="top">Số lượng món lấy ra</param>
-        /// <returns>DataTable chứa top món bán chạy</returns>
+
         public static DataTable TopMonAnBanChay(DateTime tuNgay, DateTime denNgay, int top = 10)
         {
             return DbHelper.Query(@"
@@ -224,20 +168,16 @@ namespace CafeOrder
                 new SqlParameter("@top", top));
         }
 
-        /// <summary>
-        /// Lấy thống kê doanh thu theo phương thức thanh toán
-        /// </summary>
-        /// <param name="tuNgay">Ngày bắt đầu</param>
-        /// <param name="denNgay">Ngày kết thúc</param>
-        /// <returns>DataTable chứa doanh thu theo phương thức</returns>
+
         public static DataTable ThongKeTheoPhuongThucThanhToan(DateTime tuNgay, DateTime denNgay)
         {
             return DbHelper.Query(@"
                 SELECT 
                     CASE phuong_thuc_tt
-                        WHEN 'tien_mat' THEN N'Tiền mặt'
-                        WHEN 'chuyen_khoan' THEN N'Chuyển khoản'
-                        ELSE N'Khác'
+                        WHEN N'tien_mat' THEN N'Tiền mặt'
+                        WHEN N'chuyen_khoan' THEN N'Chuyển khoản'
+                        WHEN N'vi_dien_tu' THEN N'Ví điện tử'
+                        ELSE phuong_thuc_tt
                     END AS PhuongThuc,
                     COUNT(*) AS SoHoaDon,
                     ISNULL(SUM(thanh_toan), 0) AS DoanhThu

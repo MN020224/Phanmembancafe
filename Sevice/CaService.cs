@@ -92,5 +92,68 @@ namespace CafeOrder
                 new SqlParameter("@caId", caId));
             return Convert.ToDecimal(o);
         }
+
+        public static decimal TongViDienTuCa(int caId)
+        {
+            var o = DbHelper.Scalar(
+                "SELECT ISNULL(SUM(thanh_toan), 0) FROM HoaDon WHERE ca_id = @caId AND trang_thai = N'da_thanh_toan' AND phuong_thuc_tt = N'vi_dien_tu'",
+                new SqlParameter("@caId", caId));
+            return Convert.ToDecimal(o);
+        }
+
+        public static string HienThiPhuongThucThanhToan(string phuongThuc, bool coIcon = true)
+        {
+            switch (phuongThuc?.Trim().ToLowerInvariant())
+            {
+                case "tien_mat":
+                    return coIcon ? "💵 Tiền mặt" : "Tiền mặt";
+                case "chuyen_khoan":
+                    return coIcon ? "💳 Chuyển khoản" : "Chuyển khoản";
+                case "vi_dien_tu":
+                    return coIcon ? "📱 Ví điện tử" : "Ví điện tử";
+                default:
+                    return string.IsNullOrWhiteSpace(phuongThuc) ? "—" : phuongThuc;
+            }
+        }
+
+        public static string HienThiTrangThaiCa(string trangThai)
+        {
+            switch (trangThai?.Trim().ToLowerInvariant())
+            {
+                case "dang_mo":
+                    return "🟢 Đang mở";
+                case "da_dong":
+                    return "🔴 Đã đóng";
+                default:
+                    return trangThai ?? "—";
+            }
+        }
+
+        public static DataTable LayLichSuCa(DateTime tuNgay, DateTime denNgay, int? taiKhoanId = null)
+        {
+            return DbHelper.Query(@"
+                SELECT
+                    c.id AS CaId,
+                    tk.ten_dang_nhap AS NhanVien,
+                    c.gio_mo AS GioMo,
+                    c.gio_dong AS GioDong,
+                    c.tien_dau_ca AS TienDauCa,
+                    c.tien_cuoi_ca AS TienCuoiCa,
+                    c.trang_thai AS TrangThai,
+                    (SELECT COUNT(*)
+                     FROM HoaDon h
+                     WHERE h.ca_id = c.id AND h.trang_thai = N'da_thanh_toan') AS SoHoaDon,
+                    (SELECT ISNULL(SUM(h.thanh_toan), 0)
+                     FROM HoaDon h
+                     WHERE h.ca_id = c.id AND h.trang_thai = N'da_thanh_toan') AS DoanhThu
+                FROM Ca c
+                INNER JOIN TaiKhoan tk ON tk.id = c.tai_khoan_id
+                WHERE CAST(c.gio_mo AS date) BETWEEN @tu AND @den
+                  AND (@uid IS NULL OR c.tai_khoan_id = @uid)
+                ORDER BY c.gio_mo DESC",
+                new SqlParameter("@tu", tuNgay.Date),
+                new SqlParameter("@den", denNgay.Date),
+                new SqlParameter("@uid", (object)taiKhoanId ?? DBNull.Value));
+        }
     }
 }

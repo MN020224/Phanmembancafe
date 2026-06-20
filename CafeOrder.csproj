@@ -86,6 +86,7 @@
     <Compile Include="Sevice\CaService.cs" />
     <Compile Include="Sevice\BanHangService.cs" />
     <Compile Include="Sevice\BaoCaoService.cs" />
+    <Compile Include="Sevice\MonAnImportHelper.cs" />
     <Compile Include="Sevice\QuanTriService.cs" />
     <Compile Include="UseControl\UCBanHang.cs">
       <SubType>UserControl</SubType>
