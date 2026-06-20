@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -52,9 +53,11 @@ namespace CafeOrder
                 ORDER BY d.thu_tu, m.thu_tu");
 
             dt.Columns.Add("MaMon", typeof(string));
+            dt.Columns.Add("TrangThai", typeof(string));
             foreach (DataRow row in dt.Rows)
             {
                 row["MaMon"] = $"M{row["id"]:D3}";
+                row["TrangThai"] = Convert.ToBoolean(row["kha_dung"]) ? "Đang bán" : "Đã ẩn";
             }
             return dt;
         }
@@ -78,9 +81,89 @@ namespace CafeOrder
                 new SqlParameter("@id", id));
         }
 
-        public static void XoaMon(int id)
+        public static void DatTrangThaiMon(int id, bool khaDung)
         {
-            DbHelper.Execute("DELETE FROM MonAn WHERE id = @id", new SqlParameter("@id", id));
+            DbHelper.Execute(
+                "UPDATE MonAn SET kha_dung = @kd WHERE id = @id",
+                new SqlParameter("@kd", khaDung),
+                new SqlParameter("@id", id));
+        }
+
+        public static void DatTrangThaiMonHangLoat(IEnumerable<int> ids, bool khaDung)
+        {
+            if (ids == null)
+                return;
+
+            foreach (int id in ids)
+                DatTrangThaiMon(id, khaDung);
+        }
+
+        public static int? TimDanhMucIdTheoTen(string tenDanhMuc)
+        {
+            if (string.IsNullOrWhiteSpace(tenDanhMuc))
+                return null;
+
+            var dt = DbHelper.Query("SELECT id, ten_danh_muc FROM DanhMuc WHERE hien_thi = 1");
+            string tim = tenDanhMuc.Trim();
+            foreach (DataRow row in dt.Rows)
+            {
+                if (string.Equals(row["ten_danh_muc"].ToString().Trim(), tim, StringComparison.OrdinalIgnoreCase))
+                    return Convert.ToInt32(row["id"]);
+            }
+            return null;
+        }
+
+        public static bool MonDaTonTai(int danhMucId, string tenMon)
+        {
+            var o = DbHelper.Scalar(
+                "SELECT COUNT(*) FROM MonAn WHERE danh_muc_id = @dm AND LTRIM(RTRIM(ten_mon)) = @ten",
+                new SqlParameter("@dm", danhMucId),
+                new SqlParameter("@ten", tenMon.Trim()));
+            return Convert.ToInt32(o) > 0;
+        }
+
+        public class KetQuaImportMon
+        {
+            public int ThanhCong { get; set; }
+            public int BoQua { get; set; }
+            public List<string> Loi { get; } = new List<string>();
+        }
+
+        public static KetQuaImportMon ImportMonTuFile(IEnumerable<MonAnImportHelper.DongMon> dong)
+        {
+            var ketQua = new KetQuaImportMon();
+            if (dong == null)
+                return ketQua;
+
+            foreach (var row in dong)
+            {
+                try
+                {
+                    int? dmId = TimDanhMucIdTheoTen(row.DanhMuc);
+                    if (!dmId.HasValue)
+                    {
+                        ketQua.BoQua++;
+                        ketQua.Loi.Add($"Dòng {row.DongSo}: Không tìm thấy danh mục \"{row.DanhMuc}\".");
+                        continue;
+                    }
+
+                    if (MonDaTonTai(dmId.Value, row.TenMon))
+                    {
+                        ketQua.BoQua++;
+                        ketQua.Loi.Add($"Dòng {row.DongSo}: Món \"{row.TenMon}\" đã tồn tại trong danh mục \"{row.DanhMuc}\".");
+                        continue;
+                    }
+
+                    ThemMon(dmId.Value, row.TenMon, row.Gia);
+                    ketQua.ThanhCong++;
+                }
+                catch (Exception ex)
+                {
+                    ketQua.BoQua++;
+                    ketQua.Loi.Add($"Dòng {row.DongSo}: {ex.Message}");
+                }
+            }
+            return ketQua;
         }
         #endregion
 
@@ -183,6 +266,110 @@ namespace CafeOrder
                 new SqlParameter("@denNgay", denNgay));
 
             return Convert.ToDecimal(result);
+        }
+
+        public static DataTable BaoCaoDoanhThuTheoPhuongThuc(DateTime tuNgay, DateTime denNgay)
+        {
+            return BaoCaoService.ThongKeTheoPhuongThucThanhToan(tuNgay, denNgay);
+        }
+        #endregion
+
+        #region Tài khoản
+        public static DataTable LoadTaiKhoan()
+        {
+            return DbHelper.Query(@"
+                SELECT id, ten_dang_nhap, vai_tro,
+                       CASE vai_tro
+                           WHEN N'admin' THEN N'Quản trị viên'
+                           WHEN N'nhan_vien' THEN N'Nhân viên'
+                           ELSE vai_tro
+                       END AS VaiTroHienThi
+                FROM TaiKhoan
+                ORDER BY vai_tro, ten_dang_nhap");
+        }
+
+        public static bool TenDangNhapDaTonTai(string ten, int? excludeId = null)
+        {
+            var o = DbHelper.Scalar(@"
+                SELECT COUNT(*) FROM TaiKhoan
+                WHERE ten_dang_nhap = @ten AND (@excludeId IS NULL OR id <> @excludeId)",
+                new SqlParameter("@ten", ten),
+                new SqlParameter("@excludeId", (object)excludeId ?? DBNull.Value));
+            return Convert.ToInt32(o) > 0;
+        }
+
+        public static void ThemTaiKhoan(string ten, string matKhau, string vaiTro)
+        {
+            DbHelper.Execute(
+                "INSERT INTO TaiKhoan(ten_dang_nhap, mat_khau, vai_tro) VALUES (@ten, @mk, @vt)",
+                new SqlParameter("@ten", ten),
+                new SqlParameter("@mk", matKhau),
+                new SqlParameter("@vt", vaiTro));
+        }
+
+        public static void SuaTaiKhoan(int id, string ten, string matKhau, string vaiTro)
+        {
+            if (string.IsNullOrWhiteSpace(matKhau))
+            {
+                DbHelper.Execute(
+                    "UPDATE TaiKhoan SET ten_dang_nhap = @ten, vai_tro = @vt WHERE id = @id",
+                    new SqlParameter("@ten", ten),
+                    new SqlParameter("@vt", vaiTro),
+                    new SqlParameter("@id", id));
+            }
+            else
+            {
+                DbHelper.Execute(
+                    "UPDATE TaiKhoan SET ten_dang_nhap = @ten, mat_khau = @mk, vai_tro = @vt WHERE id = @id",
+                    new SqlParameter("@ten", ten),
+                    new SqlParameter("@mk", matKhau),
+                    new SqlParameter("@vt", vaiTro),
+                    new SqlParameter("@id", id));
+                }
+        }
+
+        public static void XoaTaiKhoan(int id)
+        {
+            DbHelper.Execute("DELETE FROM TaiKhoan WHERE id = @id", new SqlParameter("@id", id));
+        }
+
+        public static int DemAdmin()
+        {
+            var o = DbHelper.Scalar("SELECT COUNT(*) FROM TaiKhoan WHERE vai_tro = N'admin'");
+            return Convert.ToInt32(o);
+        }
+        #endregion
+
+        #region Thu chi
+        public static DataTable LoadThuChi(DateTime tuNgay, DateTime denNgay)
+        {
+            return DbHelper.Query(@"
+                SELECT id, loai, mo_ta AS MoTa, so_tien AS SoTien, tao_luc AS NgayTao
+                FROM ThuChi
+                WHERE CAST(tao_luc AS date) BETWEEN @tu AND @den
+                ORDER BY tao_luc DESC",
+                new SqlParameter("@tu", tuNgay.Date),
+                new SqlParameter("@den", denNgay.Date));
+        }
+
+        public static decimal TongThu(DateTime tuNgay, DateTime denNgay)
+        {
+            var o = DbHelper.Scalar(@"
+                SELECT ISNULL(SUM(so_tien), 0) FROM ThuChi
+                WHERE loai = N'Thu' AND CAST(tao_luc AS date) BETWEEN @tu AND @den",
+                new SqlParameter("@tu", tuNgay.Date),
+                new SqlParameter("@den", denNgay.Date));
+            return Convert.ToDecimal(o);
+        }
+
+        public static decimal TongChi(DateTime tuNgay, DateTime denNgay)
+        {
+            var o = DbHelper.Scalar(@"
+                SELECT ISNULL(SUM(so_tien), 0) FROM ThuChi
+                WHERE loai = N'Chi' AND CAST(tao_luc AS date) BETWEEN @tu AND @den",
+                new SqlParameter("@tu", tuNgay.Date),
+                new SqlParameter("@den", denNgay.Date));
+            return Convert.ToDecimal(o);
         }
         #endregion
     }

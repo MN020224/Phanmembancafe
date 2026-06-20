@@ -10,6 +10,8 @@ namespace CafeOrder
         private Button _categorySelected;
         private int? _hoaDonId;
         private bool _daKhoiTao;
+        private int? _danhMucDangChon;
+        private bool _dangTimKiem;
 
         public UCBanHang()
         {
@@ -18,14 +20,13 @@ namespace CafeOrder
             InitializeNumericUpDown();
         }
 
-        // Khởi tạo control NumericUpDown
         private void InitializeNumericUpDown()
         {
             if (nudSoLuong == null)
             {
                 nudSoLuong = new NumericUpDown
                 {
-                    // Không set Location ở đây
+               
                     Size = new Size(80, 20),
                     Minimum = 1,
                     Maximum = 100,
@@ -33,7 +34,7 @@ namespace CafeOrder
                 };
             }
 
-            // Thêm vào panel footer nếu chưa có
+
             if (pnlFooter != null && !pnlFooter.Controls.Contains(nudSoLuong))
             {
                 pnlFooter.Controls.Add(nudSoLuong);
@@ -73,6 +74,8 @@ namespace CafeOrder
             btnXoaMon.Click -= BtnXoaMon_Click;
             btnXoaMon.Click += BtnXoaMon_Click;
 
+            UiTheme.StyleFlatButton(btnXoaTimKiem, UiTheme.Primary, 32);
+
 
             // Thiết lập DataGridView
             dgvGioHang.Columns.Clear();
@@ -100,14 +103,13 @@ namespace CafeOrder
             _daKhoiTao = true;
             TaiLai();
 
-            // Căn chỉnh nudSoLuong nằm cạnh nút Thêm món (giả sử btnThemMon đã có)
+
             if (btnThemMon != null && nudSoLuong != null && pnlFooter != null)
             {
-                // Đặt ngang hàng với btnThemMon, bên phải cách 5px
+
                 nudSoLuong.Location = new Point(btnThemMon.Right + 5, btnThemMon.Top);
             }
 
-            // Tự động lưu ghi chú khi rời khỏi ô
             txtGhiChu.Leave += (s, ev) =>
             {
                 if (_hoaDonId.HasValue)
@@ -139,7 +141,7 @@ namespace CafeOrder
                 pnlSidebar.SuspendLayout();
                 pnlSidebar.Controls.Clear();
 
-                // Label DANH MỤC - dùng DockStyle.Top
+
                 var lbl = new Label
                 {
                     Text = "📂 DANH MỤC",
@@ -153,12 +155,11 @@ namespace CafeOrder
                 };
                 pnlSidebar.Controls.Add(lbl);
 
-                // Lấy danh mục từ database
                 DataTable dt = BanHangService.GetDanhMuc();
                 if (dt.Rows.Count == 0) return;
 
                 Button firstButton = null;
-                // Duyệt từ cuối lên để đảm bảo thứ tự đúng (vì Dock=Top)
+
                 for (int i = dt.Rows.Count - 1; i >= 0; i--)
                 {
                     DataRow row = dt.Rows[i];
@@ -183,15 +184,14 @@ namespace CafeOrder
                     };
                     btn.Click += DanhMuc_Click;
                     pnlSidebar.Controls.Add(btn);
-                    firstButton = btn; // lấy button cuối cùng (sẽ là Cà phê sau vòng lặp)
+                    firstButton = btn; 
                 }
 
                 pnlSidebar.ResumeLayout();
 
-                // Chọn danh mục đầu tiên nếu có
+
                 if (firstButton != null)
                 {
-                    // Dùng BeginInvoke để tránh gọi click khi control chưa sẵn sàng
                     this.BeginInvoke(new Action(() => firstButton.PerformClick()));
                 }
             }
@@ -211,29 +211,124 @@ namespace CafeOrder
             }
             UiTheme.StyleSidebarButton(btn, true);
             _categorySelected = btn;
-            NapSanPham(Convert.ToInt32(btn.Tag));
+            _danhMucDangChon = Convert.ToInt32(btn.Tag);
+            if (!string.IsNullOrWhiteSpace(txtTimKiem.Text))
+            {
+                txtTimKiem.Clear();
+                return;
+            }
+            NapSanPham(_danhMucDangChon.Value);
         }
 
         private void NapSanPham(int danhMucId)
         {
+            _danhMucDangChon = danhMucId;
+            _dangTimKiem = false;
+            HienThiSanPham(BanHangService.GetMonAnByDanhMuc(danhMucId), false);
+        }
+
+        private void TimKiemSanPham()
+        {
+            string tuKhoa = txtTimKiem.Text.Trim();
+            if (string.IsNullOrEmpty(tuKhoa))
+            {
+                _dangTimKiem = false;
+                if (_danhMucDangChon.HasValue)
+                    NapSanPham(_danhMucDangChon.Value);
+                else
+                    flowSanPham.Controls.Clear();
+                return;
+            }
+
+            _dangTimKiem = true;
+            HienThiSanPham(BanHangService.TimKiemMonAn(tuKhoa), true);
+        }
+
+        private void HienThiSanPham(DataTable dt, bool hienDanhMuc)
+        {
             flowSanPham.SuspendLayout();
             flowSanPham.Controls.Clear();
-            var dt = BanHangService.GetMonAnByDanhMuc(danhMucId);
-            foreach (DataRow row in dt.Rows)
+
+            if (dt == null || dt.Rows.Count == 0)
             {
-                int id = Convert.ToInt32(row["id"]);
-                string ten = row["ten_mon"].ToString();
-                decimal gia = Convert.ToDecimal(row["gia"]);
-                flowSanPham.Controls.Add(CreateProductCard(id, ten, gia));
+                var lblTrong = new Label
+                {
+                    Text = _dangTimKiem ? "Không tìm thấy món phù hợp." : "Danh mục chưa có món.",
+                    AutoSize = true,
+                    Font = UiTheme.FontBody,
+                    ForeColor = UiTheme.TextMuted,
+                    Margin = new Padding(16)
+                };
+                flowSanPham.Controls.Add(lblTrong);
             }
+            else
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    int id = Convert.ToInt32(row["id"]);
+                    string ten = row["ten_mon"].ToString();
+                    decimal gia = Convert.ToDecimal(row["gia"]);
+                    string danhMuc = hienDanhMuc && dt.Columns.Contains("ten_danh_muc")
+                        ? row["ten_danh_muc"].ToString()
+                        : null;
+                    flowSanPham.Controls.Add(CreateProductCard(id, ten, gia, danhMuc));
+                }
+            }
+
             flowSanPham.ResumeLayout();
         }
 
-        private Panel CreateProductCard(int monAnId, string name, decimal price)
+        private void TxtTimKiem_TextChanged(object sender, EventArgs e)
+        {
+            TimKiemSanPham();
+        }
+
+        private void TxtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                ThemMonDauTienTuTimKiem();
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                txtTimKiem.Clear();
+            }
+        }
+
+        private void BtnXoaTimKiem_Click(object sender, EventArgs e)
+        {
+            txtTimKiem.Clear();
+            txtTimKiem.Focus();
+        }
+
+        private void ThemMonDauTienTuTimKiem()
+        {
+            string tuKhoa = txtTimKiem.Text.Trim();
+            if (string.IsNullOrEmpty(tuKhoa))
+                return;
+
+            var dt = BanHangService.TimKiemMonAn(tuKhoa);
+            if (dt.Rows.Count == 0)
+            {
+                MessageBox.Show("Không tìm thấy món phù hợp.", "Tìm kiếm",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var row = dt.Rows[0];
+            ThemVaoGio(Convert.ToInt32(row["id"]), Convert.ToDecimal(row["gia"]));
+            txtTimKiem.Clear();
+            txtTimKiem.Focus();
+        }
+
+        private Panel CreateProductCard(int monAnId, string name, decimal price, string danhMuc = null)
         {
             var card = new Panel
             {
-                Size = new Size(140, 160),
+                Size = new Size(140, danhMuc == null ? 160 : 176),
                 BackColor = Color.White,
                 Margin = new Padding(8),
                 Cursor = Cursors.Hand,
@@ -243,16 +338,32 @@ namespace CafeOrder
 
             var pic = new Panel
             {
-                Size = new Size(124, 72),
+                Size = new Size(124, danhMuc == null ? 72 : 56),
                 Location = new Point(8, 8),
                 BackColor = Color.FromArgb(236, 240, 241)
             };
+
+            int nameTop = danhMuc == null ? 88 : 68;
+            if (danhMuc != null)
+            {
+                var lblDanhMuc = new Label
+                {
+                    Text = danhMuc,
+                    Font = new Font("Segoe UI", 8F),
+                    ForeColor = UiTheme.TextMuted,
+                    Location = new Point(8, 68),
+                    Size = new Size(124, 18),
+                    TextAlign = ContentAlignment.MiddleCenter
+                };
+                card.Controls.Add(lblDanhMuc);
+            }
+
             var lblName = new Label
             {
                 Text = name,
                 Font = UiTheme.FontSection,
                 ForeColor = UiTheme.TextDark,
-                Location = new Point(8, 88),
+                Location = new Point(8, nameTop),
                 Size = new Size(124, 40),
                 TextAlign = ContentAlignment.TopCenter
             };
@@ -261,7 +372,7 @@ namespace CafeOrder
                 Text = price.ToString("N0") + " đ",
                 Font = new Font("Segoe UI", 10F, FontStyle.Bold),
                 ForeColor = UiTheme.Primary,
-                Location = new Point(8, 128),
+                Location = new Point(8, nameTop + 40),
                 Size = new Size(124, 24),
                 TextAlign = ContentAlignment.MiddleCenter
             };
@@ -341,7 +452,7 @@ namespace CafeOrder
                 return;
             }
 
-            // 6. Tìm MonAnId từ chi tiết (dùng DataTable)
+
             DataTable dt = BanHangService.GetChiTietHoaDon(_hoaDonId.Value);
             if (dt == null || dt.Rows.Count == 0)
             {
@@ -354,8 +465,7 @@ namespace CafeOrder
             {
                 if (Convert.ToInt32(row["id"]) == chiTietId)
                 {
-                    monAnId = Convert.ToInt32(row["mon_an_id"]); // Chú ý: cột trong query là mon_an_id
-                    break;
+                    monAnId = Convert.ToInt32(row["mon_an_id"]);
                 }
             }
 
@@ -417,6 +527,13 @@ namespace CafeOrder
             {
                 MessageBox.Show("Vui lòng chọn món cần xóa trong giỏ hàng.", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (!_hoaDonId.HasValue)
+            {
+                MessageBox.Show("Chưa có hóa đơn để xóa món.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -486,7 +603,7 @@ namespace CafeOrder
             }
             txtTongTien.Text = BanHangService.LayTongTien(_hoaDonId.Value).ToString("N0") + " đ";
 
-            // Load ghi chú của hóa đơn hiện tại
+
             if (_hoaDonId.HasValue)
                 txtGhiChu.Text = BanHangService.LayGhiChuHoaDon(_hoaDonId.Value);
             else
@@ -495,7 +612,7 @@ namespace CafeOrder
 
         private void BtnThanhToan_Click(object sender, EventArgs e)
         {
-            // Kiểm tra hóa đơn tồn tại
+
             if (!_hoaDonId.HasValue)
             {
                 MessageBox.Show("Chưa có món trong hóa đơn.", "Thông báo",
@@ -505,7 +622,7 @@ namespace CafeOrder
 
             try
             {
-                // Lấy tổng tiền từ service thay vì từ textbox
+           
                 decimal tongTien = BanHangService.LayTongTien(_hoaDonId.Value);
 
                 if (tongTien <= 0)
@@ -515,7 +632,7 @@ namespace CafeOrder
                     return;
                 }
 
-                // Lấy phương thức thanh toán được chọn
+          
                 string phuongThucHienThi = cboPhuongThucThanhToan.SelectedItem?.ToString();
                 string phuongThuc = "";
 
@@ -526,7 +643,7 @@ namespace CafeOrder
                     return;
                 }
 
-                // Chuyển đổi phương thức thanh toán
+
                 if (phuongThucHienThi.Contains("Tiền mặt"))
                     phuongThuc = "tien_mat";
                 else if (phuongThucHienThi.Contains("Chuyển khoản"))
@@ -536,7 +653,6 @@ namespace CafeOrder
                 else
                     phuongThuc = "tien_mat";
 
-                // Xác nhận thanh toán
                 DialogResult confirm = MessageBox.Show(
                     $"Xác nhận thanh toán {tongTien:N0} VNĐ bằng {phuongThucHienThi}?",
                     "Xác nhận thanh toán",
@@ -549,7 +665,6 @@ namespace CafeOrder
                 // Gọi service thanh toán
                 BanHangService.ThanhToan(_hoaDonId.Value, phuongThuc);
 
-                // Hiển thị thông báo thành công
                 MessageBox.Show($"Thanh toán thành công bằng {phuongThucHienThi}!",
                     "Thành công",
                     MessageBoxButtons.OK,

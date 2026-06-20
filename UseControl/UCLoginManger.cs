@@ -1,32 +1,43 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace CafeOrder
 {
     public partial class UCLoginmanger : UserControl
     {
-        private readonly string connectionString = ConfigurationManager.ConnectionStrings["cafe_quanly"]?.ConnectionString
-            ?? "Data Source=.\\SQLEXPRESS;Initial Catalog=cafe_quanly;Integrated Security=True;TrustServerCertificate=True";
+        private readonly string connectionString = DbHelper.ConnectionString;
 
         public bool IsAuthenticated { get; private set; } = false;
 
-        // 🔥 Sự kiện thông báo đăng nhập thành công
         public event EventHandler LoginSuccess;
 
         public UCLoginmanger()
         {
             InitializeComponent();
+            Load += UCLoginmanger_Load;
         }
 
         private void UCLoginmanger_Load(object sender, EventArgs e)
         {
             if (DesignMode) return;
+
+            label1.Text = "Quản trị viên";
+            UiTheme.StyleFlatButton(btndangnhap, UiTheme.Primary, 48);
+            btndangnhap.Text = "🔐 Đăng nhập quản trị";
+            btndangnhap.ForeColor = Color.White;
+            btndangnhap.UseVisualStyleBackColor = false;
+            lblError.ForeColor = Color.FromArgb(231, 76, 60);
+            lblError.BackColor = Color.Transparent;
+            lblError.Font = new System.Drawing.Font("Segoe UI", 10F);
+
+            txtUsername.Font = new System.Drawing.Font("Segoe UI", 11F);
+            txtPassword.Font = new System.Drawing.Font("Segoe UI", 11F);
             txtUsername.Focus();
         }
 
-        // Nút ĐĂNG NHẬP
         private void btndangnhap_Click(object sender, EventArgs e)
         {
             string username = txtUsername.Text.Trim();
@@ -43,7 +54,6 @@ namespace CafeOrder
             if (CheckAdminAccount(username, password))
             {
                 IsAuthenticated = true;
-                // 🔥 Gọi sự kiện đăng nhập thành công
                 LoginSuccess?.Invoke(this, EventArgs.Empty);
             }
             else
