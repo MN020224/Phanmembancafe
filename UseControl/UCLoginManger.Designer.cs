@@ -94,7 +94,7 @@
             this.txtPassword.ForeColor = System.Drawing.Color.Black;
             this.txtPassword.Location = new System.Drawing.Point(677, 428);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(0);
-            this.txtPassword.Multiline = true;
+            this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '●';
             this.txtPassword.Size = new System.Drawing.Size(376, 27);

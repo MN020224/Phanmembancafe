@@ -30,8 +30,14 @@ D:\doancntt\Phanmembancafe\obj\Debug\CafeOrder.csproj.Up2Date
 D:\doancntt\Phanmembancafe\obj\Debug\CafeOrder.exe
 D:\doancntt\Phanmembancafe\obj\Debug\CafeOrder.pdb
 D:\doancntt\Phanmembancafe\obj\Debug\CafeOrder.exe.config
-F:\Project\Phanmembancafe\bin\Debug\CafeOrder.exe
+F:\Project\Phanmembancafe\build-check\root\CafeOrder.exe.config
+F:\Project\Phanmembancafe\build-check\root\CafeOrder.exe
+F:\Project\Phanmembancafe\build-check\root\CafeOrder.pdb
+F:\Project\Phanmembancafe\build-check\root\System.Configuration.ConfigurationManager.dll
+F:\Project\Phanmembancafe\build-check\root\System.Configuration.ConfigurationManager.xml
 F:\Project\Phanmembancafe\bin\Debug\CafeOrder.exe.config
+F:\Project\Phanmembancafe\bin\Debug\CafeOrder.exe
+F:\Project\Phanmembancafe\bin\Debug\CafeOrder.pdb
 F:\Project\Phanmembancafe\bin\Debug\System.Configuration.ConfigurationManager.dll
 F:\Project\Phanmembancafe\bin\Debug\System.Configuration.ConfigurationManager.xml
 F:\Project\Phanmembancafe\obj\Debug\CafeOrder.csproj.AssemblyReference.cache
@@ -49,5 +55,4 @@ F:\Project\Phanmembancafe\obj\Debug\CafeOrder.csproj.CoreCompileInputs.cache
 F:\Project\Phanmembancafe\obj\Debug\CafeOrder.csproj.Up2Date
 F:\Project\Phanmembancafe\obj\Debug\CafeOrder.exe
 F:\Project\Phanmembancafe\obj\Debug\CafeOrder.pdb
-F:\Project\Phanmembancafe\bin\Debug\CafeOrder.pdb
 F:\Project\Phanmembancafe\obj\Debug\CafeOrder.exe.config

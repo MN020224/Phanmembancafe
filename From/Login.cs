@@ -19,8 +19,9 @@ namespace CafeOrder
         public Login()
         {
             InitializeComponent();
-            // Đặt nút đăng nhập là nút mặc định khi nhấn Enter
-            this.AcceptButton = btndangnhap;
+            AcceptButton = btndangnhap;
+            txtPassword.PasswordChar = '●';
+            txtPassword.KeyPress += txtPassword_KeyPress;
         }
 
         private void Label1_Click(object sender, EventArgs e)

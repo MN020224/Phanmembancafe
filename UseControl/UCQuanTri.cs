@@ -62,7 +62,7 @@ namespace CafeOrder
             UiTheme.StyleFlatButton(btnLocBaoCao, UiTheme.Primary);
             UiTheme.StyleFlatButton(btnExitAdmin, UiTheme.Danger, 34);
 
-            lblTitle.Text = "⚙️ QUẢN TRỊ HỆ THỐNG";
+            lblTitle.Text = "⚙️ QUẢN TRỊ";
             btnExitAdmin.Text = "← Quay lại bán hàng";
             btnExitAdmin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnExitAdmin.BringToFront();

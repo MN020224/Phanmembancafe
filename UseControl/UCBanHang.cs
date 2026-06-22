@@ -7,39 +7,25 @@ namespace CafeOrder
 {
     public partial class UCBanHang : UserControl
     {
+        private const int TheMargin = 10;
+        private const int ChieuCaoThe = 150;
+        private const int ChieuCaoTheCoDanhMuc = 168;
+
         private Button _categorySelected;
         private int? _hoaDonId;
         private bool _daKhoiTao;
         private int? _danhMucDangChon;
         private bool _dangTimKiem;
+        private TableLayoutPanel _sanPhamGrid;
 
         public UCBanHang()
         {
             InitializeComponent();
             pnlDanhMucList.AutoScroll = true;
-            InitializeNumericUpDown();
-        }
-
-        private void InitializeNumericUpDown()
-        {
-            if (nudSoLuong == null)
-            {
-                nudSoLuong = new NumericUpDown
-                {
-               
-                    Size = new Size(80, 20),
-                    Minimum = 1,
-                    Maximum = 100,
-                    Value = 1
-                };
-            }
-
-
-            if (pnlFooter != null && !pnlFooter.Controls.Contains(nudSoLuong))
-            {
-                pnlFooter.Controls.Add(nudSoLuong);
-                nudSoLuong.BringToFront();
-            }
+            pnlSanPham.Resize += (s, e) => CapNhatKichThuocTheSanPham();
+            flowSanPham.Resize += (s, e) => CapNhatKichThuocTheSanPham();
+            pnlTimKiem.Resize += (s, e) => CanThanhTimKiem();
+            pnlFooter.Resize += (s, e) => ThietLapFooterHoaDon();
         }
 
         public void TaiLai()
@@ -83,11 +69,15 @@ namespace CafeOrder
             dgvGioHang.Columns["ChiTietId"].Visible = false;
             dgvGioHang.Columns.Add("TenMon", "Tên món");
             dgvGioHang.Columns.Add("SoLuong", "SL");
-            dgvGioHang.Columns["SoLuong"].Width = 50;
             dgvGioHang.Columns.Add("DonGia", "Đơn giá");
             dgvGioHang.Columns.Add("ThanhTien", "Thành tiền");
-
-
+            dgvGioHang.Columns["TenMon"].FillWeight = 130;
+            dgvGioHang.Columns["SoLuong"].FillWeight = 45;
+            dgvGioHang.Columns["DonGia"].FillWeight = 70;
+            dgvGioHang.Columns["ThanhTien"].FillWeight = 80;
+            dgvGioHang.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvGioHang.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvGioHang.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             // Thiết lập ComboBox mặc định
             if (cboPhuongThucThanhToan.Items.Count == 0)
@@ -103,13 +93,6 @@ namespace CafeOrder
             _daKhoiTao = true;
             TaiLai();
 
-
-            if (btnThemMon != null && nudSoLuong != null && pnlFooter != null)
-            {
-
-                nudSoLuong.Location = new Point(btnThemMon.Right + 5, btnThemMon.Top);
-            }
-
             txtGhiChu.Leave += (s, ev) =>
             {
                 if (_hoaDonId.HasValue)
@@ -118,6 +101,198 @@ namespace CafeOrder
                     BanHangService.CapNhatGhiChuHoaDon(_hoaDonId.Value, ghichu);
                 }
             };
+
+            ThietLapGiaoDien();
+        }
+
+        private void ThietLapGiaoDien()
+        {
+            ThietLapBoCucLuoiBanHang();
+            pnlBody.BackColor = UiTheme.Background;
+            pnlDonHang.BackColor = Color.White;
+            pnlDonHang.MinimumSize = new Size(340, 0);
+            pnlFooter.BackColor = Color.White;
+            lblDonHang.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            lblDonHang.ForeColor = UiTheme.PrimaryDark;
+            lblDonHang.Text = "HOA DON";
+            lblDonHang.Height = 46;
+
+            txtTimKiem.BorderStyle = BorderStyle.FixedSingle;
+            txtTimKiem.BackColor = Color.White;
+            txtGhiChu.BorderStyle = BorderStyle.FixedSingle;
+            txtGhiChu.Font = UiTheme.FontBody;
+            cboPhuongThucThanhToan.FlatStyle = FlatStyle.Flat;
+            btnHuyHoaDon.Text = "HỦY";
+            btnThemMon.Text = "THÊM";
+            btnXoaMon.Text = "XÓA";
+            btnThanhToan.Text = "THANH TOÁN";
+
+            ThietLapFooterHoaDon();
+            pnlTimKiem.BringToFront();
+            pnlDonHang.BringToFront();
+        }
+
+        private void ThietLapBoCucLuoiBanHang()
+        {
+            pnlBody.SuspendLayout();
+
+            if (!(pnlBody.Controls.Count == 1 && pnlBody.Controls[0] is TableLayoutPanel))
+            {
+                pnlBody.Controls.Clear();
+                pnlBody.Padding = new Padding(16);
+
+                var grid = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    ColumnCount = 3,
+                    RowCount = 1,
+                    BackColor = UiTheme.Background
+                };
+                grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180F));
+                grid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+                grid.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 360F));
+                grid.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+
+                grid.Controls.Add(pnlSidebar, 0, 0);
+                grid.Controls.Add(pnlSanPham, 1, 0);
+                grid.Controls.Add(pnlDonHang, 2, 0);
+                pnlBody.Controls.Add(grid);
+            }
+
+            pnlSidebar.Dock = DockStyle.Fill;
+            pnlSidebar.Margin = new Padding(0, 0, 14, 0);
+            pnlSidebar.Padding = new Padding(0);
+            pnlSidebar.BackColor = Color.White;
+            pnlDanhMucList.BackColor = Color.White;
+            lblDanhMuc.Text = "DANH MUC";
+            lblDanhMuc.ForeColor = UiTheme.PrimaryDark;
+            lblDanhMuc.BackColor = Color.White;
+            lblDanhMuc.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblDanhMuc.Padding = new Padding(14, 0, 0, 0);
+
+            pnlSanPham.Dock = DockStyle.Fill;
+            pnlSanPham.Margin = new Padding(0, 0, 14, 0);
+            pnlSanPham.Padding = new Padding(0);
+            pnlSanPham.BackColor = UiTheme.Background;
+
+            ThietLapKhungSanPham();
+
+            pnlTimKiem.Height = 58;
+            pnlTimKiem.Padding = new Padding(12);
+            pnlTimKiem.BackColor = Color.White;
+            lblTimKiem.Text = "TIM MON";
+            lblTimKiem.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnXoaTimKiem.Text = "XOA";
+            CanThanhTimKiem();
+
+            flowSanPham.Padding = new Padding(10);
+            flowSanPham.BackColor = UiTheme.Background;
+
+            pnlDonHang.Dock = DockStyle.Fill;
+            pnlDonHang.Margin = new Padding(0);
+            pnlDonHang.Padding = new Padding(14);
+            pnlFooter.Height = 290;
+            dgvGioHang.BackgroundColor = Color.White;
+            dgvGioHang.RowTemplate.Height = 34;
+
+            pnlBody.ResumeLayout();
+        }
+
+        private void ThietLapKhungSanPham()
+        {
+            if (_sanPhamGrid == null)
+            {
+                pnlSanPham.Controls.Remove(pnlTimKiem);
+                pnlSanPham.Controls.Remove(flowSanPham);
+
+                _sanPhamGrid = new TableLayoutPanel
+                {
+                    Dock = DockStyle.Fill,
+                    ColumnCount = 1,
+                    RowCount = 2,
+                    BackColor = UiTheme.Background,
+                    Margin = Padding.Empty,
+                    Padding = Padding.Empty
+                };
+                _sanPhamGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+                _sanPhamGrid.RowStyles.Add(new RowStyle(SizeType.Absolute, 58F));
+                _sanPhamGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+
+                pnlTimKiem.Dock = DockStyle.Fill;
+                pnlTimKiem.Margin = new Padding(0, 0, 0, 10);
+                flowSanPham.Dock = DockStyle.Fill;
+                flowSanPham.Margin = Padding.Empty;
+
+                _sanPhamGrid.Controls.Add(pnlTimKiem, 0, 0);
+                _sanPhamGrid.Controls.Add(flowSanPham, 0, 1);
+                pnlSanPham.Controls.Add(_sanPhamGrid);
+            }
+
+            _sanPhamGrid.RowStyles[0].Height = 68F;
+        }
+
+        private void CanThanhTimKiem()
+        {
+            if (pnlTimKiem == null || txtTimKiem == null || btnXoaTimKiem == null)
+                return;
+
+            int rightButtonX = Math.Max(220, pnlTimKiem.ClientSize.Width - 88);
+            lblTimKiem.SetBounds(12, 12, 82, 32);
+            txtTimKiem.SetBounds(98, 13, Math.Max(120, rightButtonX - 106), 30);
+            btnXoaTimKiem.SetBounds(rightButtonX, 12, 76, 32);
+        }
+
+        private void ThietLapFooterHoaDon()
+        {
+            if (lblPhuongThucThanhToan.Parent != pnlFooter)
+            {
+                pnlThanhToan.Controls.Remove(lblPhuongThucThanhToan);
+                pnlThanhToan.Controls.Remove(cboPhuongThucThanhToan);
+                pnlFooter.Controls.Add(lblPhuongThucThanhToan);
+                pnlFooter.Controls.Add(cboPhuongThucThanhToan);
+            }
+            pnlThanhToan.Visible = false;
+
+            pnlFooter.Padding = new Padding(14);
+            int w = pnlFooter.ClientSize.Width - pnlFooter.Padding.Horizontal;
+            if (w <= 0)
+                return;
+
+            int x = pnlFooter.Padding.Left;
+            int y = pnlFooter.Padding.Top;
+
+            label1.SetBounds(x, y, w, 20);
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            txtGhiChu.SetBounds(x, y + 22, w, 26);
+
+            y += 56;
+            lblTongTien.SetBounds(x, y, w, 20);
+            lblTongTien.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            txtTongTien.SetBounds(x, y + 22, w, 34);
+            txtTongTien.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            txtTongTien.BackColor = Color.White;
+
+            y += 66;
+            int btnW = (w - 8) / 3;
+            btnHuyHoaDon.SetBounds(x, y, btnW, 34);
+            btnThemMon.SetBounds(x + btnW + 4, y, btnW, 34);
+            btnXoaMon.SetBounds(x + (btnW + 4) * 2, y, btnW, 34);
+            lblSoLuong.Visible = false;
+            nudSoLuong.Visible = false;
+
+            y += 44;
+            lblPhuongThucThanhToan.SetBounds(x, y, w, 18);
+            lblPhuongThucThanhToan.Font = new Font("Segoe UI", 8.5F);
+            y += 20;
+            cboPhuongThucThanhToan.SetBounds(x, y, w, 28);
+
+            y += 36;
+            btnThanhToan.SetBounds(x, y, w, 46);
+            btnThanhToan.Text = "THANH TOÁN";
+
+            lblPhuongThucThanhToan.BringToFront();
+            cboPhuongThucThanhToan.BringToFront();
+            btnThanhToan.BringToFront();
         }
 
         private bool KiemTraCa()
@@ -159,7 +334,7 @@ namespace CafeOrder
 
                     var btn = new Button
                     {
-                        Text = LayIconDanhMuc(ten) + "  " + ten,
+                        Text = ten,
                         Tag = id
                     };
                     UiTheme.StyleSidebarButton(btn, false);
@@ -267,6 +442,88 @@ namespace CafeOrder
             }
 
             flowSanPham.ResumeLayout();
+            CapNhatKichThuocTheSanPham();
+        }
+
+        private Size TinhKichThuocThe(bool hienDanhMuc)
+        {
+            int available = flowSanPham.ClientSize.Width - flowSanPham.Padding.Horizontal - 20;
+            int columns = Math.Max(2, Math.Min(5, available / 180));
+            int marginTong = columns * TheMargin * 2;
+            int cardW = Math.Max(150, (available - marginTong) / columns);
+            int cardH = hienDanhMuc ? ChieuCaoTheCoDanhMuc : ChieuCaoThe;
+            return new Size(cardW, cardH);
+        }
+
+        private void CapNhatKichThuocTheSanPham()
+        {
+            if (flowSanPham.Controls.Count == 0)
+                return;
+
+            bool hienDanhMuc = flowSanPham.Controls[0] is Panel p && p.Controls.Count > 3;
+            var size = TinhKichThuocThe(hienDanhMuc);
+
+            flowSanPham.SuspendLayout();
+            foreach (Control c in flowSanPham.Controls)
+            {
+                if (c is Panel card)
+                {
+                    card.Size = size;
+                    card.Margin = new Padding(TheMargin);
+                    bool coDanhMuc = card.Controls.Count > 3;
+                    DieuChinhNoiDungThe(card, size, coDanhMuc);
+                }
+            }
+            flowSanPham.ResumeLayout();
+        }
+
+        private static void DieuChinhNoiDungThe(Panel card, Size size, bool coDanhMuc)
+        {
+            const int pad = 6;
+            int contentW = size.Width - pad * 2;
+            int picH = coDanhMuc ? 58 : 64;
+            int nameTop = pad + picH + (coDanhMuc ? 22 : 8);
+            int nameH = size.Height - nameTop - 34;
+
+            foreach (Control c in card.Controls)
+            {
+                if (c.Name == "picThumb")
+                {
+                    c.Size = new Size(contentW, picH);
+                    c.Location = new Point(pad, pad);
+                }
+                else if (c.Name == "lblDanhMuc")
+                {
+                    c.Location = new Point(pad, pad + picH);
+                    c.Size = new Size(contentW, 16);
+                }
+                else if (c.Name == "lblName")
+                {
+                    c.Location = new Point(pad, nameTop);
+                    c.Size = new Size(contentW, Math.Max(28, nameH));
+                }
+                else if (c.Name == "lblPrice")
+                {
+                    c.Location = new Point(pad, size.Height - pad - 28);
+                    c.Size = new Size(contentW, 28);
+                }
+            }
+        }
+
+        private static string LayIconMon(string tenMon)
+        {
+            string ten = (tenMon ?? "").ToLowerInvariant();
+            if (ten.Contains("cà phê") || ten.Contains("ca phe") || ten.Contains("coffee") || ten.Contains("cappuccino") || ten.Contains("latte") || ten.Contains("espresso"))
+                return "☕";
+            if (ten.Contains("trà") || ten.Contains("tra") || ten.Contains("tea"))
+                return "🍵";
+            if (ten.Contains("sinh tố") || ten.Contains("sinh to") || ten.Contains("nước") || ten.Contains("nuoc"))
+                return "🥤";
+            if (ten.Contains("bánh") || ten.Contains("banh") || ten.Contains("croissant"))
+                return "🥐";
+            if (ten.Contains("sữa") || ten.Contains("sua"))
+                return "🥛";
+            return "🍽";
         }
 
         private void TxtTimKiem_TextChanged(object sender, EventArgs e)
@@ -317,65 +574,104 @@ namespace CafeOrder
 
         private Panel CreateProductCard(int monAnId, string name, decimal price, string danhMuc = null)
         {
+            bool coDanhMuc = danhMuc != null;
+            var size = TinhKichThuocThe(coDanhMuc);
+
             var card = new Panel
             {
-                Size = new Size(140, danhMuc == null ? 160 : 176),
+                Size = size,
                 BackColor = Color.White,
-                Margin = new Padding(8),
+                Margin = new Padding(TheMargin),
                 Cursor = Cursors.Hand,
-                BorderStyle = BorderStyle.FixedSingle,
                 Tag = monAnId
             };
+            UiTheme.ApplyRoundedCard(card);
+
+            int pad = 6;
+            int contentW = size.Width - pad * 2;
+            int picH = coDanhMuc ? 58 : 64;
 
             var pic = new Panel
             {
-                Size = new Size(124, danhMuc == null ? 72 : 56),
-                Location = new Point(8, 8),
-                BackColor = Color.FromArgb(236, 240, 241)
+                Name = "picThumb",
+                Size = new Size(contentW, picH),
+                Location = new Point(pad, pad),
+                BackColor = Color.FromArgb(245, 237, 228)
             };
+            var lblIcon = new Label
+            {
+                Text = LayIconMon(name),
+                Font = new Font("Segoe UI Emoji", 26F),
+                Dock = DockStyle.Fill,
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent,
+                Cursor = Cursors.Hand
+            };
+            pic.Controls.Add(lblIcon);
 
-            int nameTop = danhMuc == null ? 88 : 68;
-            if (danhMuc != null)
+            int nameTop = pad + picH + (coDanhMuc ? 22 : 8);
+            int nameH = size.Height - nameTop - 34;
+
+            if (coDanhMuc)
             {
                 var lblDanhMuc = new Label
                 {
+                    Name = "lblDanhMuc",
                     Text = danhMuc,
-                    Font = new Font("Segoe UI", 8F),
+                    Font = new Font("Segoe UI", 7.5F),
                     ForeColor = UiTheme.TextMuted,
-                    Location = new Point(8, 68),
-                    Size = new Size(124, 18),
-                    TextAlign = ContentAlignment.MiddleCenter
+                    Location = new Point(pad, pad + picH),
+                    Size = new Size(contentW, 16),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Cursor = Cursors.Hand
                 };
                 card.Controls.Add(lblDanhMuc);
             }
 
             var lblName = new Label
             {
+                Name = "lblName",
                 Text = name,
-                Font = UiTheme.FontSection,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
                 ForeColor = UiTheme.TextDark,
-                Location = new Point(8, nameTop),
-                Size = new Size(124, 40),
-                TextAlign = ContentAlignment.TopCenter
+                Location = new Point(pad, nameTop),
+                Size = new Size(contentW, Math.Max(28, nameH)),
+                TextAlign = ContentAlignment.TopCenter,
+                Cursor = Cursors.Hand
             };
             var lblPrice = new Label
             {
+                Name = "lblPrice",
                 Text = price.ToString("N0") + " đ",
-                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                Font = new Font("Segoe UI", 10.5F, FontStyle.Bold),
                 ForeColor = UiTheme.Primary,
-                Location = new Point(8, nameTop + 40),
-                Size = new Size(124, 24),
-                TextAlign = ContentAlignment.MiddleCenter
+                Location = new Point(pad, size.Height - pad - 28),
+                Size = new Size(contentW, 28),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Cursor = Cursors.Hand
             };
 
             card.Controls.Add(pic);
             card.Controls.Add(lblName);
             card.Controls.Add(lblPrice);
 
+            Color hoverBg = Color.FromArgb(255, 251, 245);
+            card.MouseEnter += (s, ev) => { card.BackColor = hoverBg; card.Invalidate(); };
+            card.MouseLeave += (s, ev) => { card.BackColor = Color.White; card.Invalidate(); };
+            pic.MouseEnter += (s, ev) => { card.BackColor = hoverBg; card.Invalidate(); };
+            pic.MouseLeave += (s, ev) => { card.BackColor = Color.White; card.Invalidate(); };
+
             EventHandler click = (s, ev) => ThemVaoGio(monAnId, price);
             card.Click += click;
             foreach (Control c in card.Controls)
+            {
                 c.Click += click;
+                if (c is Panel pnl)
+                {
+                    foreach (Control sub in pnl.Controls)
+                        sub.Click += click;
+                }
+            }
 
             return card;
         }
@@ -558,13 +854,10 @@ namespace CafeOrder
             if (!_hoaDonId.HasValue)
                 KhoiTaoHoaDon();
 
-            int qty = (int)nudSoLuong.Value;
-
             try
             {
-                BanHangService.ThemChiTiet(_hoaDonId.Value, monAnId, qty, price);
+                BanHangService.ThemChiTiet(_hoaDonId.Value, monAnId, 1, price);
                 NapGioHang();
-                nudSoLuong.Value = 1;
             }
             catch (Exception ex)
             {
@@ -699,5 +992,29 @@ namespace CafeOrder
             }
         }
 
+        private void pnlSanPham_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flowSanPham_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flowSanPham_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblDanhMuc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTimKiem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

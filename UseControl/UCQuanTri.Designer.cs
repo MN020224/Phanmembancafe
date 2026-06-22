@@ -138,7 +138,7 @@ namespace CafeOrder
             this.lblTitle.Padding = new System.Windows.Forms.Padding(16, 0, 200, 0);
             this.lblTitle.Size = new System.Drawing.Size(1100, 52);
             this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "⚙️ QUẢN TRỊ HỆ THỐNG";
+            this.lblTitle.Text = "⚙️ QUẢN TRỊ";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlMain
@@ -487,7 +487,6 @@ namespace CafeOrder
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
             this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.pnlLog);
             this.Controls.Add(this.pnlHeader);
             this.Name = "UCQuanTri";
             this.Size = new System.Drawing.Size(1100, 700);

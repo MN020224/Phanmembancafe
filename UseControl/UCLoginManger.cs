@@ -18,6 +18,9 @@ namespace CafeOrder
         {
             InitializeComponent();
             Load += UCLoginmanger_Load;
+            txtUsername.KeyDown += DangNhapAdmin_KeyDown;
+            txtPassword.KeyDown += DangNhapAdmin_KeyDown;
+            txtPassword.PasswordChar = '●';
         }
 
         private void UCLoginmanger_Load(object sender, EventArgs e)
@@ -35,7 +38,18 @@ namespace CafeOrder
 
             txtUsername.Font = new System.Drawing.Font("Segoe UI", 11F);
             txtPassword.Font = new System.Drawing.Font("Segoe UI", 11F);
+            txtPassword.PasswordChar = '●';
             txtUsername.Focus();
+        }
+
+        private void DangNhapAdmin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+                return;
+
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+            btndangnhap.PerformClick();
         }
 
         private void btndangnhap_Click(object sender, EventArgs e)

@@ -38,21 +38,21 @@ namespace CafeOrder
             btn.FlatStyle = FlatStyle.Flat;
             btn.FlatAppearance.BorderSize = 0;
             btn.Dock = DockStyle.Top;
-            btn.Height = 48;
+            btn.Height = 46;
             btn.TextAlign = ContentAlignment.MiddleLeft;
-            btn.Padding = new Padding(16, 0, 0, 0);
-            btn.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
+            btn.Padding = new Padding(14, 0, 0, 0);
+            btn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btn.Cursor = Cursors.Hand;
             btn.UseVisualStyleBackColor = false;
             if (selected)
             {
-                btn.BackColor = Color.FromArgb(160, 120, 95);
-                btn.ForeColor = Color.White;
+                btn.BackColor = Color.FromArgb(232, 213, 196);
+                btn.ForeColor = PrimaryDark;
             }
             else
             {
-                btn.BackColor = PrimaryDark;
-                btn.ForeColor = Color.FromArgb(253, 245, 236);
+                btn.BackColor = Color.White;
+                btn.ForeColor = TextDark;
             }
         }
 
@@ -63,16 +63,47 @@ namespace CafeOrder
             dgv.EnableHeadersVisualStyles = false;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = PrimaryDark;
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             dgv.ColumnHeadersDefaultCellStyle.Padding = new Padding(4);
-            dgv.ColumnHeadersHeight = 40;
-            dgv.DefaultCellStyle.Font = FontBody;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(214, 234, 248);
+            dgv.ColumnHeadersHeight = 36;
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(232, 213, 196);
             dgv.DefaultCellStyle.SelectionForeColor = TextDark;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 249, 250);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(252, 248, 244);
+            dgv.RowTemplate.Height = 32;
             dgv.RowHeadersVisible = false;
             dgv.GridColor = Color.FromArgb(236, 240, 241);
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+        }
+
+        public static void ApplyRoundedCard(Panel panel, int radius = 10)
+        {
+            panel.BorderStyle = BorderStyle.None;
+            panel.Paint += (s, e) =>
+            {
+                var g = e.Graphics;
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                var rect = new Rectangle(0, 0, panel.Width - 1, panel.Height - 1);
+                using (var path = TaoDuongBoTron(rect, radius))
+                using (var brush = new SolidBrush(panel.BackColor))
+                using (var pen = new Pen(Color.FromArgb(220, 210, 200)))
+                {
+                    g.FillPath(brush, path);
+                    g.DrawPath(pen, path);
+                }
+            };
+        }
+
+        private static System.Drawing.Drawing2D.GraphicsPath TaoDuongBoTron(Rectangle rect, int radius)
+        {
+            int d = radius * 2;
+            var path = new System.Drawing.Drawing2D.GraphicsPath();
+            path.AddArc(rect.X, rect.Y, d, d, 180, 90);
+            path.AddArc(rect.Right - d, rect.Y, d, d, 270, 90);
+            path.AddArc(rect.Right - d, rect.Bottom - d, d, d, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - d, d, d, 90, 90);
+            path.CloseFigure();
+            return path;
         }
 
         public static Panel CreateKpiCard(string title, string value, Color accent, int width = 220)
